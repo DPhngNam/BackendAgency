@@ -43,4 +43,14 @@ public class PersonController {
         }
     }
 
+    @GetMapping("/findByNameSimilarity")
+    public ResponseEntity<List<person>> findByNameSimilarity(@RequestParam String personname) {
+        List<person> result = PersonService.findByNameSimilarity(personname);
+        if (result.size() > 0) {
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

@@ -10,4 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface PersonRepository extends JpaRepository<person, Integer> {
     @Query("SELECT p FROM person p WHERE p.personemail = :personemail")
     person getUserByEmail(@Param("personemail") String personemail);
+
+
+    @Query(value = "SELECT * FROM person WHERE SOUNDEX(personname) = SOUNDEX(:personname)", nativeQuery = true)
+    Iterable<person> findByNameSimilarity(@Param("personname") String personname);
 }

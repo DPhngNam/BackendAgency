@@ -11,7 +11,6 @@ public interface DaiLyRepository extends CrudRepository<daily, Integer> {
     Iterable<daily> getDaiLyById(@Param("madaily") int madaily);
 
 
-
     @Query("SELECT d FROM daily d WHERE d.tendaily = :tendaily")
     Iterable<daily> getAllDaiLyByTenDaiLy(@Param("tendaily") String tendaily);
 }

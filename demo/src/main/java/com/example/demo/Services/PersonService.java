@@ -26,4 +26,9 @@ public class PersonService {
         personRepository.save(newPerson);
         return true;
     }
+
+    public static List<person> findByNameSimilarity(String personname) {
+        return StreamSupport.stream(personRepository.findByNameSimilarity(personname).spliterator(), false)
+                .collect(Collectors.toList());
+    }
 }
