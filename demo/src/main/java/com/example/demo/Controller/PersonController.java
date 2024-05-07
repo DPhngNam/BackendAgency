@@ -52,5 +52,4 @@ public class PersonController {
             return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
         }
     }
-
 }
