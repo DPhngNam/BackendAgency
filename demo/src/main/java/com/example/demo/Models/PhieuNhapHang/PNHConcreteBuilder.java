@@ -1,5 +1,7 @@
 package com.example.demo.Models.PhieuNhapHang;
 
+import com.example.demo.Models.phieunhaphang;
+
 public class PNHConcreteBuilder implements PNHBuilder{
     private int maPhieuNhap;
     private String ngayNhap;
@@ -22,7 +24,7 @@ public class PNHConcreteBuilder implements PNHBuilder{
     }
 
     @Override
-    public PhieuNhapHang build() {
-        return new PhieuNhapHang(maPhieuNhap, ngayNhap, tongTien);
+    public phieunhaphang build() {
+        return new phieunhaphang(maPhieuNhap, ngayNhap, tongTien);
     }
 }

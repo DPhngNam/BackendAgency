@@ -1,5 +1,7 @@
 package com.example.demo.Models.RetailerUser;
 
+import com.example.demo.Models.person;
+
 public class PersonConcreteBuilder implements PersonBulder {
     private int personid;
     private String personlastname;

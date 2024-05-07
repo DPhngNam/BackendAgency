@@ -1,8 +1,10 @@
 package com.example.demo.Models.PhieuNhapHang;
 
+import com.example.demo.Models.phieunhaphang;
+
 public interface PNHBuilder {
     public PNHBuilder setMaPhieuNhap(int maPhieuNhap);
     public PNHBuilder setNgayNhap(String ngayNhap);
     public PNHBuilder setTongTien(int tongTien);
-    public PhieuNhapHang build();
+    public phieunhaphang build();
 }

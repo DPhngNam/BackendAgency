@@ -1,5 +1,7 @@
 package com.example.demo.Models.BaoCaoCongNo;
 
+import com.example.demo.Models.baocaocongno;
+
 public class BCCNConcreteBuilder {
     private String maBaoCaoCongNo;
     private String thang;
@@ -44,7 +46,7 @@ public class BCCNConcreteBuilder {
         return this;
     }
 
-    public BaoCaoCongNo build() {
-        return new BaoCaoCongNo(maBaoCaoCongNo, thang, nam, maDaiLy, noDau, noCuoi, phatSinh);
+    public baocaocongno build() {
+        return new baocaocongno(maBaoCaoCongNo, thang, nam, maDaiLy, noDau, noCuoi, phatSinh);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.demo.Models.PhieuXuatHang;
 
+import com.example.demo.Models.phieuxuathang;
+
 public class PXHConcreteBuilder implements PXHBuilder{
     private int maPhieuXuat;
     private String ngayXuat;
@@ -45,8 +47,8 @@ public class PXHConcreteBuilder implements PXHBuilder{
     }
 
     @Override
-    public PhieuXuatHang build() {
-        return new PhieuXuatHang(maPhieuXuat, ngayXuat, maDaiLy, tongTien, soTienTra, conLai);
+    public phieuxuathang build() {
+        return new phieuxuathang(maPhieuXuat, ngayXuat, maDaiLy, tongTien, soTienTra, conLai);
     }
 
 }

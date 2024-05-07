@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Models.DaiLyModel.daily;
+import com.example.demo.Models.daily;
 import com.example.demo.Models.DaiLyModel.DaiLyBuilder;
 import com.example.demo.Models.DaiLyModel.DaiLyConcreteBuilder;
 import com.example.demo.Repository.DaiLyRepository;
@@ -38,9 +38,9 @@ public class DaiLyController {
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<daily> getAllDaiLy(int userId) {
+    public @ResponseBody Iterable<daily> getAllDaiLy() {
         // This returns a JSON or XML with the users
-        return daiLyRepository.getAllDaiLyByUserID(userId);
+        return daiLyRepository.findAll();
     }
 
     @GetMapping(path="/byId")

@@ -1,5 +1,7 @@
 package com.example.demo.Models.BaoCaoCongNo;
 
+import com.example.demo.Models.baocaocongno;
+
 public interface BCCNBuilder {
     BCCNBuilder setMaBaoCaoCongNo(String maBaoCaoCongNo);
     BCCNBuilder setThang(String thang);
@@ -8,5 +10,5 @@ public interface BCCNBuilder {
     BCCNBuilder setNoDau(String noDau);
     BCCNBuilder setNoCuoi(String noCuoi);
     BCCNBuilder setPhatSinh(String phatSinh);
-    BaoCaoCongNo build();
+    baocaocongno build();
 }

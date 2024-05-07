@@ -1,5 +1,7 @@
 package com.example.demo.Models.BaoCaoDoanhSo;
 
+import com.example.demo.Models.baocaodoanhso;
+
 public class BCDSConcreteBuilder {
     private String maBaoCaoDoanhSo;
     private String thang;
@@ -38,7 +40,7 @@ public class BCDSConcreteBuilder {
         return this;
     }
 
-    public BaoCaoDoanhSo build() {
-        return new BaoCaoDoanhSo(maBaoCaoDoanhSo, thang, nam, maDaiLy, tongDoanhSo, tyLe);
+    public baocaodoanhso build() {
+        return new baocaodoanhso(maBaoCaoDoanhSo, thang, nam, maDaiLy, tongDoanhSo, tyLe);
     }
 }

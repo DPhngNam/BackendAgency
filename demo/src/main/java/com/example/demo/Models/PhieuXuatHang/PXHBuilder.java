@@ -1,5 +1,7 @@
 package com.example.demo.Models.PhieuXuatHang;
 
+import com.example.demo.Models.phieuxuathang;
+
 public interface PXHBuilder {
     public PXHBuilder setMaPhieuXuat(int maPhieuXuat);
     public PXHBuilder setNgayXuat(String ngayXuat);
@@ -7,5 +9,5 @@ public interface PXHBuilder {
     public PXHBuilder setTongTien(int tongTien);
     public PXHBuilder setSoTienTra(int soTienTra);
     public PXHBuilder setConLai(int conLai);
-    public PhieuXuatHang build();
+    public phieuxuathang build();
 }

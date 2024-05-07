@@ -1,5 +1,7 @@
 package com.example.demo.Models.DaiLyModel;
 
+import com.example.demo.Models.daily;
+
 public class DaiLyConcreteBuilder implements DaiLyBuilder{
     private int maDaiLy;
     private String tenDaiLy;

@@ -1,5 +1,7 @@
 package com.example.demo.Models.PhieuThuTien;
 
+import com.example.demo.Models.phieuthutien;
+
 public class PTTConcreteBuilder implements PTTBuilder{
     private int maPhieuThu;
     private String ngayThuTien;
@@ -26,7 +28,7 @@ public class PTTConcreteBuilder implements PTTBuilder{
         return this;
     }
     @Override
-    public PhieuThuTien build() {
-        return new PhieuThuTien(maPhieuThu, ngayThuTien, soTienThu, maDaiLy);
+    public phieuthutien build() {
+        return new phieuthutien(maPhieuThu, ngayThuTien, soTienThu, maDaiLy);
     }
 }

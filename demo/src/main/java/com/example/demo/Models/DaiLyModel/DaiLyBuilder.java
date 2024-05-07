@@ -1,5 +1,7 @@
 package com.example.demo.Models.DaiLyModel;
 
+import com.example.demo.Models.daily;
+
 public interface DaiLyBuilder {
     DaiLyBuilder setMaDaiLy(int maDaiLy);
     DaiLyBuilder setTenDaiLy(String tenDaiLy);

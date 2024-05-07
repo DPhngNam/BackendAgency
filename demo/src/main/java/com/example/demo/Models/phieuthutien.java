@@ -1,14 +1,14 @@
-package com.example.demo.Models.PhieuThuTien;
+package com.example.demo.Models;
 
-public class PhieuThuTien {
+public class phieuthutien {
     private int maPhieuThu;
     private String ngayThuTien;
     private int soTienThu;
     private int maDaiLy;
 
-    public PhieuThuTien() {
+    public phieuthutien() {
     }
-    public PhieuThuTien(int maPhieuThu, String ngayThuTien, int soTienThu, int maDaiLy) {
+    public phieuthutien(int maPhieuThu, String ngayThuTien, int soTienThu, int maDaiLy) {
         this.maPhieuThu = maPhieuThu;
         this.ngayThuTien = ngayThuTien;
         this.soTienThu = soTienThu;

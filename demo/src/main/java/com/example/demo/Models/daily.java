@@ -1,4 +1,4 @@
-package com.example.demo.Models.DaiLyModel;
+package com.example.demo.Models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +15,7 @@ public class daily {
     private int maquan;
     private String ngaytn;
     private int tienno;
-    private int user_id;
+    private int person_id;
 
 
     public daily() {
@@ -31,7 +31,7 @@ public class daily {
         this.maquan = maquan;
         this.ngaytn = ngaytn;
         this.tienno = tienno;
-        this.user_id = user_id;
+        this.person_id = user_id;
     }
 
     public int getMadaily() {
@@ -70,6 +70,6 @@ public class daily {
     }
 
     public int getUser_id() {
-        return user_id;
+        return person_id;
     }
 }

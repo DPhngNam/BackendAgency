@@ -1,5 +1,7 @@
 package com.example.demo.Models.RetailerUser;
 
+import com.example.demo.Models.person;
+
 public interface PersonBulder {
     PersonBulder setOwnerId(int ownerId);
     PersonBulder setOwnerLastName(String ownerLastName);

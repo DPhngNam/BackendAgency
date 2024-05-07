@@ -1,6 +1,6 @@
-package com.example.demo.Models.PhieuXuatHang;
+package com.example.demo.Models;
 
-public class PhieuXuatHang {
+public class phieuxuathang {
     private int maPhieuXuat;
     private String ngayXuat;
     private int maDaiLy;
@@ -8,10 +8,10 @@ public class PhieuXuatHang {
     private int soTienTra;
     private int conLai;
 
-    public PhieuXuatHang() {
+    public phieuxuathang() {
         
     }
-    public PhieuXuatHang(int maPhieuXuat, String ngayXuat, int maDaiLy, int tongTien, int soTienTra, int conLai) {
+    public phieuxuathang(int maPhieuXuat, String ngayXuat, int maDaiLy, int tongTien, int soTienTra, int conLai) {
         this.maPhieuXuat = maPhieuXuat;
         this.ngayXuat = ngayXuat;
         this.maDaiLy = maDaiLy;
