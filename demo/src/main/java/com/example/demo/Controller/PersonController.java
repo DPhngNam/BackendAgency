@@ -16,16 +16,6 @@ public class PersonController {
     @Autowired
     private final PersonService personService;
 
-//    @GetMapping(path="/alltest")
-//    public @ResponseBody Iterable<person> getUserByName(@RequestParam String personname) {
-//        return ownerRepository.getUserByName(personname);
-//    }
-//
-//    @GetMapping(path="/byId")
-//    public @ResponseBody Iterable<person> getUserById(@RequestParam int userId) {
-//        return ownerRepository.getUserById(userId);
-//    }
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -34,28 +24,20 @@ public class PersonController {
     }
 
 
-    //
-
-//    @PostMapping(path="/addNewPerson")
-//    public @ResponseBody String addNewPerson(@RequestBody person P) {
-//
-//    }
-    @GetMapping(path="/all")
-    public ResponseEntity<List<person>> getUserList() {
-        // Service trả về Model (là List<UserModel>) nên có thể return thẳng luôn
-        return new ResponseEntity<List<person>> (PersonService.getUserList(), HttpStatus.OK);
+    @GetMapping(path="/allUser")
+    public ResponseEntity<String> getUserByEmail(@RequestParam String personemail) {
+        person user = PersonService.getUserByEmail(personemail);
+        if(user != null) {
+            return new ResponseEntity<>(String.valueOf(user.getPersonid()), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
     }
 
-    @GetMapping(path="/allUser")
-    public ResponseEntity<person> getUserByEmail(@RequestParam String email) {
-
-        List<person> user = PersonService.getUserByEmail(email);
-        if (user != null) {
-            return new ResponseEntity<person>((person) user, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
+    @PostMapping("/createPerson")
+    public ResponseEntity<person> createPerson(@RequestBody person newPerson) {
+        person createdPerson = PersonService.createPerson(newPerson);
+        return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
     }
 
 }
