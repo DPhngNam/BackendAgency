@@ -35,9 +35,12 @@ public class PersonController {
     }
 
     @PostMapping("/createPerson")
-    public ResponseEntity<person> createPerson(@RequestBody person newPerson) {
-        person createdPerson = PersonService.createPerson(newPerson);
-        return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
+    public ResponseEntity<String> createPerson(@RequestBody person newPerson) {
+        if (PersonService.createPerson(newPerson)) {
+            return new ResponseEntity<>(String.valueOf(newPerson.getPersonid()), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Create failed", HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

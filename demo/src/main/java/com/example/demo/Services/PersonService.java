@@ -22,7 +22,8 @@ public class PersonService {
         return personRepository.getUserByEmail(personemail);
     }
 
-    public static person createPerson(person newPerson) {
-        return personRepository.save(newPerson);
+    public static Boolean createPerson(person newPerson) {
+        personRepository.save(newPerson);
+        return true;
     }
 }
