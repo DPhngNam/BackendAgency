@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/daily")
 public class DaiLyController {
     @Autowired
@@ -21,6 +21,11 @@ public class DaiLyController {
     @GetMapping("/getAllDaiLy")
     public Iterable<daily> getAllDaiLy() {
         return daiLyService.getAllDaiLy();
+    }
+
+    @GetMapping("/getAllDaiLyByPersonId")
+    public Iterable<daily> getAllDaiLyByPersonId(@RequestParam String person_id) {
+        return daiLyService.getAllDaiLyByPersonId(Integer.parseInt(person_id));
     }
 
 

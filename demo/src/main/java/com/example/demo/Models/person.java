@@ -52,4 +52,24 @@ public class person {
     public String getPersonpassword() {
         return personpassword;
     }
+
+    public void setPersonlastname(String personlastname) {
+        this.personlastname = personlastname;
+    }
+
+    public void setPersonname(String personname) {
+        this.personname = personname;
+    }
+
+    public void setPersonsdt(String personsdt) {
+        this.personsdt = personsdt;
+    }
+
+    public void setPersonemail(String personemail) {
+        this.personemail = personemail;
+    }
+
+    public void setPersonpassword(String personpassword) {
+        this.personpassword = personpassword;
+    }
 }

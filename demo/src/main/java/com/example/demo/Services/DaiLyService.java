@@ -17,4 +17,8 @@ public class DaiLyService {
     public Iterable<daily> getAllDaiLy() {
         return daiLyRepository.findAll();
     }
+
+    public Iterable<daily> getAllDaiLyByPersonId(int person_id) {
+        return daiLyRepository.getAllDaiLyByPersonId(person_id);
+    }
 }
