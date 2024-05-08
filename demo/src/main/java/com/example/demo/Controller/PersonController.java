@@ -36,6 +36,8 @@ public class PersonController {
 
     @PostMapping("/createPerson")
     public ResponseEntity<String> createPerson(@RequestBody person newPerson) {
+        String temp = newPerson.getPersonpassword();
+        newPerson.setPersonpassword(PersonService.hashPassword(temp));
         if (PersonService.createPerson(newPerson)) {
             return new ResponseEntity<>(String.valueOf(newPerson.getPersonid()), HttpStatus.CREATED);
         } else {

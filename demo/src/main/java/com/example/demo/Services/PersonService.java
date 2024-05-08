@@ -2,6 +2,7 @@ package com.example.demo.Services;
 
 import com.example.demo.Models.person;
 import com.example.demo.Repository.PersonRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,10 @@ public class PersonService {
     public static List<person> findByNameSimilarity(String personname) {
         return StreamSupport.stream(personRepository.findByNameSimilarity(personname).spliterator(), false)
                 .collect(Collectors.toList());
+    }
+
+    public static String hashPassword(String plainTextPassword){
+        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
+
     }
 }
