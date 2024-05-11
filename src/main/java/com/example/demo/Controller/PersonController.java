@@ -35,20 +35,20 @@ public class PersonController {
     }
 
     @PostMapping("/createPerson")
-    public ResponseEntity<String> createPerson(@RequestBody person newPerson) {
+    public ResponseEntity<Object> createPerson(@RequestBody person newPerson) {
         String temp = newPerson.getPersonpassword();
         newPerson.setPersonpassword(PersonService.hashPassword(temp));
         if (PersonService.createPerson(newPerson)) {
-            return new ResponseEntity<>(String.valueOf(newPerson.getPersonid()), HttpStatus.CREATED);
+            return new ResponseEntity<>(newPerson, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Create failed", HttpStatus.BAD_REQUEST);
         }
     }
 
     @GetMapping("/findByNameSimilarity")
-    public ResponseEntity<List<person>> findByNameSimilarity(@RequestParam String personname) {
-        List<person> result = PersonService.findByNameSimilarity(personname);
-        if (result.size() > 0) {
+    public ResponseEntity<List<person>> findByNameSimilarity(@RequestParam String personName) {
+        List<person> result = PersonService.findByNameSimilarity(personName);
+        if (!result.isEmpty()) {
             return new ResponseEntity<>(result, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);

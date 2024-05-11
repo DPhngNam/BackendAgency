@@ -5,6 +5,7 @@ import com.example.demo.Models.daily;
 import com.example.demo.Repository.DaiLyRepository;
 import com.example.demo.Services.DaiLyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,11 @@ public class DaiLyController {
         return daiLyService.getAllDaiLyByPersonId(Integer.parseInt(person_id));
     }
 
+    @PostMapping("/addDaiLy")
+    public ResponseEntity<String> addDaiLy(@RequestBody daily daily) {
+        daiLyService.insertDaiLy(daily);
+        return ResponseEntity.ok("Add daily successfully");
+    }
 
 }
 

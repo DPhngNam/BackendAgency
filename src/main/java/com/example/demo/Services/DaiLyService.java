@@ -21,4 +21,12 @@ public class DaiLyService {
     public Iterable<daily> getAllDaiLyByPersonId(int person_id) {
         return daiLyRepository.getAllDaiLyByPersonId(person_id);
     }
+
+    public void insertDaiLy(daily daily) {
+        try {
+            daiLyRepository.save(daily);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
