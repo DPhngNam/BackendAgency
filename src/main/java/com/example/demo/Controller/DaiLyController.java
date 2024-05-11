@@ -1,12 +1,9 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Models.daily;
+import com.example.demo.Models.*;
 
-import com.example.demo.Repository.DaiLyRepository;
 import com.example.demo.Services.DaiLyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,9 +27,8 @@ public class DaiLyController {
     }
 
     @PostMapping("/addDaiLy")
-    public ResponseEntity<String> addDaiLy(@RequestBody daily daily) {
-        daiLyService.insertDaiLy(daily);
-        return ResponseEntity.ok("Add daily successfully");
+    public daily addDaiLy(@RequestBody daily daily) {
+        return daiLyService.insertDaiLy(daily);
     }
 
 }

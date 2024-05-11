@@ -28,7 +28,7 @@ public class PersonController {
     public ResponseEntity<String> getUserByEmail(@RequestParam String personemail) {
         person user = PersonService.getUserByEmail(personemail);
         if(user != null) {
-            return new ResponseEntity<>(String.valueOf(user.getPersonid()), HttpStatus.OK);
+            return new ResponseEntity<>(String.valueOf(user.getPPersonid()), HttpStatus.OK);
         } else {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }

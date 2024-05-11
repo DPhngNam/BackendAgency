@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 @EnableJpaRepositories
 public interface DaiLyRepository extends CrudRepository<daily, Integer> {
     @Query("SELECT d FROM daily d WHERE d.madaily = :madaily")
-    Iterable<daily> getDaiLyById(@Param("madaily") int madaily);
+    daily getDaiLyById(@Param("madaily") int madaily);
 
     @Query("SELECT d FROM daily d WHERE d.tendaily = :tendaily")
     Iterable<daily> getAllDaiLyByTenDaiLy(@Param("tendaily") String tendaily);

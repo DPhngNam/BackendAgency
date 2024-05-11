@@ -29,7 +29,7 @@ public class person {
         this.personpassword = personpassword;
     }
 
-    public int getPersonid() {
+    public int getPPersonid() {
         return personid;
     }
 
@@ -72,4 +72,5 @@ public class person {
     public void setPersonpassword(String personpassword) {
         this.personpassword = personpassword;
     }
+
 }

@@ -1,35 +1,48 @@
 package com.example.demo.Models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
 public class loaidaily {
     @Id
-    private int id;
+    private int maloaidl;
+    @Column(name = "tenloaidl")
     private String tenloaidl;
+    private int notoida;
+
+    public loaidaily(int maloaidl, String tenloaidl, int notoida) {
+        this.maloaidl = maloaidl;
+        this.tenloaidl = tenloaidl;
+        this.notoida = notoida;
+    }
 
     public loaidaily() {
 
     }
 
-    public loaidaily(int id, String tenloaidl) {
-        this.id = id;
-        this.tenloaidl = tenloaidl;
+
+    public int getMaloaidl() {
+        return maloaidl;
     }
 
-    public int getId() {
-        return id;
+    public void setMaloaidl(int maloaidl) {
+        this.maloaidl = maloaidl;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTenloai() {
+    public String getTenloaidl() {
         return tenloaidl;
     }
 
-    public void setTenloai(String tenloai) {
-        this.tenloaidl = tenloai;
+    public void setTenloaidl(String tenloaidl) {
+        this.tenloaidl = tenloaidl;
+    }
+
+    public int getNotoida() {
+        return notoida;
+    }
+
+    public void setNotoida(int notoida) {
+        this.notoida = notoida;
     }
 }

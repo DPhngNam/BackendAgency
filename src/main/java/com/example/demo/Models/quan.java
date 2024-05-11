@@ -6,24 +6,28 @@ import jakarta.persistence.Id;
 @Entity
 public  class quan {
     @Id
-    private int id;
+    private int maquan;
     private String tenquan;
+
+    public quan(int maquan) {
+        this.maquan = maquan;
+    }
+
+    public quan(int maquan, String tenquan) {
+        this.maquan = maquan;
+        this.tenquan = tenquan;
+    }
 
     public quan() {
 
     }
 
-    public quan(int id, String tenquan) {
-        this.id = id;
-        this.tenquan = tenquan;
-    }
-
     public int getId() {
-        return id;
+        return maquan;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.maquan = id;
     }
 
     public String getTenquan() {

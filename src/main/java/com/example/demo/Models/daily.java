@@ -12,11 +12,13 @@ public class daily {
     private String sdt;
     private String email;
     @ManyToOne
-    @JoinColumn(name = "madvt")
+    @JoinColumn(name = "maloaidl")
     private loaidaily maloaidl;
+
     @ManyToOne
     @JoinColumn(name = "maquan")
     private quan maquan;
+
     private String ngaytn;
     private int tienno;
     @ManyToOne
@@ -37,7 +39,7 @@ public class daily {
             this.ngaytn = ngaytn;
             this.tienno = tienno;
             this.person_id = person_id;
-        }
+    }
 
     public int getMadaily() {
         return madaily;
