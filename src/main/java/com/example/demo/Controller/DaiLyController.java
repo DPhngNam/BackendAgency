@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/daily")
+@RequestMapping("/daily") //http://localhost:8080/daily
 public class DaiLyController {
     @Autowired
     private final DaiLyService daiLyService;
