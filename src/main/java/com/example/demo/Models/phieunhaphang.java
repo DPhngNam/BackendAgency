@@ -1,9 +1,9 @@
 package com.example.demo.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class phieunhaphang {
@@ -22,6 +22,14 @@ public class phieunhaphang {
         this.ngaylp = ngaynhap;
         this.tongtien = tongtien;
         this.person_id = person_id;
+    }
+
+    @OneToMany(mappedBy = "phieunhaphang", cascade = CascadeType.ALL)
+    private List<ctnh> ctnhList = new ArrayList<>();
+
+    public void addCtnh(ctnh ctnh) {
+        ctnhList.add(ctnh);
+        ctnh.setPhieunhaphang(this);
     }
 
     public int getMaphieunhap() {

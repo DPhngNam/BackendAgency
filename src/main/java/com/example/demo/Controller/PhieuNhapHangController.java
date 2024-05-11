@@ -1,12 +1,15 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Models.phieunhaphang;
+import com.example.demo.Models.ctnh;
 import com.example.demo.Services.PhieuNhapHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/phieunhaphang")
@@ -21,7 +24,6 @@ public class PhieuNhapHangController {
         this.phieuNhapHangService = phieuNhapHangService;
     }
 
-
     @GetMapping (path="/pnhbyid")
     public ResponseEntity<phieunhaphang> getPhieuNhapHangById(@RequestParam int maphieunhap) {
         phieunhaphang pnh = PhieuNhapHangService.getPhieuNhapHangById(maphieunhap);
@@ -32,13 +34,25 @@ public class PhieuNhapHangController {
         }
     }
 
+    @GetMapping (path="/pnhbyngaynhap")
+    public ResponseEntity<phieunhaphang> getAllPhieuNhapHangByNgayNhap(@RequestParam String ngaylp) {
+        phieunhaphang pnh = PhieuNhapHangService.getAllPhieuNhapHangByNgayNhap(ngaylp);
+        if(pnh != null) {
+            return new ResponseEntity<>(pnh, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/createpnh")
-    public ResponseEntity<String> createPhieuNhapHang(@RequestBody phieunhaphang newPhieuNhapHang) {
+    public ResponseEntity<String> createPhieuNhapHang(@RequestBody phieunhaphang newPhieuNhapHang, @RequestBody List<ctnh> ctnhList){
+        for (ctnh ctnh : ctnhList) {
+            newPhieuNhapHang.addCtnh(ctnh);
+        }
         if (PhieuNhapHangService.createPhieuNhapHang(newPhieuNhapHang)) {
             return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Created failed!", HttpStatus.BAD_REQUEST);
         }
     }
-
 }
