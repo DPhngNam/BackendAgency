@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 @EnableJpaRepositories
 public interface PhieuNhapHangRepository extends CrudRepository<phieunhaphang, Integer>{
-    @Query("SELECT pnh FROM phieunhaphang pnh WHERE pnh.maphieunhap = :maphieunhap")
-    phieunhaphang getPhieuNhapHangById(@Param("maphieunhap") int maphieunhap);
+    @Query("SELECT pnh FROM phieunhaphang pnh WHERE pnh.mapnhap = :mapnhap")
+    phieunhaphang getPhieuNhapHangById(@Param("mapnhap") int mapnhap);
 
     @Query ("SELECT pnh FROM phieunhaphang pnh WHERE pnh.ngaylp = :ngaylp")
     phieunhaphang getAllPhieuNhapHangByNgayLp(@Param("ngaylp") String ngaylp);

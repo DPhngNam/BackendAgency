@@ -9,7 +9,7 @@ import java.util.List;
 public class phieunhaphang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int maphieunhap;
+    private int mapnhap;
     private String ngaylp;
     private int tongtien;
     private int person_id;
@@ -32,12 +32,12 @@ public class phieunhaphang {
         ctnh.setPhieunhaphang(this);
     }
 
-    public int getMaphieunhap() {
-        return maphieunhap;
+    public int getMapnhap() {
+        return mapnhap;
     }
 
-    public void setMaphieunhap(int maphieunhap) {
-        this.maphieunhap = maphieunhap;
+    public void setMapnhap(int mapnhap) {
+        this.mapnhap = mapnhap;
     }
 
     public String getNgaylp() {

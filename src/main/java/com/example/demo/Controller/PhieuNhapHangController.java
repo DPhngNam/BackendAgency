@@ -25,8 +25,8 @@ public class PhieuNhapHangController {
     }
 
     @GetMapping (path="/pnhbyid")
-    public ResponseEntity<phieunhaphang> getPhieuNhapHangById(@RequestParam int maphieunhap) {
-        phieunhaphang pnh = PhieuNhapHangService.getPhieuNhapHangById(maphieunhap);
+    public ResponseEntity<phieunhaphang> getPhieuNhapHangById(@RequestParam int mapnhap) {
+        phieunhaphang pnh = PhieuNhapHangService.getPhieuNhapHangById(mapnhap);
         if(pnh != null) {
             return new ResponseEntity<>(pnh, HttpStatus.OK);
         } else {
@@ -45,10 +45,7 @@ public class PhieuNhapHangController {
     }
 
     @PostMapping("/createpnh")
-    public ResponseEntity<String> createPhieuNhapHang(@RequestBody phieunhaphang newPhieuNhapHang, @RequestBody List<ctnh> ctnhList){
-        for (ctnh ctnh : ctnhList) {
-            newPhieuNhapHang.addCtnh(ctnh);
-        }
+    public ResponseEntity<String> createPhieuNhapHang(@RequestBody phieunhaphang newPhieuNhapHang){
         if (PhieuNhapHangService.createPhieuNhapHang(newPhieuNhapHang)) {
             return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
         } else {

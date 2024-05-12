@@ -9,11 +9,11 @@ import java.io.Serializable;
 public class ctnh {
     @Id
     private int mapnhap;
-
     @Id
     private int mamh;
     private int slnhap;
     private int thanhtien;
+    private int dongianhap;
 
     @ManyToOne
     @JoinColumn(name = "mapnhap", insertable = false, updatable = false)
@@ -57,6 +57,10 @@ public class ctnh {
 
     public void setPhieunhaphang(phieunhaphang phieunhaphang) {
         this.phieunhaphang = phieunhaphang;
+    }
+
+    public int getDongianhap() {
+        return dongianhap;
     }
 
     public static class CtnhId implements Serializable {
