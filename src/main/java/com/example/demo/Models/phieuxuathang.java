@@ -8,22 +8,20 @@ import java.util.List;
 public class phieuxuathang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int maphieuxuat;
+    private int mapxuat;
     private String ngaylp;
     private int madaily;
     private int tongtien;
     private int sotientra;
-    private int conlai;
 
     public phieuxuathang() {
         
     }
-    public phieuxuathang(String ngaylp, int madaily, int tongtien, int sotientra, int conlai){
+    public phieuxuathang(String ngaylp, int madaily, int tongtien, int sotientra){
         this.ngaylp = ngaylp;
         this.madaily = madaily;
         this.tongtien = tongtien;
         this.sotientra = sotientra;
-        this.conlai = conlai;
     }
 
     @OneToMany(mappedBy = "phieuxuathang", cascade = CascadeType.ALL)
@@ -34,12 +32,12 @@ public class phieuxuathang {
         ctxh.setPhieuxuathang(this);
     }
 
-    public int getMaphieuxuat() {
-        return maphieuxuat;
+    public int getMapxuat() {
+        return mapxuat;
     }
 
-    public void setMaphieuxuat(int maphieuxuat) {
-        this.maphieuxuat = maphieuxuat;
+    public void setMapxuat(int mapxuat) {
+        this.mapxuat = mapxuat;
     }
 
     public String getNgaylp() {
@@ -72,13 +70,5 @@ public class phieuxuathang {
 
     public void setSotientra(int sotientra) {
         this.sotientra = sotientra;
-    }
-
-    public int getConlai() {
-        return conlai;
-    }
-
-    public void setConlai(int conlai) {
-        this.conlai = conlai;
     }
 }

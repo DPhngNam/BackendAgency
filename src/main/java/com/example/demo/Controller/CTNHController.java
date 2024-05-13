@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Models.ctnh;
+import com.example.demo.Models.mathang;
 import com.example.demo.Services.CTNHService;
+import com.example.demo.Services.MatHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +44,11 @@ public class CTNHController {
 
     @PostMapping("/createctnh")
     public ResponseEntity<String> createCTNH(@RequestBody ctnh newCTNH) {
+        mathang mh = MatHangService.getMatHangById(newCTNH.getMamh());
+        if (mh == null) {
+            return new ResponseEntity<>("No mathang found with the provided mamh", HttpStatus.BAD_REQUEST);
+        }
+        newCTNH.setDongianhap(mh);
         if (CTNHService.createCTNH(newCTNH)) {
             return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
         } else {

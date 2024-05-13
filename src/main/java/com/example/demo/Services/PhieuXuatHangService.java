@@ -14,8 +14,8 @@ public class PhieuXuatHangService {
         this.phieuXuatHangRepository = phieuXuatHangRepository;
     }
 
-    public static phieuxuathang getPhieuXuatHangById(int maphieuxuat) {
-        return phieuXuatHangRepository.getPhieuXuatHangById(maphieuxuat);
+    public static phieuxuathang getPhieuXuatHangById(int mapxuat) {
+        return phieuXuatHangRepository.getPhieuXuatHangById(mapxuat);
     }
 
     public static phieuxuathang getAllPhieuXuatHangByNgayXuat(String ngaylp) {

@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 @EnableJpaRepositories
 public interface PhieuXuatHangRepository extends CrudRepository<phieuxuathang, Integer> {
-    @Query("SELECT pxh FROM phieuxuathang pxh WHERE pxh.maphieuxuat = :maphieuxuat")
-    phieuxuathang getPhieuXuatHangById(@Param("maphieuxuat") int maphieuxuat);
+    @Query("SELECT pxh FROM phieuxuathang pxh WHERE pxh.mapxuat = :mapxuat")
+    phieuxuathang getPhieuXuatHangById(@Param("mapxuat") int mapxuat);
 
     @Query("SELECT pxh FROM phieuxuathang pxh WHERE pxh.ngaylp = :ngaylp")
     phieuxuathang getAllPhieuXuatHangByNgayLp(@Param("ngaylp") String ngaylp);

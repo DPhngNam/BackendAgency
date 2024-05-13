@@ -44,12 +44,12 @@ public class ctxh {
         this.slxuat = slxuat;
     }
 
-    public int getDongiaxuat() {
-        return dongiaxuat;
+    public int getDongiaxuat(mathang mh) {
+        return mh.getDongiaxuat();
     }
 
-    public void setDongiaxuat(int dongiaxuat) {
-        this.dongiaxuat = dongiaxuat;
+    public void setDongiaxuat(mathang mh) {
+        this.dongiaxuat = mh.getDongiaxuat();
     }
 
     public int getThanhtien() {

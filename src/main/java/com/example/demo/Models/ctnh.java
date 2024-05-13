@@ -1,7 +1,6 @@
 package com.example.demo.Models;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 
 @Entity
@@ -59,8 +58,12 @@ public class ctnh {
         this.phieunhaphang = phieunhaphang;
     }
 
-    public int getDongianhap() {
-        return dongianhap;
+    public int getDongianhap(mathang mh) {
+        return mh.getDongianhap();
+    }
+
+    public void setDongianhap(mathang mh) {
+        this.dongianhap = mh.getDongianhap();
     }
 
     public static class CtnhId implements Serializable {

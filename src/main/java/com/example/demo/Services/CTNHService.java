@@ -22,6 +22,10 @@ public class CTNHService {
         return ctnhRepository.getCTNHByMaMH(mamh);
     }
 
+    public Integer getDonGiaNhapByMaMHFromCtnh(int mamh) {
+        return MatHangService.getDonGiaNhapByMaMH(mamh);
+    }
+
     public static boolean createCTNH(ctnh newCTNH) {
         try {
             ctnhRepository.save(newCTNH);

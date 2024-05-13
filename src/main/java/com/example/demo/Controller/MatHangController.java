@@ -1,0 +1,62 @@
+package com.example.demo.Controller;
+
+import com.example.demo.Models.mathang;
+import com.example.demo.Services.MatHangService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/mathang")
+public class MatHangController {
+    @Autowired
+    private final MatHangService matHangService;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    public MatHangController(MatHangService matHangService) {
+        this.matHangService = matHangService;
+    }
+
+    @GetMapping (path="/mhbyid")
+    public ResponseEntity<mathang> getMatHangById(@RequestParam int mamh) {
+        mathang mh = MatHangService.getMatHangById(mamh);
+        if(mh != null) {
+            return new ResponseEntity<>(mh, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping (path="/dongianhap")
+    public ResponseEntity<Integer> getDonGiaNhapByMaMH(@RequestParam int mamh) {
+        Integer dongianhap = MatHangService.getDonGiaNhapByMaMH(mamh);
+        if(dongianhap != null) {
+            return new ResponseEntity<>(dongianhap, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping (path="/dongiaxuat")
+    public ResponseEntity<Integer> getDonGiaXuatByMaMH(@RequestParam int mamh) {
+        Integer dongiaxuat = MatHangService.getDonGiaXuatByMaMH(mamh);
+        if(dongiaxuat != null) {
+            return new ResponseEntity<>(dongiaxuat, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/createmh")
+    public ResponseEntity<String> createMatHang(@RequestBody mathang newMatHang){
+        if (MatHangService.createMatHang(newMatHang)) {
+            return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Created failed!", HttpStatus.BAD_REQUEST);
+        }
+    }
+}
