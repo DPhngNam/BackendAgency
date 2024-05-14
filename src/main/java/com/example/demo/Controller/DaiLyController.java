@@ -21,10 +21,7 @@ public class DaiLyController {
         return daiLyService.getAllDaiLy();
     }
 
-    @GetMapping("/getAllDaiLyByPersonId")
-    public Iterable<daily> getAllDaiLyByPersonId(@RequestParam String person_id) {
-        return daiLyService.getAllDaiLyByPersonId(Integer.parseInt(person_id));
-    }
+
 
     @PostMapping("/addDaiLy")
     public daily addDaiLy(@RequestBody daily daily) {

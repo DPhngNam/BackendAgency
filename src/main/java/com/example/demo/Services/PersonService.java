@@ -19,8 +19,15 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public static person getUserByEmail(String personemail) {
-        return personRepository.getUserByEmail(personemail);
+    public static person getUserByEmail(String personemail,String personpassword) {
+        person user = personRepository.getUserByEmail(personemail);
+        if(user == null){
+            return null;
+        }
+        else if(user.getPersonpassword().equals(personpassword)){
+            return user;
+        }
+        return null;
     }
 
     public static Boolean createPerson(person newPerson) {
@@ -33,8 +40,8 @@ public class PersonService {
                 .collect(Collectors.toList());
     }
 
-    public static String hashPassword(String plainTextPassword){
-        return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
-
+    public static Boolean existsByEmail(String personemail) {
+        return personRepository.existsByEmail(personemail) != null;
     }
+
 }

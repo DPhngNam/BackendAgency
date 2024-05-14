@@ -30,9 +30,7 @@ public class DaiLyService {
         return daiLyRepository.findAll();
     }
 
-    public Iterable<daily> getAllDaiLyByPersonId(int person_id) {
-        return daiLyRepository.getAllDaiLyByPersonId(person_id);
-    }
+
 
     public daily insertDaiLy(daily daily) {
         try {
@@ -58,12 +56,7 @@ public class DaiLyService {
                 daily.setMaloaidl(existingLoaiDaiLy);
             }
 
-            person existingPerson = personRepository.existsByEmail(daily.getPerson_id().getPersonemail());
-            if (existingPerson == null) {
-                return null;
-            } else {
-                daily.setPerson_id(existingPerson);
-            }
+
             return daiLyRepository.save(daily);
 
         } catch (Exception e) {

@@ -21,15 +21,13 @@ public class daily {
 
     private String ngaytn;
     private int tienno;
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private person person_id;
+
 
 
     public daily() {
     }
 
-    public daily(String tendaily, String diachi, String sdt, String email, loaidaily maloaidl, quan maquan, String ngaytn, int tienno, person person_id) {
+    public daily(String tendaily, String diachi, String sdt, String email, loaidaily maloaidl, quan maquan, String ngaytn, int tienno) {
             this.tendaily = tendaily;
             this.diachi = diachi;
             this.sdt = sdt;
@@ -38,7 +36,6 @@ public class daily {
             this.maquan = maquan;
             this.ngaytn = ngaytn;
             this.tienno = tienno;
-            this.person_id = person_id;
     }
 
     public int getMadaily() {
@@ -113,11 +110,5 @@ public class daily {
         this.tienno = tienno;
     }
 
-    public person getPerson_id() {
-        return person_id;
-    }
 
-    public void setPerson_id(person person_id) {
-        this.person_id = person_id;
-    }
 }

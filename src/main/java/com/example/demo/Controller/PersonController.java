@@ -24,24 +24,19 @@ public class PersonController {
     }
 
 
-    @GetMapping(path="/allUser")
-    public ResponseEntity<String> getUserByEmail(@RequestParam String personemail) {
-        person user = PersonService.getUserByEmail(personemail);
-        if(user != null) {
-            return new ResponseEntity<>(String.valueOf(user.getPPersonid()), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        }
-    }
+
 
     @PostMapping("/createPerson")
-    public ResponseEntity<Object> createPerson(@RequestBody person newPerson) {
-        String temp = newPerson.getPersonpassword();
-        newPerson.setPersonpassword(PersonService.hashPassword(temp));
-        if (PersonService.createPerson(newPerson)) {
-            return new ResponseEntity<>(newPerson, HttpStatus.CREATED);
+    public ResponseEntity<String> createPerson(@RequestBody person newPerson) {
+        if (PersonService.existsByEmail(newPerson.getPersonemail())) {
+            return new ResponseEntity<>("Email already exists", HttpStatus.BAD_REQUEST);
         } else {
-            return new ResponseEntity<>("Create failed", HttpStatus.BAD_REQUEST);
+            if (PersonService.createPerson(newPerson)) {
+                System.out.println("Person created");
+                return new ResponseEntity<>(String.valueOf(newPerson.getPPersonid()), HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>("Create failed", HttpStatus.BAD_REQUEST);
+            }
         }
     }
 
@@ -52,6 +47,16 @@ public class PersonController {
             return new ResponseEntity<>(result, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(path="/getLoginUser")
+    public ResponseEntity<Object> getUserByEmail(@RequestParam String personemail,@RequestParam String personpassword) {
+        person user = PersonService.getUserByEmail(personemail,personpassword);
+        if(user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
     }
 }
