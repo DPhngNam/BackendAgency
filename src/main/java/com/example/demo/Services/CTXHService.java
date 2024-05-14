@@ -5,6 +5,8 @@ import com.example.demo.Repository.CTXHRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CTXHService {
     private static CTXHRepository ctxhRepository;
@@ -14,11 +16,11 @@ public class CTXHService {
         this.ctxhRepository = ctxhRepository;
     }
 
-    public static ctxh getCTXHByMapXuat(int mapxuat) {
+    public static List<ctxh> getCTXHByMapXuat(int mapxuat) {
         return ctxhRepository.getCTXHByMapXuat(mapxuat);
     }
 
-    public static ctxh getCTXHByMaMH(int mamh) {
+    public static List<ctxh> getCTXHByMaMH(int mamh) {
         return ctxhRepository.getCTXHByMaMH(mamh);
     }
 
