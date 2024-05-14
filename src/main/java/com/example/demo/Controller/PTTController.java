@@ -4,9 +4,7 @@ import com.example.demo.Models.phieuthutien;
 import com.example.demo.Services.PTTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/phieuthutien")
@@ -31,5 +29,10 @@ public class PTTController {
     @GetMapping("/getPhieuThuTienByDaiLyId") //http://localhost:8080/phieuthutien/getPhieuThuTienByDaiLyId?maDaiLy=1
     public Iterable<phieuthutien> getPhieuThuTienByDaiLyId(int madaily) {
         return pttService.getPhieuThuTienByDaiLyId(madaily);
+    }
+
+    @PostMapping("/addPhieuThuTien")
+    public phieuthutien addPhieuThuTien(@RequestBody phieuthutien phieuthutien) {
+        return pttService.insertPhieuThuTien(phieuthutien);
     }
 }

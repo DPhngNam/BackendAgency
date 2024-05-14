@@ -2,7 +2,6 @@ package com.example.demo.Services;
 
 import com.example.demo.Models.daily;
 import com.example.demo.Models.loaidaily;
-import com.example.demo.Models.person;
 import com.example.demo.Models.quan;
 import com.example.demo.Repository.DaiLyRepository;
 import com.example.demo.Repository.LoaiDaiLyRepository;
@@ -63,5 +62,9 @@ public class DaiLyService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public daily getDaiLyByName(String tendaily) {
+        return daiLyRepository.getAllDaiLyByTenDaiLy(tendaily);
     }
 }

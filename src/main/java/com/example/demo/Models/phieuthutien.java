@@ -17,8 +17,8 @@ public class phieuthutien {
     public phieuthutien() {
     }
 
-    public phieuthutien(int maphieuthu, String ngaythutien, int tienthu, int madaily) {
-        this.maphieuthu = maphieuthu;
+    public phieuthutien(String ngaythutien, int tienthu, int madaily) {
+
         this.ngaythutien = ngaythutien;
         this.tienthu = tienthu;
         this.madaily = madaily;
