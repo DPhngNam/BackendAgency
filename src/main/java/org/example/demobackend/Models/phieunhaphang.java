@@ -14,7 +14,6 @@ public class phieunhaphang {
     private Integer person_id;
 
     public phieunhaphang() {
-        
     }
 
     public phieunhaphang(String ngaynhap, int tongtien, int person_id) {

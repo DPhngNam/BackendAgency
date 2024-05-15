@@ -22,6 +22,10 @@ public class PhieuXuatHangService {
         return phieuXuatHangRepository.getAllPhieuXuatHangByNgayLp(ngaylp);
     }
 
+    public static int getSoPhieuXuatByThangAndNamOfNgayLP(int thang, int nam) {
+        return phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam);
+    }
+
     public static boolean createPhieuXuatHang(phieuxuathang newPhieuXuatHang) {
         try {
             phieuXuatHangRepository.save(newPhieuXuatHang);

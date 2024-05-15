@@ -20,6 +20,16 @@ public class ctxh {
     @JoinColumn(name = "mapxuat", insertable = false, updatable = false)
     private phieuxuathang phieuxuathang;
 
+    public ctxh() {
+    }
+
+    public ctxh(int mamh, int slxuat, int dongiaxuat, int thanhtien) {
+        this.mamh = mamh;
+        this.slxuat = slxuat;
+        this.dongiaxuat = dongiaxuat;
+        this.thanhtien = thanhtien;
+    }
+
     public int getMapxuat() {
         return mapxuat;
     }

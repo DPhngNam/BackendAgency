@@ -1,11 +1,11 @@
 package org.example.demobackend.Repository;
 
-
 import org.example.demobackend.Models.daily;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+
 @EnableJpaRepositories
 public interface DaiLyRepository extends CrudRepository<daily, Integer> {
     @Query("SELECT d FROM daily d WHERE d.madaily = :madaily")

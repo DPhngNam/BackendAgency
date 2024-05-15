@@ -20,6 +20,17 @@ public class ctnh {
     @JoinColumn(name = "mapnhap", insertable = false, updatable = false)
     private phieunhaphang phieunhaphang;
 
+    public ctnh() {
+    }
+
+    public ctnh(int mapnhap, int mamh, int slnhap, int dongianhap, int thanhtien) {
+        this.mapnhap = mapnhap;
+        this.mamh = mamh;
+        this.slnhap = slnhap;
+        this.dongianhap = dongianhap;
+        this.thanhtien = thanhtien;
+    }
+
     public int getMapnhap() {
         return mapnhap;
     }

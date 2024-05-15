@@ -1,48 +1,57 @@
 package org.example.demobackend.Models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class baocaodoanhso {
-    private String maBaoCaoDoanhSo;
-    private String thang;
-    private String nam;
-    private String maDaiLy;
-    private String tongDoanhSo;
-    private Double tyLe;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int mabaocaods;
+    private int thang;
+    private int nam;
+    private int tongdoanhthu;
 
     public baocaodoanhso() {
-
     }
 
-    public baocaodoanhso(String maBaoCaoDoanhSo, String thang, String nam, String maDaiLy, String tongDoanhSo, Double tyLe) {
-        this.maBaoCaoDoanhSo = maBaoCaoDoanhSo;
+    public baocaodoanhso(int thang, int nam, int tongdoanhthu) {
         this.thang = thang;
         this.nam = nam;
-        this.maDaiLy = maDaiLy;
-        this.tongDoanhSo = tongDoanhSo;
-        this.tyLe = tyLe;
-
+        this.tongdoanhthu = tongdoanhthu;
     }
 
-    public String getMaBaoCaoDoanhSo() {
-        return maBaoCaoDoanhSo;
+    public int getMabaocaods() {
+        return mabaocaods;
     }
 
-    public String getThang() {
+    public void setMabaocaods(int mabaocaods) {
+        this.mabaocaods = mabaocaods;
+    }
+
+    public int getThang() {
         return thang;
     }
 
-    public String getNam() {
+    public void setThang(int thang) {
+        this.thang = thang;
+    }
+
+    public int getNam() {
         return nam;
     }
 
-    public String getMaDaiLy() {
-        return maDaiLy;
+    public void setNam(int nam) {
+        this.nam = nam;
     }
 
-    public String getTongDoanhSo() {
-        return tongDoanhSo;
+    public int getTongdoanhthu() {
+        return tongdoanhthu;
     }
 
-    public Double getTyLe() {
-        return tyLe;
+    public void setTongdoanhthu(int tongdoanhthu) {
+        this.tongdoanhthu = tongdoanhthu;
     }
 }
