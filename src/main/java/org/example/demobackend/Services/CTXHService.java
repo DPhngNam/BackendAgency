@@ -1,7 +1,7 @@
-package com.example.demo.Services;
+package org.example.demobackend.Services;
 
-import com.example.demo.Models.ctxh;
-import com.example.demo.Repository.CTXHRepository;
+import org.example.demobackend.Models.ctxh;
+import org.example.demobackend.Repository.CTXHRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

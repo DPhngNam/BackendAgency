@@ -1,9 +1,9 @@
-package com.example.demo.Services;
+package org.example.demobackend.Services;
 
-import com.example.demo.Repository.PhieuNhapHangRepository;
+import org.example.demobackend.Models.phieunhaphang;
+import org.example.demobackend.Repository.PhieuNhapHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.Models.phieunhaphang;
 
 @Service
 public class PhieuNhapHangService {

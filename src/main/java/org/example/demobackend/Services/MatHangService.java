@@ -1,7 +1,7 @@
-package com.example.demo.Services;
+package org.example.demobackend.Services;
 
-import com.example.demo.Models.mathang;
-import com.example.demo.Repository.MatHangRepository;
+import org.example.demobackend.Models.mathang;
+import org.example.demobackend.Repository.MatHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
