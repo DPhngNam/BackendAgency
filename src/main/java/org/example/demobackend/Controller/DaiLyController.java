@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/daily") //http://localhost:8080/daily
+@RequestMapping("/daily") //https://still-cliffs-55450-6c9d6b2dff57.herokuapp.com/
 public class DaiLyController {
     @Autowired
     private final DaiLyService daiLyService;
@@ -21,12 +21,8 @@ public class DaiLyController {
         return daiLyService.getAllDaiLy();
     }
 
-
-
     @PostMapping("/addDaiLy")
     public daily addDaiLy(@RequestBody daily daily) {
         return daiLyService.insertDaiLy(daily);
     }
-
 }
-

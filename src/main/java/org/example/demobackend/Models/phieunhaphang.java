@@ -1,18 +1,17 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class phieunhaphang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int maphieunhap;
+    private int mapnhap;
     private String ngaylp;
     private int tongtien;
-    private int person_id;
+    private Integer person_id;
 
     public phieunhaphang() {
         
@@ -24,12 +23,20 @@ public class phieunhaphang {
         this.person_id = person_id;
     }
 
-    public int getMaphieunhap() {
-        return maphieunhap;
+    @OneToMany(mappedBy = "phieunhaphang", cascade = CascadeType.ALL)
+    private List<ctnh> ctnhList = new ArrayList<>();
+
+    public void addCtnh(ctnh ctnh) {
+        ctnhList.add(ctnh);
+        ctnh.setPhieunhaphang(this);
     }
 
-    public void setMaphieunhap(int maphieunhap) {
-        this.maphieunhap = maphieunhap;
+    public int getMapnhap() {
+        return mapnhap;
+    }
+
+    public void setMapnhap(int mapnhap) {
+        this.mapnhap = mapnhap;
     }
 
     public String getNgaylp() {
@@ -48,11 +55,11 @@ public class phieunhaphang {
         this.tongtien = tongtien;
     }
 
-    public int getPerson_id() {
+    public Integer getPerson_id() {
         return person_id;
     }
 
-    public void setPerson_id(int person_id) {
+    public void setPerson_id(Integer person_id) {
         this.person_id = person_id;
     }
 }

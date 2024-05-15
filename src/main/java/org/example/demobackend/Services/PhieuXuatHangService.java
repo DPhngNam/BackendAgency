@@ -1,26 +1,33 @@
-package org.example.demobackend.Services;//package com.example.demo.Services;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//public class PhieuXuatHangService {
-//    private static PhieuXuatHangService phieuXuatHangService;
-//
-//    @Autowired
-//    public PhieuXuatHangService(PhieuXuatHangService phieuXuatHangService) {
-//        this.phieuXuatHangService = phieuXuatHangService;
-//    }
-//
-//    public static List<CTXH> getCTXHList() {
-//        // Lấy ra từ Repository dạng List<CTXH> là Entity
-//        List<CTXH> ctxhs = (List<CTXH>) phieuXuatHangService.findAll();
-//
-//        // Biển đổi List<Entity> thành List<Model> (xem ở constructor của CTXHModel có code copy dữ liệu)
-//        List<CTXH> ctxhModels = StreamSupport.stream(ctxhs.spliterator(), false)
-//                .collect(Collectors.toList());
-//
-//        return ctxhModels;
-//    }
-//
-//}
+package com.example.demo.Services;
+
+import com.example.demo.Models.phieuxuathang;
+import com.example.demo.Repository.PhieuXuatHangRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PhieuXuatHangService {
+    private static PhieuXuatHangRepository phieuXuatHangRepository;
+
+    @Autowired
+    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository) {
+        this.phieuXuatHangRepository = phieuXuatHangRepository;
+    }
+
+    public static phieuxuathang getPhieuXuatHangById(int mapxuat) {
+        return phieuXuatHangRepository.getPhieuXuatHangById(mapxuat);
+    }
+
+    public static phieuxuathang getAllPhieuXuatHangByNgayXuat(String ngaylp) {
+        return phieuXuatHangRepository.getAllPhieuXuatHangByNgayLp(ngaylp);
+    }
+
+    public static boolean createPhieuXuatHang(phieuxuathang newPhieuXuatHang) {
+        try {
+            phieuXuatHangRepository.save(newPhieuXuatHang);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}

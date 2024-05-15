@@ -1,79 +1,74 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class phieuxuathang {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int maPhieuXuat;
-
-    private String ngayXuat;
-    private int maDaiLy;
-    private int tongTien;
-    private int soTienTra;
-    private int conLai;
+    private int mapxuat;
+    private String ngaylp;
+    private int madaily;
+    private int tongtien;
+    private int sotientra;
 
     public phieuxuathang() {
         
     }
-    public phieuxuathang(String ngayXuat, int maDaiLy, int tongTien, int soTienTra, int conLai) {
-        this.ngayXuat = ngayXuat;
-        this.maDaiLy = maDaiLy;
-        this.tongTien = tongTien;
-        this.soTienTra = soTienTra;
-        this.conLai = conLai;
+    public phieuxuathang(String ngaylp, int madaily, int tongtien, int sotientra){
+        this.ngaylp = ngaylp;
+        this.madaily = madaily;
+        this.tongtien = tongtien;
+        this.sotientra = sotientra;
     }
 
-    public int getMaPhieuXuat() {
-        return maPhieuXuat;
+    @OneToMany(mappedBy = "phieuxuathang", cascade = CascadeType.ALL)
+    private List<ctxh> ctxhList = new ArrayList<>();
+
+    public void addCtxh(ctxh ctxh) {
+        ctxhList.add(ctxh);
+        ctxh.setPhieuxuathang(this);
     }
 
-    public void setMaPhieuXuat(int maPhieuXuat) {
-        this.maPhieuXuat = maPhieuXuat;
+    public int getMapxuat() {
+        return mapxuat;
     }
 
-    public String getNgayXuat() {
-        return ngayXuat;
+    public void setMapxuat(int mapxuat) {
+        this.mapxuat = mapxuat;
     }
 
-    public void setNgayXuat(String ngayXuat) {
-        this.ngayXuat = ngayXuat;
+    public String getNgaylp() {
+        return ngaylp;
     }
 
-    public int getMaDaiLy() {
-        return maDaiLy;
+    public void setNgaylp(String ngaylp) {
+        this.ngaylp = ngaylp;
     }
 
-    public void setMaDaiLy(int maDaiLy) {
-        this.maDaiLy = maDaiLy;
+    public int getMadaily() {
+        return madaily;
     }
 
-    public int getTongTien() {
-        return tongTien;
+    public void setMadaily(int madaily) {
+        this.madaily = madaily;
     }
 
-    public void setTongTien(int tongTien) {
-        this.tongTien = tongTien;
+    public int getTongtien() {
+        return tongtien;
     }
 
-    public int getSoTienTra() {
-        return soTienTra;
+    public void setTongtien(int tongtien) {
+        this.tongtien = tongtien;
     }
 
-    public void setSoTienTra(int soTienTra) {
-        this.soTienTra = soTienTra;
+    public int getSotientra() {
+        return sotientra;
     }
 
-    public int getConLai() {
-        return conLai;
-    }
-
-    public void setConLai(int conLai) {
-        this.conLai = conLai;
+    public void setSotientra(int sotientra) {
+        this.sotientra = sotientra;
     }
 }
