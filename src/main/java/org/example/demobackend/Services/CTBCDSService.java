@@ -36,8 +36,8 @@ public class CTBCDSService {
     }
 
     public static void createCTBCDS(ctbcds newCTBCDS) {
-        int thang = baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(newCTBCDS.getMabaocaods());
-        int nam = baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(newCTBCDS.getMabaocaods());
+        int thang = baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(newCTBCDS.getMabaocaods().getMabaocaods());
+        int nam = baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(newCTBCDS.getMabaocaods().getMabaocaods());
         int sophieuxuat = phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam);
         List<phieuxuathang> phieuxuathangList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);
         int tongtrigia = phieuxuathangList.stream().mapToInt(phieuxuathang::getTongtien).sum();

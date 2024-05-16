@@ -57,11 +57,11 @@ public class CTXHController {
     @PostMapping("/createctxh")
     public ResponseEntity<String> createCTXH(@RequestBody List<ctxh> newCTXHList) {
         for (ctxh newCTXH : newCTXHList) {
-            mathang mh = MatHangService.getMatHangById(newCTXH.getMamh());
+            mathang mh = MatHangService.getMatHangById(newCTXH.getMamh().getMamh());
             if (mh == null) {
                 return new ResponseEntity<>("No mathang found with the provided mamh", HttpStatus.BAD_REQUEST);
             }
-            newCTXH.setDongiaxuat(mh);
+            newCTXH.setDongiaxuat(mh.getDongiaxuat());
             if (!CTXHService.createCTXH(newCTXH)) {
                 return new ResponseEntity<>("Creation failed for ctxh with mamh: " + newCTXH.getMamh(), HttpStatus.BAD_REQUEST);
             }

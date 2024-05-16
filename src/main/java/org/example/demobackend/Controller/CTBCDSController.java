@@ -53,9 +53,9 @@ public class CTBCDSController {
         }
     }
 
-    @PostMapping("/createctbcds")
-    public ResponseEntity<String> createCTBCDS(@RequestBody List<ctbcds> newCTBCDSList) {
-        CTBCDSService.createCTBCDS();
-        return new ResponseEntity<>("Created successfully!", HttpStatus.OK);
-    }
+//    @PostMapping("/createctbcds")
+//    public ResponseEntity<String> createCTBCDS(@RequestBody List<ctbcds> newCTBCDSList) {
+//        CTBCDSService.createCTBCDS();
+//        return new ResponseEntity<>("Created successfully!", HttpStatus.OK);
+//    }
 }
