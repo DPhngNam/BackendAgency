@@ -8,18 +8,22 @@ import java.util.List;
 public class phieunhaphang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "mapnhap")
     private int mapnhap;
+
+    @Column(name = "ngaylp")
     private String ngaylp;
+
+    @Column(name = "tongtien")
     private int tongtien;
-    private Integer person_id;
+
 
     public phieunhaphang() {
     }
 
-    public phieunhaphang(String ngaynhap, int tongtien, int person_id) {
+    public phieunhaphang(String ngaynhap, int tongtien) {
         this.ngaylp = ngaynhap;
         this.tongtien = tongtien;
-        this.person_id = person_id;
     }
 
     @OneToMany(mappedBy = "phieunhaphang", cascade = CascadeType.ALL)
@@ -52,13 +56,5 @@ public class phieunhaphang {
 
     public void setTongtien(int tongtien) {
         this.tongtien = tongtien;
-    }
-
-    public Integer getPerson_id() {
-        return person_id;
-    }
-
-    public void setPerson_id(Integer person_id) {
-        this.person_id = person_id;
     }
 }

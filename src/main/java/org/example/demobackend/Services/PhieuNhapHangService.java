@@ -14,8 +14,8 @@ public class PhieuNhapHangService {
         this.phieuNhapHangRepository = phieuNhapHangRepository;
     }
 
-    public static phieunhaphang getPhieuNhapHangById(int maphieunhap) {
-        return phieuNhapHangRepository.getPhieuNhapHangById(maphieunhap);
+    public static phieunhaphang getPhieuNhapHangById(int mapnhap) {
+        return phieuNhapHangRepository.getPhieuNhapHangById(mapnhap);
     }
 
     public static phieunhaphang getAllPhieuNhapHangByNgayNhap(String ngaylp) {

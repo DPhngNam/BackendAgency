@@ -8,15 +8,24 @@ import java.util.List;
 public class phieuxuathang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "mapxuat")
     private int mapxuat;
+
+    @Column(name = "ngaylp")
     private String ngaylp;
+
+    @Column(name = "madaily")
     private int madaily;
+
+    @Column(name = "tongtien")
     private int tongtien;
+
+    @Column(name = "sotientra")
     private int sotientra;
 
     public phieuxuathang() {
-        
     }
+
     public phieuxuathang(String ngaylp, int madaily, int tongtien, int sotientra){
         this.ngaylp = ngaylp;
         this.madaily = madaily;

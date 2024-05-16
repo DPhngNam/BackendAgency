@@ -1,11 +1,7 @@
 package org.example.demobackend.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -13,6 +9,7 @@ import java.io.Serializable;
 @IdClass(ctbcds.ctbcdsId.class)
 public class ctbcds {
     @Id
+    @Column(name = "madaily")
     private int madaily;
 
     @JsonIgnore
@@ -21,6 +18,7 @@ public class ctbcds {
     private daily daily;
 
     @Id
+    @Column(name = "mabaocaods")
     private int mabaocaods;
 
     @JsonIgnore
@@ -28,8 +26,13 @@ public class ctbcds {
     @JoinColumn(name = "mabaocaods", insertable = false, updatable = false)
     private baocaodoanhso baocaodoanhso;
 
+    @Column(name = "sophieuxuat")
     private int sophieuxuat;
+
+    @Column(name = "tongtrigia")
     private int tongtrigia;
+
+    @Column(name = "tyle")
     private double tyle;
 
     public ctbcds() {

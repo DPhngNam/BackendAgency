@@ -63,8 +63,8 @@ public class BaoCaoDoanhSoController {
     }
 
     @PostMapping("/createbaocaodoanhso")
-    public ResponseEntity<String> createBaoCaoDoanhSo(@RequestParam int thang, @RequestParam int nam) {
-        baocaodoanhso bcds = BaoCaoDoanhSoService.createBaoCaoDoanhSo(thang, nam);
+    public ResponseEntity<String> createBaoCaoDoanhSo(@RequestParam int thang, @RequestParam int nam, @RequestParam int tongdoanhthu) {
+        baocaodoanhso bcds = BaoCaoDoanhSoService.createBaoCaoDoanhSo(thang, nam, tongdoanhthu);
         return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
     }
 }

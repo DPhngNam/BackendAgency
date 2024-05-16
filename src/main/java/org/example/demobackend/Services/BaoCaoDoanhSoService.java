@@ -49,9 +49,8 @@ public class BaoCaoDoanhSoService {
         return baoCaoDoanhSoRepository.getThangAndNamByMaBaoCaoDS(mabaocaods);
     }
 
-    public static baocaodoanhso createBaoCaoDoanhSo(int thang, int nam) {
+    public static baocaodoanhso createBaoCaoDoanhSo(int thang, int nam, int tongdoanhthu) {
         List<phieuxuathang> pxhList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);
-        int tongdoanhthu = pxhList.stream().mapToInt(phieuxuathang::getTongtien).sum();
         baocaodoanhso bcds = new baocaodoanhso(thang, nam, tongdoanhthu);
         baoCaoDoanhSoRepository.save(bcds);
         return bcds;

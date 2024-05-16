@@ -8,17 +8,31 @@ import java.io.Serializable;
 @IdClass(ctxh.CtxhId.class)
 public class ctxh {
     @Id
+    @Column(name = "mapxuat")
     private int mapxuat;
+
     @Id
+    @Column(name = "mamh")
     private int mamh;
+
+    @Column(name = "slxuat")
     private int slxuat;
+
+    @Column(name = "dongiaxuat")
     private int dongiaxuat;
+
+    @Column(name = "thanhtien")
     private int thanhtien;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "mapxuat", insertable = false, updatable = false)
     private phieuxuathang phieuxuathang;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "mamh", insertable = false, updatable = false)
+    private mathang mathang;
 
     public ctxh() {
     }

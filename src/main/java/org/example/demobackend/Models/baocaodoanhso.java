@@ -1,17 +1,21 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class baocaodoanhso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mabaocaods")
     private int mabaocaods;
+
+    @Column(name = "thang")
     private int thang;
+
+    @Column(name = "nam")
     private int nam;
+
+    @Column(name = "tongdoanhthu")
     private int tongdoanhthu;
 
     public baocaodoanhso() {
