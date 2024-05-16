@@ -4,10 +4,11 @@ package org.example.demobackend.Repository;
 import org.example.demobackend.Models.person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@EnableJpaRepositories
 public interface PersonRepository extends JpaRepository<person, Integer> {
     @Query("SELECT p FROM person p WHERE p.personemail = :personemail")
     person getUserByEmail(@Param("personemail") String personemail);
