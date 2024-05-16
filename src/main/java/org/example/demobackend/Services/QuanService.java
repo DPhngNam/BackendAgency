@@ -17,4 +17,12 @@ public class QuanService {
     public Iterable<quan> getAllQuan() {
         return quanRepository.findAll();
     }
+
+    public Boolean addQuan(quan quan) {
+        if (quanRepository.existsById(quan.getId())) {
+            return false;
+        }
+        quanRepository.save(quan);
+        return true;
+    }
 }
