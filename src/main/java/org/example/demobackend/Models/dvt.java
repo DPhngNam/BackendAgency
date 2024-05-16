@@ -1,12 +1,14 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity(name = "dvt")
 public class dvt {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "madvt")
     private int madvt;
+    @Column(name = "tendvt")
     private String tendvt;
 
     public dvt() {

@@ -5,11 +5,16 @@ import jakarta.persistence.*;
 @Entity
 public class daily {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "madaily")
     private int madaily;
+    @Column(name = "tendaily")
     private String tendaily;
+    @Column(name = "diachi")
     private String diachi;
+    @Column(name = "sdt")
     private String sdt;
+    @Column(name = "email")
     private String email;
     @ManyToOne
     @JoinColumn(name = "maloaidl")
@@ -19,7 +24,9 @@ public class daily {
     @JoinColumn(name = "maquan")
     private quan maquan;
 
+    @Column(name = "ngaytn")
     private String ngaytn;
+    @Column(name = "tienno")
     private int tienno;
 
 

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class mathang {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int mamh;
     private String tenmh;
     private int madvt;

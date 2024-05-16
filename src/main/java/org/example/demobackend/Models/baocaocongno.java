@@ -1,12 +1,25 @@
 package org.example.demobackend.Models;
 
+import jakarta.persistence.*;
+
+@Entity
 public class baocaocongno {
-    private String maBaoCaoCongNo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "maBaoCaoCongNo")
+    private int maBaoCaoCongNo;
+    @Column(name = "thang")
     private String thang;
+    @Column(name = "nam")
     private String nam;
-    private String maDaiLy;
+    @ManyToOne
+    @JoinColumn(name = "madaily")
+    private daily madaily;
+    @Column(name = "noDau")
     private String noDau;
+    @Column(name = "noCuoi")
     private String noCuoi;
+    @Column(name = "phatSinh")
     private String phatSinh;
 
 
@@ -14,44 +27,13 @@ public class baocaocongno {
 
     }
 
-    public baocaocongno(String maBaoCaoCongNo, String thang, String nam, String maDaiLy, String noDau, String noCuoi, String phatSinh) {
+    public baocaocongno(int maBaoCaoCongNo, String thang, String nam, daily madaily, String noDau, String noCuoi, String phatSinh) {
         this.maBaoCaoCongNo = maBaoCaoCongNo;
         this.thang = thang;
         this.nam = nam;
-        this.maDaiLy = maDaiLy;
+        this.madaily = madaily;
         this.noDau = noDau;
         this.noCuoi = noCuoi;
         this.phatSinh = phatSinh;
-
     }
-
-    public String getMaBaoCaoCongNo() {
-        return maBaoCaoCongNo;
-    }
-
-    public String getThang() {
-        return thang;
-    }
-
-    public String getNam() {
-        return nam;
-    }
-
-    public String getMaDaiLy() {
-        return maDaiLy;
-    }
-
-    public String getNoDau() {
-        return noDau;
-    }
-
-    public String getNoCuoi() {
-        return noCuoi;
-    }
-
-    public String getPhatSinh() {
-        return phatSinh;
-    }
-
-
 }

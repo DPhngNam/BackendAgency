@@ -1,20 +1,23 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
 public class person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "personid")
     private int personid;
+    @Column(name = "personlastname")
     private String personlastname;
+    @Column(name = "personname")
     private String personname;
+    @Column(name = "personsdt")
     private String personsdt;
+    @Column(name = "personemail")
     private String personemail;
+    @Column(name = "personpassword")
     private String personpassword;
 
     public person(){

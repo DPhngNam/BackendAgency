@@ -1,14 +1,17 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class loaidaily {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "maloaidl")
     private int maloaidl;
     @Column(name = "tenloaidl")
+
     private String tenloaidl;
+    @Column(name = "notoida")
     private int notoida;
 
     public loaidaily(int maloaidl, String tenloaidl, int notoida) {
