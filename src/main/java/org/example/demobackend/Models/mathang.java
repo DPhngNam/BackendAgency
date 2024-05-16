@@ -1,28 +1,32 @@
 package org.example.demobackend.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class mathang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "mamh")
     private int mamh;
+    @Column(name = "tenmh")
     private String tenmh;
-    private int madvt;
+    @ManyToOne
+    @JoinColumn(name = "dvt")
+    private dvt dvt;
+    @Column(name = "dongianhap")
     private int dongianhap;
+    @Column(name = "dongiaxuat")
     private int dongiaxuat;
+    @Column(name = "slton")
     private int slton;
 
     public mathang() {
 
     }
 
-    public mathang(String tenmh, int madvt, int dongianhap, int dongiaxuat, int slton) {
+    public mathang(String tenmh, dvt dvt, int dongianhap, int dongiaxuat, int slton) {
         this.tenmh = tenmh;
-        this.madvt = madvt;
+        this.dvt = dvt;
         this.dongianhap = dongianhap;
         this.dongiaxuat = dongiaxuat;
         this.slton = slton;
@@ -44,12 +48,12 @@ public class mathang {
         this.tenmh = tenmh;
     }
 
-    public int getMadvt() {
-        return madvt;
+    public org.example.demobackend.Models.dvt getDvt() {
+        return dvt;
     }
 
-    public void setMadvt(int madvt) {
-        this.madvt = madvt;
+    public void setDvt(org.example.demobackend.Models.dvt dvt) {
+        this.dvt = dvt;
     }
 
     public int getDongianhap() {
