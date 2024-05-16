@@ -22,10 +22,10 @@ public class QuanController {
     }
 
     @PostMapping("/addQuan")
-    public ResponseEntity<Void> addQuan(@RequestBody quan quan) {
+    public quan addQuan(@RequestBody quan quan) {
         if (quanService.addQuan(quan)) {
-            return ResponseEntity.ok().build();
+            return quan;
         }
-        return ResponseEntity.badRequest().build();
+        return null;
     }
 }
