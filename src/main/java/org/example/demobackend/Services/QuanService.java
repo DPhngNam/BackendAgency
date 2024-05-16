@@ -19,9 +19,7 @@ public class QuanService {
     }
 
     public Boolean addQuan(quan quan) {
-        if (quanRepository.existsById(quan.getId())) {
-            return false;
-        }
+
         quanRepository.save(quan);
         return true;
     }
