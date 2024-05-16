@@ -16,8 +16,8 @@ public  class quan {
         this.maquan = maquan;
     }
 
-    public quan(int maquan, String tenquan) {
-        this.maquan = maquan;
+    public quan(String tenquan) {
+
         this.tenquan = tenquan;
     }
 
