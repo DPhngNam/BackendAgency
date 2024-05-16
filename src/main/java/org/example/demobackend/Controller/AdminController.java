@@ -11,7 +11,7 @@ public class AdminController {
      public AdminController(AdminServices adminServices) {
          this.adminServices = adminServices;
      }
-     @PostMapping("/checkAdmin")
+     @GetMapping("/checkAdmin")
      public boolean checkAdmin(@RequestParam String userEmail, @RequestParam String password) {
          return adminServices.checkAdmin(userEmail, password);
      }
