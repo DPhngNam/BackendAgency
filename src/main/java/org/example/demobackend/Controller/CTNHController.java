@@ -58,11 +58,11 @@ public class CTNHController {
     @PostMapping("/createctnh")
     public ResponseEntity<String> createCTNH(@RequestBody List<ctnh> newCTNHList) {
         for (ctnh newCTNH : newCTNHList) {
-            mathang mh = MatHangService.getMatHangById(newCTNH.getMamh());
+            mathang mh = MatHangService.getMatHangById(newCTNH.getMamh().getMamh());
             if (mh == null) {
                 return new ResponseEntity<>("No mathang found with the provided mamh", HttpStatus.BAD_REQUEST);
             }
-            newCTNH.setDongianhap(mh);
+            newCTNH.setDongianhap(mh.getDongianhap());
             if (!CTNHService.createCTNH(newCTNH)) {
                 return new ResponseEntity<>("Creation failed for ctnh with mamh: " + newCTNH.getMamh(), HttpStatus.BAD_REQUEST);
             }

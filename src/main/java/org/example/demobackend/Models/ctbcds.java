@@ -9,22 +9,14 @@ import java.io.Serializable;
 @IdClass(ctbcds.ctbcdsId.class)
 public class ctbcds {
     @Id
-    @Column(name = "madaily")
-    private int madaily;
-
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "madaily", insertable = false, updatable = false)
-    private daily daily;
+    @JoinColumn(name = "madaily")
+    private daily madaily;
 
     @Id
-    @Column(name = "mabaocaods")
-    private int mabaocaods;
-
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "mabaocaods", insertable = false, updatable = false)
-    private baocaodoanhso baocaodoanhso;
+    @JoinColumn(name = "mabaocaods")
+    private baocaodoanhso mabaocaods;
 
     @Column(name = "sophieuxuat")
     private int sophieuxuat;
@@ -38,7 +30,7 @@ public class ctbcds {
     public ctbcds() {
     }
 
-    public ctbcds(int madaily, int mabaocaods, int sophieuxuat, int tongtrigia, double tyle) {
+    public ctbcds(daily madaily, baocaodoanhso mabaocaods, int sophieuxuat, int tongtrigia, double tyle) {
         this.madaily = madaily;
         this.mabaocaods = mabaocaods;
         this.sophieuxuat = sophieuxuat;
@@ -46,36 +38,20 @@ public class ctbcds {
         this.tyle = tyle;
     }
 
-    public int getMadaily() {
+    public daily getMadaily() {
         return madaily;
     }
 
-    public void setMadaily(int madaily) {
+    public void setMadaily(daily madaily) {
         this.madaily = madaily;
     }
 
-    public daily getDaily() {
-        return daily;
-    }
-
-    public void setDaily(daily dl) {
-        this.daily = dl;
-    }
-
-    public int getMabaocaods() {
+    public baocaodoanhso getMabaocaods() {
         return mabaocaods;
     }
 
-    public void setMabaocaods(int mabaocaods) {
+    public void setMabaocaods(baocaodoanhso mabaocaods) {
         this.mabaocaods = mabaocaods;
-    }
-
-    public baocaodoanhso getBaocaodoanhso() {
-        return baocaodoanhso;
-    }
-
-    public void setBaocaodoanhso(baocaodoanhso bcds) {
-        this.baocaodoanhso = bcds;
     }
 
     public int getSophieuxuat() {

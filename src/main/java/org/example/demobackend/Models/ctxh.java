@@ -8,12 +8,14 @@ import java.io.Serializable;
 @IdClass(ctxh.CtxhId.class)
 public class ctxh {
     @Id
-    @Column(name = "mapxuat")
-    private int mapxuat;
+    @ManyToOne
+    @JoinColumn(name = "mapxuat")
+    private phieuxuathang mapxuat;
 
     @Id
-    @Column(name = "mamh")
-    private int mamh;
+    @ManyToOne
+    @JoinColumn(name = "mamh")
+    private mathang mamh;
 
     @Column(name = "slxuat")
     private int slxuat;
@@ -24,39 +26,31 @@ public class ctxh {
     @Column(name = "thanhtien")
     private int thanhtien;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "mapxuat", insertable = false, updatable = false)
-    private phieuxuathang phieuxuathang;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "mamh", insertable = false, updatable = false)
-    private mathang mathang;
 
     public ctxh() {
     }
 
-    public ctxh(int mamh, int slxuat, int dongiaxuat, int thanhtien) {
+    public ctxh(phieuxuathang mapxuat, mathang mamh, int slxuat, int dongiaxuat, int thanhtien) {
+        this.mapxuat = mapxuat;
         this.mamh = mamh;
         this.slxuat = slxuat;
         this.dongiaxuat = dongiaxuat;
         this.thanhtien = thanhtien;
     }
 
-    public int getMapxuat() {
+    public phieuxuathang getMapxuat() {
         return mapxuat;
     }
 
-    public void setMapxuat(int mapxuat) {
+    public void setMapxuat(phieuxuathang mapxuat) {
         this.mapxuat = mapxuat;
     }
 
-    public int getMamh() {
+    public mathang getMamh() {
         return mamh;
     }
 
-    public void setMamh(int mamh) {
+    public void setMamh(mathang mamh) {
         this.mamh = mamh;
     }
 
@@ -72,24 +66,16 @@ public class ctxh {
         return dongiaxuat;
     }
 
-    public void setDongiaxuat(mathang mh) {
-        this.dongiaxuat = mh.getDongiaxuat();
+    public void setDongiaxuat(int dongiaxuat) {
+        this.dongiaxuat = dongiaxuat;
     }
 
     public int getThanhtien() {
-        return this.slxuat * this.dongiaxuat;
+        return thanhtien;
     }
 
     public void setThanhtien(int thanhtien) {
         this.thanhtien = thanhtien;
-    }
-
-    public phieuxuathang getPhieuxuathang() {
-        return phieuxuathang;
-    }
-
-    public void setPhieuxuathang(phieuxuathang phieuxuathang) {
-        this.phieuxuathang = phieuxuathang;
     }
 
     public static class CtxhId implements Serializable {

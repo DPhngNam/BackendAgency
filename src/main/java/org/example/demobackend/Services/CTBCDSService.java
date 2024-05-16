@@ -1,6 +1,7 @@
 package org.example.demobackend.Services;
 
 import org.example.demobackend.Models.ctbcds;
+import org.example.demobackend.Models.phieuxuathang;
 import org.example.demobackend.Repository.BaoCaoDoanhSoRepository;
 import org.example.demobackend.Repository.CTBCDSRepository;
 import org.example.demobackend.Repository.PhieuXuatHangRepository;
@@ -34,10 +35,13 @@ public class CTBCDSService {
         return ctbcdsRepository.getCTBCDSByMaDailyAndMaBaoCaoDS(madaily, mabaocaods);
     }
 
-    public static void createCTBCDS(int madaily, int mabaocaods, int tongtrigia, double tyle) {
-        int sophieuxuat = phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(mabaocaods), baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(mabaocaods));
-        ctbcds ctbcds = new ctbcds(madaily, mabaocaods, sophieuxuat, tongtrigia, tyle);
-        ctbcdsRepository.save(ctbcds);
-    }
+    public static void createCTBCDS(ctbcds newCTBCDS) {
+        int thang = baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(newCTBCDS.getMabaocaods());
+        int nam = baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(newCTBCDS.getMabaocaods());
+        int sophieuxuat = phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam);
+        List<phieuxuathang> phieuxuathangList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);
+        int tongtrigia = phieuxuathangList.stream().mapToInt(phieuxuathang::getTongtien).sum();
 
+        ctbcdsRepository.save(newCTBCDS);
+    }
 }

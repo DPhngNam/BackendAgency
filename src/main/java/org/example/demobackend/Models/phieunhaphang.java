@@ -17,21 +17,12 @@ public class phieunhaphang {
     @Column(name = "tongtien")
     private int tongtien;
 
-
     public phieunhaphang() {
     }
 
     public phieunhaphang(String ngaynhap, int tongtien) {
         this.ngaylp = ngaynhap;
         this.tongtien = tongtien;
-    }
-
-    @OneToMany(mappedBy = "phieunhaphang", cascade = CascadeType.ALL)
-    private List<ctnh> ctnhList = new ArrayList<>();
-
-    public void addCtnh(ctnh ctnh) {
-        ctnhList.add(ctnh);
-        ctnh.setPhieunhaphang(this);
     }
 
     public int getMapnhap() {

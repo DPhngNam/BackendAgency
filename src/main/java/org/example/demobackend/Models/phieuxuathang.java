@@ -14,8 +14,9 @@ public class phieuxuathang {
     @Column(name = "ngaylp")
     private String ngaylp;
 
-    @Column(name = "madaily")
-    private int madaily;
+    @ManyToOne
+    @JoinColumn(name = "madaily")
+    private daily madaily;
 
     @Column(name = "tongtien")
     private int tongtien;
@@ -26,19 +27,12 @@ public class phieuxuathang {
     public phieuxuathang() {
     }
 
-    public phieuxuathang(String ngaylp, int madaily, int tongtien, int sotientra){
+    public phieuxuathang(int mapxuat, String ngaylp, daily madaily, int tongtien, int sotientra) {
+        this.mapxuat = mapxuat;
         this.ngaylp = ngaylp;
         this.madaily = madaily;
         this.tongtien = tongtien;
         this.sotientra = sotientra;
-    }
-
-    @OneToMany(mappedBy = "phieuxuathang", cascade = CascadeType.ALL)
-    private List<ctxh> ctxhList = new ArrayList<>();
-
-    public void addCtxh(ctxh ctxh) {
-        ctxhList.add(ctxh);
-        ctxh.setPhieuxuathang(this);
     }
 
     public int getMapxuat() {
@@ -57,11 +51,11 @@ public class phieuxuathang {
         this.ngaylp = ngaylp;
     }
 
-    public int getMadaily() {
+    public daily getMadaily() {
         return madaily;
     }
 
-    public void setMadaily(int madaily) {
+    public void setMadaily(daily madaily) {
         this.madaily = madaily;
     }
 

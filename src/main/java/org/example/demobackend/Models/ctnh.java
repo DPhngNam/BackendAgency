@@ -8,12 +8,14 @@ import java.io.Serializable;
 @IdClass(ctnh.CtnhId.class)
 public class ctnh {
     @Id
-    @Column(name = "mapnhap")
-    private int mapnhap;
+    @ManyToOne
+    @JoinColumn(name = "mapnhap")
+    private phieunhaphang mapnhap;
 
     @Id
-    @Column(name = "mamh")
-    private int mamh;
+    @ManyToOne
+    @JoinColumn(name = "mamh")
+    private mathang mamh;
 
     @Column(name = "slnhap")
     private int slnhap;
@@ -24,40 +26,35 @@ public class ctnh {
     @Column(name = "thanhtien")
     private int thanhtien;
 
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "mapnhap", insertable = false, updatable = false)
-    private phieunhaphang phieunhaphang;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "mamh", insertable = false, updatable = false)
-    private mathang mathang;
+    @JoinColumn(name = "dvt")
+    private dvt dvt;
 
     public ctnh() {
     }
 
-    public ctnh(int mapnhap, int mamh, int slnhap, int dongianhap, int thanhtien) {
+    public ctnh(phieunhaphang mapnhap, mathang mamh, int slnhap, int dongianhap, int thanhtien, dvt dvt) {
         this.mapnhap = mapnhap;
         this.mamh = mamh;
         this.slnhap = slnhap;
         this.dongianhap = dongianhap;
         this.thanhtien = thanhtien;
+        this.dvt = dvt;
     }
 
-    public int getMapnhap() {
+    public phieunhaphang getMapnhap() {
         return mapnhap;
     }
 
-    public void setMapnhap(int mapnhap) {
+    public void setMapnhap(phieunhaphang mapnhap) {
         this.mapnhap = mapnhap;
     }
 
-    public int getMamh() {
+    public mathang getMamh() {
         return mamh;
     }
 
-    public void setMamh(int mamh) {
+    public void setMamh(mathang mamh) {
         this.mamh = mamh;
     }
 
@@ -65,16 +62,16 @@ public class ctnh {
         return slnhap;
     }
 
-    public void setSlnhap(int slxuat) {
-        this.slnhap = slxuat;
+    public void setSlnhap(int slnhap) {
+        this.slnhap = slnhap;
     }
 
     public int getDongianhap() {
         return dongianhap;
     }
 
-    public void setDongianhap(mathang mh) {
-        this.dongianhap = mh.getDongianhap();
+    public void setDongianhap(int dongianhap) {
+        this.dongianhap = dongianhap;
     }
 
     public int getThanhtien() {
@@ -85,12 +82,12 @@ public class ctnh {
         this.thanhtien = thanhtien;
     }
 
-    public phieunhaphang getPhieunhaphang() {
-        return phieunhaphang;
+    public dvt getDvt() {
+        return dvt;
     }
 
-    public void setPhieunhaphang(phieunhaphang phieunhaphang) {
-        this.phieunhaphang = phieunhaphang;
+    public void setDvt(dvt dvt) {
+        this.dvt = dvt;
     }
 
     public static class CtnhId implements Serializable {
