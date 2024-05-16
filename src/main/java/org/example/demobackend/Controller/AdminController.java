@@ -2,10 +2,7 @@ package org.example.demobackend.Controller;
 import org.example.demobackend.Models.Admin;
 
 import org.example.demobackend.Services.AdminServices;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -15,8 +12,8 @@ public class AdminController {
          this.adminServices = adminServices;
      }
      @PostMapping("/checkAdmin")
-     public boolean checkAdmin(@RequestBody Admin admin) {
-         return adminServices.checkAdmin(admin.getUserEmail(), admin.getPassword());
+     public boolean checkAdmin(@RequestParam String userEmail, @RequestParam String password) {
+         return adminServices.checkAdmin(userEmail, password);
      }
      @PostMapping("/addAdmin")
      public boolean addAdmin(@RequestBody Admin admin) {
