@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class phieuxuathang {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int mapxuat;
     private String ngaylp;
     private int madaily;
