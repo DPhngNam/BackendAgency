@@ -34,7 +34,7 @@ public class PTTService {
     public phieuthutien insertPhieuThuTien(phieuthutien phieuthutien) {
         try {
             // Retrieve the existing daily object from the database
-            daily existingDaily = daiLyRepository.getDaiLyById(phieuthutien.getMadaily());
+            daily existingDaily = daiLyRepository.getDaiLyById(phieuthutien.getMadaily().getMadaily());
             int tienthu = phieuthutien.getTienthu();
             if (existingDaily != null) {
                 int oldTienNo = existingDaily.getTienno();

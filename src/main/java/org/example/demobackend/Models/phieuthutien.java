@@ -25,4 +25,19 @@ public class phieuthutien {
         this.madaily = madaily;
     }
 
+    public int getMaphieuthu() {
+        return maphieuthu;
+    }
+
+    public String getNgaythutien() {
+        return ngaythutien;
+    }
+
+    public int getTienthu() {
+        return tienthu;
+    }
+
+    public daily getMadaily() {
+        return madaily;
+    }
 }
