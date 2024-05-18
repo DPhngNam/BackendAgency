@@ -1,7 +1,7 @@
 package org.example.demobackend.Services;
 
 import org.example.demobackend.Models.baocaodoanhso;
-import org.example.demobackend.Models.phieuxuathang;
+import org.example.demobackend.Models.ctbcds;
 import org.example.demobackend.Repository.BaoCaoDoanhSoRepository;
 import org.example.demobackend.Repository.PhieuXuatHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +49,24 @@ public class BaoCaoDoanhSoService {
         return baoCaoDoanhSoRepository.getThangAndNamByMaBaoCaoDS(mabaocaods);
     }
 
-    public static baocaodoanhso createBaoCaoDoanhSo(int thang, int nam, int tongdoanhthu) {
-        List<phieuxuathang> pxhList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);
-        baocaodoanhso bcds = new baocaodoanhso(thang, nam, tongdoanhthu);
-        baoCaoDoanhSoRepository.save(bcds);
-        return bcds;
+    public static List<Integer> getMaBaoCaoDSByThangAndNam(int thang, int nam) {
+        return baoCaoDoanhSoRepository.getMaBaoCaoDSByThangAndNam(thang, nam);
+    }
+
+    public static baocaodoanhso createBaoCaoDoanhSo(baocaodoanhso newBaoCaoDoanhSo) {
+        int thang = newBaoCaoDoanhSo.getThang();
+        int nam = newBaoCaoDoanhSo.getNam();
+        int maBaoCaoDS = newBaoCaoDoanhSo.getMabaocaods();
+        List<Integer> maBaoCaoDSList = getMaBaoCaoDSByThangAndNam(thang, nam);
+        if (maBaoCaoDSList.contains(maBaoCaoDS)) {
+            List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDSByMaBaoCaoDS(maBaoCaoDS);
+            int tongdoanhthu = ctbcdsList.stream().mapToInt(ctbcds::getTongtrigia).sum();
+            newBaoCaoDoanhSo.setTongdoanhthu(tongdoanhthu);
+        }
+        else {
+            newBaoCaoDoanhSo.setTongdoanhthu(0);
+        }
+        baoCaoDoanhSoRepository.save(newBaoCaoDoanhSo);
+        return newBaoCaoDoanhSo;
     }
 }

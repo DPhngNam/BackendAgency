@@ -53,9 +53,15 @@ public class CTBCDSController {
         }
     }
 
-//    @PostMapping("/createctbcds")
-//    public ResponseEntity<String> createCTBCDS(@RequestBody List<ctbcds> newCTBCDSList) {
-//        CTBCDSService.createCTBCDS();
-//        return new ResponseEntity<>("Created successfully!", HttpStatus.OK);
-//    }
+    @PostMapping("/createctbcds")
+    public ResponseEntity<String> createCTBCDS(@RequestBody List<ctbcds> newCTBCDSList) {
+        try {
+            for (ctbcds newCTBCDS : newCTBCDSList) {
+                CTBCDSService.createCTBCDS(newCTBCDS);
+            }
+            return new ResponseEntity<>("Created successfully!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to create ctbcds: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

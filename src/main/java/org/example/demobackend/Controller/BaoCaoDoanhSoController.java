@@ -62,9 +62,13 @@ public class BaoCaoDoanhSoController {
         }
     }
 
-    @PostMapping("/createbaocaodoanhso")
-    public ResponseEntity<String> createBaoCaoDoanhSo(@RequestParam int thang, @RequestParam int nam, @RequestParam int tongdoanhthu) {
-        baocaodoanhso bcds = BaoCaoDoanhSoService.createBaoCaoDoanhSo(thang, nam, tongdoanhthu);
-        return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
+    @PostMapping("/createbcds")
+    public ResponseEntity<baocaodoanhso> createBaoCaoDoanhSo(@RequestBody baocaodoanhso newBaoCaoDoanhSo) {
+        try {
+            baocaodoanhso createdBaoCaoDoanhSo = BaoCaoDoanhSoService.createBaoCaoDoanhSo(newBaoCaoDoanhSo);
+            return new ResponseEntity<>(createdBaoCaoDoanhSo, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

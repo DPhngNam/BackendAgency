@@ -30,4 +30,7 @@ public interface BaoCaoDoanhSoRepository extends CrudRepository<baocaodoanhso, I
 
     @Query("SELECT bcds FROM baocaodoanhso bcds WHERE bcds.thang = :thang AND bcds.nam = :nam")
     List<baocaodoanhso> getBaoCaoDoanhSoByThangAndNam(@Param("thang") int thang, @Param("nam") int nam);
+
+    @Query("SELECT bcds.mabaocaods FROM baocaodoanhso bcds WHERE bcds.thang = :thang AND bcds.nam = :nam")
+    List<Integer> getMaBaoCaoDSByThangAndNam(@Param("thang") int thang, @Param("nam") int nam);
 }
