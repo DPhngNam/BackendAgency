@@ -27,4 +27,8 @@ public class DVTService {
                     + e.getMessage());
         }
     }
+
+    public Iterable<dvt> getAllDVT() {
+        return dvtRepository.findAll();
+    }
 }
