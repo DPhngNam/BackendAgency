@@ -16,7 +16,7 @@ public class DVTService {
     public ResponseEntity<String> insertDVT(dvt dvt) {
         try {
             dvt existingDVT = dvtRepository.findByTendvt(dvt.getTendvt());
-            if (existingDVT == null) {
+            if (existingDVT != null) {
                 return ResponseEntity.ok("DVT already exists");
             } else {
                 dvtRepository.save(dvt);
