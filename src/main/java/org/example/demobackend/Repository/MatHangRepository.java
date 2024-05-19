@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 @EnableJpaRepositories
-public interface MatHangRepository<MatHang> extends CrudRepository<mathang, Integer> {
+public interface MatHangRepository extends CrudRepository<mathang, Integer> {
     @Query("SELECT mh FROM mathang mh WHERE mh.mamh = :mamh")
     mathang getMatHangById(@Param("mamh") int mamh);
 
