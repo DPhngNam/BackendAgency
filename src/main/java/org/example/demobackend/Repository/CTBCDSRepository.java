@@ -17,6 +17,6 @@ public interface CTBCDSRepository extends CrudRepository<ctbcds, Integer> {
     @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.madaily = :madaily AND ctbcds.mabaocaods = :mabaocaods")
     ctbcds getCTBCDSByMaDailyAndMaBaoCaoDS(int madaily, int mabaocaods);
 
-    @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.madaily = :madaily AND ctbcds.thang = :thang AND c.nam = :nam")
-    List<ctbcds> getCTBCDSByMaDailyAndThangAndNam(int madaily, int thang, int nam);
+//    @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.madaily = :madaily AND ctbcds.thang = :thang AND ctbcds.nam = :nam")
+//    List<ctbcds> getCTBCDSByMaDailyAndThangAndNam(int madaily, int thang, int nam);
 }

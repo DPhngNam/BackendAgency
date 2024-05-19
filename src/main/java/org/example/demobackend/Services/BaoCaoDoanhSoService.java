@@ -53,6 +53,10 @@ public class BaoCaoDoanhSoService {
         return baoCaoDoanhSoRepository.getMaBaoCaoDSByThangAndNam(thang, nam);
     }
 
+    public static List<baocaodoanhso> getAllBaoCaoDoanhSo() {
+        return (List<baocaodoanhso>) baoCaoDoanhSoRepository.findAll();
+    }
+
     public static baocaodoanhso createBaoCaoDoanhSo(baocaodoanhso newBaoCaoDoanhSo) {
         int thang = newBaoCaoDoanhSo.getThang();
         int nam = newBaoCaoDoanhSo.getNam();
@@ -69,4 +73,24 @@ public class BaoCaoDoanhSoService {
         baoCaoDoanhSoRepository.save(newBaoCaoDoanhSo);
         return newBaoCaoDoanhSo;
     }
+
+    /*
+        public List<ctbcds>  (thang, nam)
+
+            Repo baocaodoanhso save (new bcds)
+
+            phieu xuat repo
+                Query thang nam
+                group by madaily
+            
+            1 ct : tong tien tri gia cua Dai ly A theo thang nam  => sum1
+
+            int sum += tatca tri gia phieu xuat cua tat ca dai ly trong cung thang - nam
+            for(ct : ct){
+                ctbcds.settyle = sum1/ sum
+            }
+
+
+            
+     */
 }

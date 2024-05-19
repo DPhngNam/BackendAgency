@@ -62,13 +62,30 @@ public class BaoCaoDoanhSoController {
         }
     }
 
-    @PostMapping("/createbcds")
-    public ResponseEntity<baocaodoanhso> createBaoCaoDoanhSo(@RequestBody baocaodoanhso newBaoCaoDoanhSo) {
-        try {
-            baocaodoanhso createdBaoCaoDoanhSo = BaoCaoDoanhSoService.createBaoCaoDoanhSo(newBaoCaoDoanhSo);
-            return new ResponseEntity<>(createdBaoCaoDoanhSo, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    @GetMapping("/allbcds")
+    public ResponseEntity<List<baocaodoanhso>> getAllBaoCaoDoanhSo() {
+        List<baocaodoanhso> bcdsList = BaoCaoDoanhSoService.getAllBaoCaoDoanhSo();
+        if (!bcdsList.isEmpty()) {
+            return new ResponseEntity<>(bcdsList, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/createbcds")
+    public ResponseEntity<Object> createBaoCaoDoanhSo(@RequestBody baocaodoanhso newBaoCaoDoanhSo) {
+        try {
+            baocaodoanhso createdBaoCaoDoanhSo = BaoCaoDoanhSoService.createBaoCaoDoanhSo(newBaoCaoDoanhSo);
+            return new ResponseEntity<>(createdBaoCaoDoanhSo.getMabaocaods(), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Created failed!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    /*
+    @Get...
+
+    public List<ctbcds>     (Param thang nam)
+
+
+    */
 }
