@@ -63,7 +63,7 @@ public class MatHangController {
     }
 
     @PostMapping("/createmh")
-    public ResponseEntity<String> createMatHang(@RequestBody mathang newMatHang){
+    public ResponseEntity<Object> createMatHang(@RequestBody mathang newMatHang){
         newMatHang.setDongiaxuat(0);
         if (MatHangService.createMatHang(newMatHang)) {
             return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);

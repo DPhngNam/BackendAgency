@@ -14,8 +14,7 @@ public class dvt {
     public dvt() {
     }
 
-    public dvt(int madvt, String tendvt) {
-        this.madvt = madvt;
+    public dvt(String tendvt) {
         this.tendvt = tendvt;
     }
 
