@@ -29,12 +29,8 @@ public class MatHangService {
     }
 
     public static boolean createMatHang(mathang newMatHang) {
-        try {
-            matHangRepository.save(newMatHang);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        matHangRepository.save(newMatHang);
+        return true;
     }
 
     public static List<mathang> getAllMatHang() {
