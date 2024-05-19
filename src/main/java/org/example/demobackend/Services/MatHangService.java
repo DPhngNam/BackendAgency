@@ -13,7 +13,7 @@ public class MatHangService {
 
     @Autowired
     public MatHangService(MatHangRepository matHangRepository) {
-        MatHangService.matHangRepository = matHangRepository;
+        this.matHangRepository = matHangRepository;
     }
 
     public static mathang getMatHangById(int mamh) {
