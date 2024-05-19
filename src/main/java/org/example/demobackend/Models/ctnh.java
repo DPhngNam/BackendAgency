@@ -20,26 +20,23 @@ public class ctnh {
     @Column(name = "slnhap")
     private int slnhap;
 
+
     @Column(name = "dongianhap")
     private int dongianhap;
 
     @Column(name = "thanhtien")
     private int thanhtien;
 
-    @ManyToOne
-    @JoinColumn(name = "dvt")
-    private dvt dvt;
+    @Column(name = "dvt")
+    private int dvt;
 
     public ctnh() {
     }
 
-    public ctnh(phieunhaphang mapnhap, mathang mamh, int slnhap, int dongianhap, int thanhtien, dvt dvt) {
+    public ctnh(phieunhaphang mapnhap, mathang mamh, int slnhap) {
         this.mapnhap = mapnhap;
         this.mamh = mamh;
         this.slnhap = slnhap;
-        this.dongianhap = dongianhap;
-        this.thanhtien = thanhtien;
-        this.dvt = dvt;
     }
 
     public phieunhaphang getMapnhap() {
@@ -67,9 +64,8 @@ public class ctnh {
     }
 
     public int getDongianhap() {
-        return dongianhap;
+        return this.mamh.getDongianhap();
     }
-
     public void setDongianhap(int dongianhap) {
         this.dongianhap = dongianhap;
     }
@@ -82,11 +78,11 @@ public class ctnh {
         this.thanhtien = thanhtien;
     }
 
-    public dvt getDvt() {
+    public int getDvt() {
         return dvt;
     }
 
-    public void setDvt(dvt dvt) {
+    public void setDvt(int dvt) {
         this.dvt = dvt;
     }
 

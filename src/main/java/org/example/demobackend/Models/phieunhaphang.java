@@ -1,18 +1,25 @@
 package org.example.demobackend.Models;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+
+import java.util.Date;
+
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class phieunhaphang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "mapnhap")
     private int mapnhap;
 
-    @Column(name = "ngaylp")
-    private String ngaylp;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    @Column(name = "ngaylp", nullable = false, updatable = false)
+    private Date ngaylp;
 
     @Column(name = "tongtien")
     private int tongtien;
@@ -20,8 +27,12 @@ public class phieunhaphang {
     public phieunhaphang() {
     }
 
-    public phieunhaphang(String ngaynhap, int tongtien) {
-        this.ngaylp = ngaynhap;
+    public phieunhaphang(int mapnhap,int tongtien) {
+        this.mapnhap = mapnhap;
+        this.tongtien = tongtien;
+    }
+
+    public phieunhaphang(int tongtien) {
         this.tongtien = tongtien;
     }
 
@@ -29,18 +40,9 @@ public class phieunhaphang {
         return mapnhap;
     }
 
-    public void setMapnhap(int mapnhap) {
-        this.mapnhap = mapnhap;
-    }
-
-    public String getNgaylp() {
+    public Date getNgaylp() {
         return ngaylp;
     }
-
-    public void setNgaylp(String ngaylp) {
-        this.ngaylp = ngaylp;
-    }
-
     public int getTongtien() {
         return tongtien;
     }

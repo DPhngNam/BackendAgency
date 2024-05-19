@@ -62,7 +62,10 @@ public class CTNHController {
             if (mh == null) {
                 return new ResponseEntity<>("No mathang found with the provided mamh", HttpStatus.BAD_REQUEST);
             }
+
             newCTNH.setDongianhap(mh.getDongianhap());
+            newCTNH.setThanhtien(newCTNH.getDongianhap() * newCTNH.getSlnhap());
+            newCTNH.setDvt(mh.getDvt().getMadvt());
             if (!CTNHService.createCTNH(newCTNH)) {
                 return new ResponseEntity<>("Creation failed for ctnh with mamh: " + newCTNH.getMamh(), HttpStatus.BAD_REQUEST);
             }
