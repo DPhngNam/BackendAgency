@@ -65,6 +65,7 @@ public class CTNHController {
 
             newCTNH.setDongianhap(mh.getDongianhap());
             newCTNH.setThanhtien(newCTNH.getDongianhap() * newCTNH.getSlnhap());
+
             newCTNH.setDvt(mh.getDvt().getMadvt());
             if (!CTNHService.createCTNH(newCTNH)) {
                 return new ResponseEntity<>("Creation failed for ctnh with mamh: " + newCTNH.getMamh(), HttpStatus.BAD_REQUEST);

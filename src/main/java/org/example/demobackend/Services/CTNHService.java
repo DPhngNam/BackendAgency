@@ -30,9 +30,16 @@ public class CTNHService {
     public static boolean createCTNH(ctnh newCTNH) {
         try {
             ctnhRepository.save(newCTNH);
+            updateMatHang(newCTNH);
             return true;
         } catch (Exception e) {
             return false;
         }
+    }
+
+    static void updateMatHang(ctnh ctnh) {
+
+        MatHangService.updateSLT(ctnh.getMamh(),ctnh.getSlnhap(),1);
+
     }
 }

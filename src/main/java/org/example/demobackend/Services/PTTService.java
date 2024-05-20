@@ -39,7 +39,6 @@ public class PTTService {
             if (existingDaily != null) {
                 int oldTienNo = existingDaily.getTienno();
                 existingDaily.setTienno(oldTienNo-tienthu);
-
                 daiLyRepository.save(existingDaily);
             } else {
                 throw new Exception("Daily with name: " + phieuthutien.getMadaily() + " not found");

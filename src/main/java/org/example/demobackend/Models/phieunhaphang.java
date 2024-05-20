@@ -50,4 +50,6 @@ public class phieunhaphang {
     public void setTongtien(int tongtien) {
         this.tongtien = tongtien;
     }
+
+
 }

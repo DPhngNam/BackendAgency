@@ -46,4 +46,17 @@ public class MatHangService {
     public static List<mathang> getAllMatHang() {
         return matHangRepository.getAllMatHang();
     }
+
+    static void updateSLT(mathang mathang,int sl, int type){
+        switch (type){
+            case 1:
+                mathang temp = matHangRepository.getMatHangById(mathang.getMamh());
+                temp.setSlton(temp.getSlton() + sl);
+                matHangRepository.save(temp);
+                break;
+//            case 2:
+//                mathang.setSoluongton(mathang.getSoluongton()-1);
+//                break;
+        }
+    }
 }
