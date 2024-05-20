@@ -31,7 +31,7 @@ public class PTTService {
         return pttRepository.getPhieuThuTienByDaiLyId(madaily);
     }
 
-    public phieuthutien insertPhieuThuTien(phieuthutien phieuthutien) {
+    public boolean insertPhieuThuTien(phieuthutien phieuthutien) {
         try {
             // Retrieve the existing daily object from the database
             daily existingDaily = daiLyRepository.getDaiLyById(phieuthutien.getMadaily().getMadaily());
@@ -41,12 +41,13 @@ public class PTTService {
                 existingDaily.setTienno(oldTienNo-tienthu);
                 daiLyRepository.save(existingDaily);
             } else {
-                throw new Exception("Daily with name: " + phieuthutien.getMadaily() + " not found");
+                return false;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return pttRepository.save(phieuthutien);
+        pttRepository.save(phieuthutien);
+        return true;
     }
 
 }

@@ -26,7 +26,6 @@ public class CTNHService {
     public static ctnh getCTNHByMapNhapAndMaMH(int mapnhap, int mamh) {
         return ctnhRepository.getCTNHByMapNhapAndMaMH(mapnhap, mamh);
     }
-
     public static boolean createCTNH(ctnh newCTNH) {
         try {
             ctnhRepository.save(newCTNH);
@@ -36,10 +35,7 @@ public class CTNHService {
             return false;
         }
     }
-
     static void updateMatHang(ctnh ctnh) {
-
         MatHangService.updateSLT(ctnh.getMamh(),ctnh.getSlnhap(),1);
-
     }
 }
