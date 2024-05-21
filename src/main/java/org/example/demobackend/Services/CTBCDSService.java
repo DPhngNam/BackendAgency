@@ -1,6 +1,7 @@
 package org.example.demobackend.Services;
 
 import org.example.demobackend.Models.ctbcds;
+import org.example.demobackend.Models.daily;
 import org.example.demobackend.Models.phieuxuathang;
 import org.example.demobackend.Repository.BaoCaoDoanhSoRepository;
 import org.example.demobackend.Repository.CTBCDSRepository;
@@ -35,14 +36,25 @@ public class CTBCDSService {
         return ctbcdsRepository.getCTBCDSByMaDailyAndMaBaoCaoDS(madaily, mabaocaods);
     }
 
-    public static void createCTBCDS(ctbcds newCTBCDS) {
-        int thang = baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(newCTBCDS.getMabaocaods().getMabaocaods());
-        int nam = baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(newCTBCDS.getMabaocaods().getMabaocaods());
-        int sophieuxuat = phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam);
-        List<phieuxuathang> phieuxuathangList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);
-        int tongtrigia = phieuxuathangList.stream().mapToInt(phieuxuathang::getTongtien).sum();
-        newCTBCDS.setSophieuxuat(sophieuxuat);
-        newCTBCDS.setTongtrigia(tongtrigia);
-        ctbcdsRepository.save(newCTBCDS);
+    public static List<ctbcds> createCTBCDS(List<ctbcds> newCTBCDSList) {
+        try {
+            for (ctbcds newCTBCDS : newCTBCDSList) {
+                int thang = baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(newCTBCDS.getMabaocaods().getMabaocaods());
+                int nam = baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(newCTBCDS.getMabaocaods().getMabaocaods());
+                daily madaily = newCTBCDS.getMadaily();
+                int sophieuxuat = phieuXuatHangRepository.getSoPhieuXuatByMaDailyAndThangAndNam(madaily, thang, nam);
+                int tongtrigia = phieuXuatHangRepository.getTongTienPhieuXuatByMaDailyAndThangAndNam(madaily, thang, nam);
+                int tongcactongtrigia = phieuXuatHangRepository.getTongTienPhieuXuatByThangAndNam(thang, nam);
+                double tyle = (double) tongtrigia / tongcactongtrigia;
+                newCTBCDS.setSophieuxuat(sophieuxuat);
+                newCTBCDS.setTongtrigia(tongtrigia);
+                newCTBCDS.setTyle(tyle);
+                ctbcdsRepository.save(newCTBCDS);
+            }
+            return newCTBCDSList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
