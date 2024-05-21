@@ -48,15 +48,16 @@ public class MatHangService {
     }
 
     static void updateSLT(mathang mathang,int sl, int type){
+        mathang temp = matHangRepository.getMatHangById(mathang.getMamh());
         switch (type){
             case 1:
-                mathang temp = matHangRepository.getMatHangById(mathang.getMamh());
                 temp.setSlton(temp.getSlton() + sl);
                 matHangRepository.save(temp);
                 break;
-//            case 2:
-//                mathang.setSoluongton(mathang.getSoluongton()-1);
-//                break;
+            case 2:
+                temp.setSlton(temp.getSlton() - sl);
+                matHangRepository.save(temp);
+                break;
         }
     }
 }

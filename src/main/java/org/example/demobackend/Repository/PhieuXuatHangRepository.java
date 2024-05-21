@@ -21,4 +21,6 @@ public interface PhieuXuatHangRepository extends CrudRepository<phieuxuathang, I
 
     @Query(value = "SELECT COUNT(*) FROM phieuxuathang pxh WHERE MONTH(pxh.ngaylp) = :thang AND YEAR(pxh.ngaylp) = :nam", nativeQuery = true)
     int getSoPhieuXuatByThangAndNamOfNgayLP(@Param("thang") int thang, @Param("nam") int nam);
+
+
 }
