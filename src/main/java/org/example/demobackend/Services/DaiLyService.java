@@ -67,4 +67,15 @@ public class DaiLyService {
     public daily getDaiLyByName(String tendaily) {
         return daiLyRepository.getAllDaiLyByTenDaiLy(tendaily);
     }
+
+    public void updateSoNo(int tienno,int madaily){
+
+        daily existingDaiLy = daiLyRepository.getDaiLyById(madaily);
+        if (existingDaiLy != null) {
+            int oldTienNo = existingDaiLy.getTienno();
+            existingDaiLy.setTienno(oldTienNo+tienno);
+            daiLyRepository.save(existingDaiLy);
+        }
+
+    }
 }

@@ -1,6 +1,8 @@
 package org.example.demobackend.Services;
 
+import org.example.demobackend.Models.dvt;
 import org.example.demobackend.Models.mathang;
+import org.example.demobackend.Repository.DVTRepository;
 import org.example.demobackend.Repository.MatHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,13 @@ import java.util.List;
 @Service
 public class MatHangService {
     private static MatHangRepository matHangRepository;
+    private static DVTRepository dvtRepository;
 
     @Autowired
-    public MatHangService(MatHangRepository matHangRepository) {
-        MatHangService.matHangRepository = matHangRepository;
+    public MatHangService(MatHangRepository matHangRepository, DVTRepository dvtRepository) {
+
+        this.matHangRepository = matHangRepository;
+        this.dvtRepository = dvtRepository;
     }
 
     public static mathang getMatHangById(int mamh) {
@@ -29,15 +34,30 @@ public class MatHangService {
     }
 
     public static boolean createMatHang(mathang newMatHang) {
-        try {
-            matHangRepository.save(newMatHang);
-            return true;
-        } catch (Exception e) {
+        dvt existingDVT = dvtRepository.findByTendvt(newMatHang.getDvt().getTendvt());
+        if (existingDVT == null) {
             return false;
         }
+        newMatHang.setDvt(existingDVT);
+        matHangRepository.save(newMatHang);
+        return true;
     }
 
     public static List<mathang> getAllMatHang() {
         return matHangRepository.getAllMatHang();
+    }
+
+    static void updateSLT(mathang mathang,int sl, int type){
+        mathang temp = matHangRepository.getMatHangById(mathang.getMamh());
+        switch (type){
+            case 1:
+                temp.setSlton(temp.getSlton() + sl);
+                matHangRepository.save(temp);
+                break;
+            case 2:
+                temp.setSlton(temp.getSlton() - sl);
+                matHangRepository.save(temp);
+                break;
+        }
     }
 }

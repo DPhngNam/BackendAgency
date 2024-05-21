@@ -22,12 +22,14 @@ public class PhieuNhapHangService {
         return phieuNhapHangRepository.getAllPhieuNhapHangByNgayLp(ngaylp);
     }
 
-    public static boolean createPhieuNhapHang(phieunhaphang newPhieuNhapHang) {
+    public static int createPhieuNhapHang(phieunhaphang newPhieuNhapHang) {
         try {
-            phieuNhapHangRepository.save(newPhieuNhapHang);
-            return true;
+            phieunhaphang savedPhieuNhapHang = phieuNhapHangRepository.save(newPhieuNhapHang);
+            return savedPhieuNhapHang.getMapnhap();
         } catch (Exception e) {
-            return false;
+            e.printStackTrace();
+            return -1;
         }
     }
+
 }

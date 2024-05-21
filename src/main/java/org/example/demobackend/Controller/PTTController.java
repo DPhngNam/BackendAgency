@@ -2,8 +2,11 @@ package org.example.demobackend.Controller;
 
 
 import org.example.demobackend.Models.phieuthutien;
+import org.example.demobackend.Services.MatHangService;
 import org.example.demobackend.Services.PTTService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +36,12 @@ public class PTTController {
     }
 
     @PostMapping("/addPhieuThuTien")
-    public phieuthutien addPhieuThuTien(@RequestBody phieuthutien phieuthutien) {
-        return pttService.insertPhieuThuTien(phieuthutien);
+    public ResponseEntity<String> addPhieuThuTien(@RequestBody phieuthutien phieuthutien) {
+
+        if ( pttService.insertPhieuThuTien(phieuthutien)) {
+            return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Created failed!", HttpStatus.BAD_REQUEST);
+        }
     }
 }

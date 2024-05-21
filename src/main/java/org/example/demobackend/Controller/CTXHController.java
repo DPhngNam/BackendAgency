@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -55,17 +57,23 @@ public class CTXHController {
     }
 
     @PostMapping("/createctxh")
-    public ResponseEntity<String> createCTXH(@RequestBody List<ctxh> newCTXHList) {
+    public ResponseEntity<Object> createCTXH(@RequestBody List<ctxh> newCTXHList) {
+        List<ctxh> errorctxh = new ArrayList<ctxh>();
         for (ctxh newCTXH : newCTXHList) {
             mathang mh = MatHangService.getMatHangById(newCTXH.getMamh().getMamh());
             if (mh == null) {
-                return new ResponseEntity<>("No mathang found with the provided mamh", HttpStatus.BAD_REQUEST);
+                errorctxh.add(newCTXH);
+                continue;
             }
             newCTXH.setDongiaxuat(mh.getDongiaxuat());
             if (!CTXHService.createCTXH(newCTXH)) {
-                return new ResponseEntity<>("Creation failed for ctxh with mamh: " + newCTXH.getMamh(), HttpStatus.BAD_REQUEST);
+                errorctxh.add(newCTXH);
+
             }
         }
-        return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
+        if(!errorctxh.isEmpty()) {
+            return new ResponseEntity<>(errorctxh, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>("Created phieu xuat hang successfully!", HttpStatus.CREATED);
     }
 }

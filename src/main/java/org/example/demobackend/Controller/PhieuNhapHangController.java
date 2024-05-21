@@ -42,11 +42,12 @@ public class PhieuNhapHangController {
     }
 
     @PostMapping("/createpnh")
-    public ResponseEntity<String> createPhieuNhapHang(@RequestBody phieunhaphang newPhieuNhapHang){
-        if (PhieuNhapHangService.createPhieuNhapHang(newPhieuNhapHang)) {
-            return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
+    public ResponseEntity<Integer> createPhieuNhapHang(@RequestBody phieunhaphang newPhieuNhapHang){
+        int code = PhieuNhapHangService.createPhieuNhapHang(newPhieuNhapHang);
+        if (code != -1){
+            return new ResponseEntity<>(code, HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Created failed!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(-1, HttpStatus.BAD_REQUEST);
         }
     }
 }
