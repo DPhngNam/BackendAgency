@@ -73,19 +73,12 @@ public class BaoCaoDoanhSoController {
     }
 
     @PostMapping("/createbcds")
-    public ResponseEntity<Object> createBaoCaoDoanhSo(@RequestBody baocaodoanhso newBaoCaoDoanhSo) {
-        try {
-            baocaodoanhso createdBaoCaoDoanhSo = BaoCaoDoanhSoService.createBaoCaoDoanhSo(newBaoCaoDoanhSo);
-            return new ResponseEntity<>(createdBaoCaoDoanhSo.getMabaocaods(), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Created failed!", HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Integer> createBaoCaoDoanhSo(@RequestBody baocaodoanhso newBaoCaoDoanhSo) {
+        int code = BaoCaoDoanhSoService.createBaoCaoDoanhSo(newBaoCaoDoanhSo);
+        if (code != -1) {
+            return new ResponseEntity<>(code, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(-1, HttpStatus.BAD_REQUEST);
         }
     }
-    /*
-    @Get...
-
-    public List<ctbcds>     (Param thang nam)
-
-
-    */
 }

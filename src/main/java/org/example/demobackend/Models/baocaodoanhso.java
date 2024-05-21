@@ -15,16 +15,12 @@ public class baocaodoanhso {
     @Column(name = "nam")
     private int nam;
 
-    @Column(name = "tongdoanhthu")
-    private int tongdoanhthu;
-
     public baocaodoanhso() {
     }
 
-    public baocaodoanhso(int thang, int nam, int tongdoanhthu) {
+    public baocaodoanhso(int thang, int nam) {
         this.thang = thang;
         this.nam = nam;
-        this.tongdoanhthu = tongdoanhthu;
     }
 
     public int getMabaocaods() {
@@ -49,13 +45,5 @@ public class baocaodoanhso {
 
     public void setNam(int nam) {
         this.nam = nam;
-    }
-
-    public int getTongdoanhthu() {
-        return tongdoanhthu;
-    }
-
-    public void setTongdoanhthu(int tongdoanhthu) {
-        this.tongdoanhthu = tongdoanhthu;
     }
 }

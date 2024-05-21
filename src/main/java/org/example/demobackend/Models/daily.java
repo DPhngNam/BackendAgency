@@ -45,6 +45,10 @@ public class daily {
             this.tienno = tienno;
     }
 
+    public daily(int madaily) {
+        this.madaily = madaily;
+    }
+
     public int getMadaily() {
         return madaily;
     }

@@ -57,31 +57,24 @@ public class BaoCaoDoanhSoService {
         return (List<baocaodoanhso>) baoCaoDoanhSoRepository.findAll();
     }
 
-    public static baocaodoanhso createBaoCaoDoanhSo(baocaodoanhso newBaoCaoDoanhSo) {
-        int thang = newBaoCaoDoanhSo.getThang();
-        int nam = newBaoCaoDoanhSo.getNam();
-        int maBaoCaoDS = newBaoCaoDoanhSo.getMabaocaods();
-        List<Integer> maBaoCaoDSList = getMaBaoCaoDSByThangAndNam(thang, nam);
-        if (maBaoCaoDSList.contains(maBaoCaoDS)) {
-            List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDSByMaBaoCaoDS(maBaoCaoDS);
-            int tongdoanhthu = ctbcdsList.stream().mapToInt(ctbcds::getTongtrigia).sum();
-            newBaoCaoDoanhSo.setTongdoanhthu(tongdoanhthu);
+    public static int createBaoCaoDoanhSo(baocaodoanhso newBaoCaoDoanhSo) {
+        try{
+            baocaodoanhso savedBaoCaoDoanhSo = baoCaoDoanhSoRepository.save(newBaoCaoDoanhSo);
+            return savedBaoCaoDoanhSo.getMabaocaods();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         }
-        else {
-            newBaoCaoDoanhSo.setTongdoanhthu(0);
-        }
-        baoCaoDoanhSoRepository.save(newBaoCaoDoanhSo);
-        return newBaoCaoDoanhSo;
     }
+}
 
     /*
         public List<ctbcds>  (thang, nam)
 
-            Repo baocaodoanhso save (new bcds)
+            Repo baocaodoanhso save (new bcds) what is this?
 
-            phieu xuat repo
-                Query thang nam
-                group by madaily
+
+
             
             1 ct : tong tien tri gia cua Dai ly A theo thang nam  => sum1
 
@@ -93,4 +86,3 @@ public class BaoCaoDoanhSoService {
 
             
      */
-}
