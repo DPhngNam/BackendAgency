@@ -9,17 +9,15 @@ import java.util.Date;
 
 
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 public class phieunhaphang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "mapnhap")
     private int mapnhap;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    @Column(name = "ngaylp", nullable = false, updatable = false)
-    private Date ngaylp;
+
+    @Column(name = "ngaylp")
+    private String ngaylp;
 
     @Column(name = "tongtien")
     private int tongtien;
@@ -32,6 +30,12 @@ public class phieunhaphang {
         this.tongtien = tongtien;
     }
 
+    public phieunhaphang( String ngaylp, int tongtien) {
+
+        this.ngaylp = ngaylp;
+        this.tongtien = tongtien;
+    }
+
     public phieunhaphang(int tongtien) {
         this.tongtien = tongtien;
     }
@@ -40,7 +44,7 @@ public class phieunhaphang {
         return mapnhap;
     }
 
-    public Date getNgaylp() {
+    public String getNgaylp() {
         return ngaylp;
     }
     public int getTongtien() {
