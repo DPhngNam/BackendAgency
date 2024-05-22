@@ -1,6 +1,7 @@
 package org.example.demobackend.Services;
 
 import org.example.demobackend.Models.ctnh;
+import org.example.demobackend.Models.phieunhaphang;
 import org.example.demobackend.Repository.CTNHRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,13 @@ public class CTNHService {
     }
     public static boolean createCTNH(ctnh newCTNH) {
         try {
-            ctnhRepository.save(newCTNH);
-            updateMatHang(newCTNH);
-            return true;
+            phieunhaphang existingPhieuNhapHang = PhieuNhapHangService.getPhieuNhapHangById(newCTNH.getMapnhap().getMapnhap());
+            if (existingPhieuNhapHang != null) {
+                ctnhRepository.save(newCTNH);
+                updateMatHang(newCTNH);
+                return true;
+            }
+            return false;
         } catch (Exception e) {
             return false;
         }
