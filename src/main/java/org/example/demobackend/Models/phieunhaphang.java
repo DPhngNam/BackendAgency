@@ -25,6 +25,8 @@ public class phieunhaphang {
     public phieunhaphang() {
     }
 
+
+
     public phieunhaphang(int mapnhap,int tongtien) {
         this.mapnhap = mapnhap;
         this.tongtien = tongtien;
@@ -36,8 +38,8 @@ public class phieunhaphang {
         this.tongtien = tongtien;
     }
 
-    public phieunhaphang(int tongtien) {
-        this.tongtien = tongtien;
+    public phieunhaphang(int mapnhap) {
+        this.mapnhap = mapnhap;
     }
 
     public int getMapnhap() {
