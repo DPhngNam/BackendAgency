@@ -8,9 +8,9 @@ public class daily {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "madaily")
     private int madaily;
-    @Column(name = "tendaily",nullable = false)
+    @Column(name = "tendaily",nullable = false,columnDefinition = "NVARCHAR(255)")
     private String tendaily;
-    @Column(name = "diachi",nullable = false)
+    @Column(name = "diachi",nullable = false,columnDefinition = "NVARCHAR(255)")
     private String diachi;
     @Column(name = "sdt",nullable = false)
     private String sdt;

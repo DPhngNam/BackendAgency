@@ -8,7 +8,7 @@ public class dvt {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "madvt")
     private int madvt;
-    @Column(name = "tendvt",nullable = false)
+    @Column(name = "tendvt",nullable = false,columnDefinition = "NVARCHAR(255)")
     private String tendvt;
 
     public dvt() {

@@ -9,13 +9,13 @@ public class person {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "personid")
     private int personid;
-    @Column(name = "personlastname",unique = true,nullable = false)
+    @Column(name = "personlastname",nullable = false,columnDefinition = "NVARCHAR(255)")
     private String personlastname;
-    @Column(name = "personname",nullable = false)
+    @Column(name = "personname",nullable = false,columnDefinition = "NVARCHAR(255)")
     private String personname;
     @Column(name = "personsdt",nullable = false)
     private String personsdt;
-    @Column(name = "personemail",nullable = false)
+    @Column(name = "personemail",nullable = false,unique = true)
     private String personemail;
     @Column(name = "personpassword",nullable = false)
     private String personpassword;

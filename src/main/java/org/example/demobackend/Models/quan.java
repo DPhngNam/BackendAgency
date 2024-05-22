@@ -8,7 +8,7 @@ public  class quan {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "maquan")
     private int maquan;
-    @Column(name = "tenquan",nullable = false)
+    @Column(name = "tenquan",nullable = false,columnDefinition = "NVARCHAR(255)")
     private String tenquan;
 
     public quan(int maquan) {

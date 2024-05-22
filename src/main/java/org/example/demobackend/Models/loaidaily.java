@@ -8,7 +8,7 @@ public class loaidaily {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "maloaidl")
     private int maloaidl;
-    @Column(name = "tenloaidl",nullable = false)
+    @Column(name = "tenloaidl",nullable = false,columnDefinition = "NVARCHAR(255)")
 
     private String tenloaidl;
     @Column(name = "notoida",nullable = false)
