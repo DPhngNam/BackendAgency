@@ -20,4 +20,17 @@ public class LoaiDaiLyService {
     public static List<loaidaily> getLoaiDaiLyRepository() {
         return (List<loaidaily>) loaiDaiLyRepository.findAll();
     }
+
+    public static int addLoaiDaiLy(loaidaily newLoaiDaiLy) {
+        try {
+            loaidaily existingLoaiDaiLy = loaiDaiLyRepository.findByTenloaidl(newLoaiDaiLy.getTenloaidl());
+            if (existingLoaiDaiLy != null) {
+                return -1;
+            }
+            loaiDaiLyRepository.save(newLoaiDaiLy);
+            return 1;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 }

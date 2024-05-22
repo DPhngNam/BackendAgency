@@ -28,13 +28,13 @@ public class LoaiDaiLyController {
         }
     }
 
-//    @PostMapping("/addLoaiDaiLy")
-//    public ResponseEntity<String> addLoaiDaiLy(@RequestBody loaidaily newLoaiDaiLy) {
-//        int code = LoaiDaiLyService.addLoaiDaiLy(newLoaiDaiLy);
-//        if (code != -1) {
-//            return new ResponseEntity<>("Thêm loại đại lý thành công", HttpStatus.CREATED);
-//        } else {
-//            return new ResponseEntity<>("Thêm loại đại lý thất bại", HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @PostMapping("/addLoaiDaiLy")
+    public ResponseEntity<String> addLoaiDaiLy(@RequestBody loaidaily newLoaiDaiLy) {
+        int code = LoaiDaiLyService.addLoaiDaiLy(newLoaiDaiLy);
+        if (code != -1) {
+            return new ResponseEntity<>("Thêm loại đại lý thành công", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Thêm loại đại lý thất bại", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
