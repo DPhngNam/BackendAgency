@@ -8,14 +8,13 @@ public class loaidaily {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "maloaidl")
     private int maloaidl;
-    @Column(name = "tenloaidl")
+    @Column(name = "tenloaidl",nullable = false)
 
     private String tenloaidl;
-    @Column(name = "notoida")
+    @Column(name = "notoida",nullable = false)
     private int notoida;
 
-    public loaidaily(int maloaidl, String tenloaidl, int notoida) {
-        this.maloaidl = maloaidl;
+    public loaidaily(String tenloaidl, int notoida) {
         this.tenloaidl = tenloaidl;
         this.notoida = notoida;
     }

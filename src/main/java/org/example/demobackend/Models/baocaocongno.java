@@ -4,17 +4,11 @@ import jakarta.persistence.*;
 
 @Entity
 public class baocaocongno {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "maBaoCaoCongNo")
-    private int maBaoCaoCongNo;
-    @Column(name = "thang")
-    private String thang;
-    @Column(name = "nam")
-    private String nam;
-    @ManyToOne
-    @JoinColumn(name = "madaily")
-    private daily madaily;
+
+
+    @EmbeddedId
+    private baocaocongnoID baocaocongnoID;
+
     @Column(name = "noDau")
     private String noDau;
     @Column(name = "noCuoi")
@@ -27,13 +21,42 @@ public class baocaocongno {
 
     }
 
-    public baocaocongno(int maBaoCaoCongNo, String thang, String nam, daily madaily, String noDau, String noCuoi, String phatSinh) {
-        this.maBaoCaoCongNo = maBaoCaoCongNo;
-        this.thang = thang;
-        this.nam = nam;
-        this.madaily = madaily;
+    public baocaocongno(baocaocongnoID baocaocongnoID, String noDau, String noCuoi, String phatSinh) {
+        this.baocaocongnoID = baocaocongnoID;
         this.noDau = noDau;
         this.noCuoi = noCuoi;
+        this.phatSinh = phatSinh;
+    }
+
+    public org.example.demobackend.Models.baocaocongnoID getBaocaocongnoID() {
+        return baocaocongnoID;
+    }
+
+    public void setBaocaocongnoID(org.example.demobackend.Models.baocaocongnoID baocaocongnoID) {
+        this.baocaocongnoID = baocaocongnoID;
+    }
+
+    public String getNoDau() {
+        return noDau;
+    }
+
+    public void setNoDau(String noDau) {
+        this.noDau = noDau;
+    }
+
+    public String getNoCuoi() {
+        return noCuoi;
+    }
+
+    public void setNoCuoi(String noCuoi) {
+        this.noCuoi = noCuoi;
+    }
+
+    public String getPhatSinh() {
+        return phatSinh;
+    }
+
+    public void setPhatSinh(String phatSinh) {
         this.phatSinh = phatSinh;
     }
 }

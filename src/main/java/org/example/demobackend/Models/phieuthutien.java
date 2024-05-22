@@ -8,10 +8,12 @@ public class phieuthutien {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "maphieuthu")
     private int maphieuthu;
-    @Column(name = "ngaythutien")
+    @Column(name = "ngaythutien",nullable = false)
     private String ngaythutien;
-    @Column(name = "tienthu")
+
+    @Column(name = "tienthu",nullable = false)
     private int tienthu;
+
     @ManyToOne
     @JoinColumn(name = "madaily")
     private daily madaily;

@@ -8,13 +8,13 @@ public class daily {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "madaily")
     private int madaily;
-    @Column(name = "tendaily")
+    @Column(name = "tendaily",nullable = false)
     private String tendaily;
-    @Column(name = "diachi")
+    @Column(name = "diachi",nullable = false)
     private String diachi;
-    @Column(name = "sdt")
+    @Column(name = "sdt",nullable = false)
     private String sdt;
-    @Column(name = "email")
+    @Column(name = "email",nullable = false)
     private String email;
     @ManyToOne
     @JoinColumn(name = "maloaidl")

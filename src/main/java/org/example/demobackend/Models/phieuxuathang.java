@@ -11,11 +11,11 @@ public class phieuxuathang {
     @Column(name = "mapxuat")
     private int mapxuat;
 
-    @Column(name = "ngaylp")
+    @Column(name = "ngaylp",nullable = false)
     private String ngaylp;
 
     @ManyToOne
-    @JoinColumn(name = "madaily")
+    @JoinColumn(name = "madaily",nullable = false)
     private daily madaily;
 
     @Column(name = "tongtien")

@@ -9,15 +9,15 @@ public class person {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "personid")
     private int personid;
-    @Column(name = "personlastname")
+    @Column(name = "personlastname",unique = true,nullable = false)
     private String personlastname;
-    @Column(name = "personname")
+    @Column(name = "personname",nullable = false)
     private String personname;
-    @Column(name = "personsdt")
+    @Column(name = "personsdt",nullable = false)
     private String personsdt;
-    @Column(name = "personemail")
+    @Column(name = "personemail",nullable = false)
     private String personemail;
-    @Column(name = "personpassword")
+    @Column(name = "personpassword",nullable = false)
     private String personpassword;
 
     public person(){

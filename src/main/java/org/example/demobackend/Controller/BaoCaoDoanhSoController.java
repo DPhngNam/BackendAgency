@@ -53,9 +53,9 @@ public class BaoCaoDoanhSoController {
     }
 
     @GetMapping ("/bcdsbythangandnam")
-    public ResponseEntity<List<baocaodoanhso>> getBaoCaoDoanhSoByThangAndNam(@RequestParam int thang, @RequestParam int nam) {
-        List<baocaodoanhso> bcdsList = BaoCaoDoanhSoService.getBaoCaoDoanhSoByThangAndNam(thang, nam);
-        if (!bcdsList.isEmpty()) {
+    public ResponseEntity<baocaodoanhso> getBaoCaoDoanhSoByThangAndNam(@RequestParam int thang, @RequestParam int nam) {
+        baocaodoanhso bcdsList = BaoCaoDoanhSoService.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+        if (bcdsList != null) {
             return new ResponseEntity<>(bcdsList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -64,7 +64,7 @@ public class BaoCaoDoanhSoController {
 
     @PostMapping("/createbaocaodoanhso")
     public ResponseEntity<String> createBaoCaoDoanhSo(@RequestParam int thang, @RequestParam int nam, @RequestParam int tongdoanhthu) {
-        baocaodoanhso bcds = BaoCaoDoanhSoService.createBaoCaoDoanhSo(thang, nam, tongdoanhthu);
+        baocaodoanhso bcds = BaoCaoDoanhSoService.createBaoCaoDoanhSo(thang, nam);
         return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
     }
 }

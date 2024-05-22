@@ -85,6 +85,11 @@ public class ctbcds {
         public ctbcdsId() {
         }
 
+        public ctbcdsId(int madaily, int mabaocaods) {
+            this.madaily = madaily;
+            this.mabaocaods = mabaocaods;
+        }
+
         public int getMadaily() {
             return madaily;
         }

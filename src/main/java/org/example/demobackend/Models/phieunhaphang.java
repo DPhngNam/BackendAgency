@@ -16,10 +16,10 @@ public class phieunhaphang {
     private int mapnhap;
 
 
-    @Column(name = "ngaylp")
+    @Column(name = "ngaylp",nullable = false)
     private String ngaylp;
 
-    @Column(name = "tongtien")
+    @Column(name = "tongtien",nullable = false)
     private int tongtien;
 
     public phieunhaphang() {

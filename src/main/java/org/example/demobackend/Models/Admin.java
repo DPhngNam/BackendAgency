@@ -9,7 +9,7 @@ public class Admin {
     @Id
     @Column(name = "userEmail")
     private String userEmail;
-    @Column(name = "password")
+    @Column(name = "password",nullable = false)
     private String password;
 
     public Admin() {

@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 @EnableJpaRepositories
 public interface DaiLyRepository extends CrudRepository<daily, Integer> {
     @Query("SELECT d FROM daily d WHERE d.madaily = :madaily")
@@ -17,5 +19,6 @@ public interface DaiLyRepository extends CrudRepository<daily, Integer> {
     @Query("SELECT d FROM daily d WHERE d.diachi = :diachi")
     daily getAllDaiLyByDiaChi(@Param("diachi") String diachi);
 
-
+    @Query("SELECT d FROM daily d ")
+    List<daily> getAllDaiLy();
 }

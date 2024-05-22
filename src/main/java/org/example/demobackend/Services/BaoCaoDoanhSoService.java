@@ -33,7 +33,7 @@ public class BaoCaoDoanhSoService {
         return baoCaoDoanhSoRepository.getBaoCaoDoanhSoByNam(nam);
     }
 
-    public static List<baocaodoanhso> getBaoCaoDoanhSoByThangAndNam(int thang, int nam) {
+    public static baocaodoanhso getBaoCaoDoanhSoByThangAndNam(int thang, int nam) {
         return baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
     }
 
@@ -49,9 +49,11 @@ public class BaoCaoDoanhSoService {
         return baoCaoDoanhSoRepository.getThangAndNamByMaBaoCaoDS(mabaocaods);
     }
 
-    public static baocaodoanhso createBaoCaoDoanhSo(int thang, int nam, int tongdoanhthu) {
+    public static baocaodoanhso createBaoCaoDoanhSo(int thang, int nam) {
         List<phieuxuathang> pxhList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);
-        baocaodoanhso bcds = new baocaodoanhso(thang, nam, tongdoanhthu);
+        baocaodoanhso bcds = new baocaodoanhso(thang, nam);
+        int tongtien = phieuXuatHangRepository.getTongByThangAndNam(thang, nam);
+        bcds.setTongdoanhthu(tongtien);
         baoCaoDoanhSoRepository.save(bcds);
         return bcds;
     }

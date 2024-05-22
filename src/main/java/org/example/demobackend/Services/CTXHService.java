@@ -32,7 +32,6 @@ public class CTXHService {
     public static boolean createCTXH(ctxh newCTXH) {
         try {
             ctxhRepository.save(newCTXH);
-
             return true;
         } catch (Exception e) {
             return false;

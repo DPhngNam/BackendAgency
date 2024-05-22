@@ -29,5 +29,5 @@ public interface BaoCaoDoanhSoRepository extends CrudRepository<baocaodoanhso, I
     Map<String, Integer> getThangAndNamByMaBaoCaoDS(@Param("mabaocaods") int mabaocaods);
 
     @Query("SELECT bcds FROM baocaodoanhso bcds WHERE bcds.thang = :thang AND bcds.nam = :nam")
-    List<baocaodoanhso> getBaoCaoDoanhSoByThangAndNam(@Param("thang") int thang, @Param("nam") int nam);
+    baocaodoanhso getBaoCaoDoanhSoByThangAndNam(@Param("thang") int thang, @Param("nam") int nam);
 }

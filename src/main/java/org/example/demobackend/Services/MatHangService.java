@@ -13,12 +13,14 @@ import java.util.List;
 public class MatHangService {
     private static MatHangRepository matHangRepository;
     private static DVTRepository dvtRepository;
+    private static ThamSoService thamSoService;
 
     @Autowired
-    public MatHangService(MatHangRepository matHangRepository, DVTRepository dvtRepository) {
-
+    public MatHangService(MatHangRepository matHangRepository, DVTRepository dvtRepository, ThamSoService thamSoService) {
         this.matHangRepository = matHangRepository;
         this.dvtRepository = dvtRepository;
+        this.thamSoService = thamSoService;
+
     }
 
     public static mathang getMatHangById(int mamh) {
@@ -39,6 +41,9 @@ public class MatHangService {
             return false;
         }
         newMatHang.setDvt(existingDVT);
+
+        newMatHang.setDongiaxuat(thamSoService.getThamSo("Tỷ lệ đơn giá xuất") * newMatHang.getDongianhap());
+
         matHangRepository.save(newMatHang);
         return true;
     }

@@ -9,10 +9,10 @@ public class baocaodoanhso {
     @Column(name = "mabaocaods")
     private int mabaocaods;
 
-    @Column(name = "thang")
+    @Column(name = "thang",nullable = false)
     private int thang;
 
-    @Column(name = "nam")
+    @Column(name = "nam",nullable = false)
     private int nam;
 
     @Column(name = "tongdoanhthu")
@@ -25,6 +25,11 @@ public class baocaodoanhso {
         this.thang = thang;
         this.nam = nam;
         this.tongdoanhthu = tongdoanhthu;
+    }
+
+    public baocaodoanhso(int thang, int nam) {
+        this.thang = thang;
+        this.nam = nam;
     }
 
     public int getMabaocaods() {

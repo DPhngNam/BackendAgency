@@ -8,13 +8,16 @@ public class mathang {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "mamh")
     private int mamh;
-    @Column(name = "tenmh", columnDefinition = "NVARCHAR(255)")
+
+    @Column(name = "tenmh", columnDefinition = "NVARCHAR(255)", nullable = false)
     private String tenmh;
     @ManyToOne
-    @JoinColumn(name = "dvt")
+    @JoinColumn(name = "dvt", nullable = false)
     private dvt dvt;
-    @Column(name = "dongianhap")
+    @Column(name = "dongianhap", nullable = false)
     private int dongianhap;
+
+
     @Column(name = "dongiaxuat")
     private int dongiaxuat;
     @Column(name = "slton")
@@ -24,14 +27,10 @@ public class mathang {
         this.mamh = mamh;
         this.dongianhap = dongianhap;
     }
-
-
-    public mathang(String tenmh, dvt dvt, int dongianhap, int dongiaxuat, int slton) {
+    public mathang(String tenmh, dvt dvt, int dongianhap) {
         this.tenmh = tenmh;
         this.dvt = dvt;
         this.dongianhap = dongianhap;
-        this.dongiaxuat = dongiaxuat;
-        this.slton = slton;
     }
 
     public mathang() {

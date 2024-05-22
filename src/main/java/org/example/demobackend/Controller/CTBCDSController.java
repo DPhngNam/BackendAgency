@@ -43,19 +43,15 @@ public class CTBCDSController {
         }
     }
 
-    @GetMapping ("/ctbcdsbymadailyandmabaocaods")
-    public ResponseEntity<ctbcds> getCTBCDSByMaDailyAndMaBaoCaoDS(@RequestParam int madaily, @RequestParam int mabaocaods) {
-        ctbcds ctbcds = CTBCDSService.getCTBCDSByMaDailyAndMaBaoCaoDS(madaily, mabaocaods);
-        if (ctbcds != null) {
-            return new ResponseEntity<>(ctbcds, HttpStatus.OK);
+    @GetMapping ("/getctbcds")
+    public ResponseEntity<List<ctbcds>> getCTBCDSByMaDailyAndMaBaoCaoDS(@RequestParam int thang, @RequestParam int nam) {
+        List<ctbcds> ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
+        if (!ctbcdsList.isEmpty()) {
+            return new ResponseEntity<>(ctbcdsList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
-//    @PostMapping("/createctbcds")
-//    public ResponseEntity<String> createCTBCDS(@RequestBody List<ctbcds> newCTBCDSList) {
-//        CTBCDSService.createCTBCDS();
-//        return new ResponseEntity<>("Created successfully!", HttpStatus.OK);
-//    }
+
 }
