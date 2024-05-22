@@ -24,15 +24,22 @@ public class phieuxuathang {
     @Column(name = "sotientra")
     private int sotientra;
 
+    @Column(name = "conlai")
+    private int conlai;
+
     public phieuxuathang() {
     }
 
-    public phieuxuathang(int mapxuat, String ngaylp, daily madaily, int tongtien, int sotientra) {
+    public phieuxuathang(int mapxuat) {
         this.mapxuat = mapxuat;
+    }
+
+    public phieuxuathang(String ngaylp, daily madaily, int tongtien, int sotientra, int conlai) {
         this.ngaylp = ngaylp;
         this.madaily = madaily;
         this.tongtien = tongtien;
         this.sotientra = sotientra;
+        this.conlai = conlai;
     }
 
     public int getMapxuat() {
@@ -73,5 +80,13 @@ public class phieuxuathang {
 
     public void setSotientra(int sotientra) {
         this.sotientra = sotientra;
+    }
+
+    public int getConlai() {
+        return conlai;
+    }
+
+    public void setConlai(int conlai) {
+        this.conlai = conlai;
     }
 }
