@@ -68,7 +68,6 @@ public class CTXHController {
             newCTXH.setDongiaxuat(mh.getDongiaxuat());
             if (!CTXHService.createCTXH(newCTXH)) {
                 errorctxh.add(newCTXH);
-
             }
         }
         if(!errorctxh.isEmpty()) {
