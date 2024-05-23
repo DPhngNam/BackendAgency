@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/thamso")
+@RequestMapping("/thamso")
 public class ThamSoController {
     @Autowired
     private final ThamSoService thamSoService;
