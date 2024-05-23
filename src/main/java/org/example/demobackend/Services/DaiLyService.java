@@ -3,10 +3,7 @@ package org.example.demobackend.Services;
 import org.example.demobackend.Models.daily;
 import org.example.demobackend.Models.loaidaily;
 import org.example.demobackend.Models.quan;
-import org.example.demobackend.Repository.DaiLyRepository;
-import org.example.demobackend.Repository.LoaiDaiLyRepository;
-import org.example.demobackend.Repository.PersonRepository;
-import org.example.demobackend.Repository.QuanRepository;
+import org.example.demobackend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +12,17 @@ public class DaiLyService {
     private final DaiLyRepository daiLyRepository;
     private final LoaiDaiLyRepository loaiDailyRepository;
     private final QuanRepository quanRepository;
-    private final PersonRepository personRepository;
+    private final ThamSoRepository thamSoRepository;
 
     @Autowired
-    public DaiLyService(DaiLyRepository daiLyRepository, LoaiDaiLyRepository loaiDailyRepository, QuanRepository quanRepository, PersonRepository personRepository) {
+    public DaiLyService(DaiLyRepository daiLyRepository,
+                        LoaiDaiLyRepository loaiDailyRepository,
+                        QuanRepository quanRepository,
+                        ThamSoRepository thamSoRepository) {
         this.daiLyRepository = daiLyRepository;
         this.loaiDailyRepository = loaiDailyRepository;
         this.quanRepository = quanRepository;
-        this.personRepository = personRepository;
+        this.thamSoRepository = thamSoRepository;
     }
 
     public Iterable<daily> getAllDaiLy() {
@@ -55,9 +55,11 @@ public class DaiLyService {
                 daily.setMaloaidl(existingLoaiDaiLy);
             }
 
-
+            int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaloaidl().getMaloaidl());
+            if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
+                return null;
+            }
             return daiLyRepository.save(daily);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

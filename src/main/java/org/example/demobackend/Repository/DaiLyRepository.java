@@ -21,4 +21,7 @@ public interface DaiLyRepository extends CrudRepository<daily, Integer> {
 
     @Query("SELECT d FROM daily d ")
     List<daily> getAllDaiLy();
+
+    @Query(value = "SELECT COUNT (*) FROM daily d WHERE d.maloaidl = :maloaidl ", nativeQuery = true)
+    int countDaiLyByLoaiDaiLy(@Param("maloaidl") int maloaidl);
 }

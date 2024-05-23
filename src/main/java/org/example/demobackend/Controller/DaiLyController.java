@@ -23,6 +23,11 @@ public class DaiLyController {
 
     @PostMapping("/addDaiLy")
     public daily addDaiLy(@RequestBody daily daily) {
-        return daiLyService.insertDaiLy(daily);
+        daily newDaiLy = daiLyService.insertDaiLy(daily);
+        if (newDaiLy == null) {
+            return null;
+        }else {
+            return newDaiLy;
+        }
     }
 }
