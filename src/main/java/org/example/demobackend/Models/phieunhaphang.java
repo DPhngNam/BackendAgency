@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 @Entity
@@ -34,15 +34,10 @@ public class phieunhaphang {
         this.tongtien = tongtien;
     }
 
-    public phieunhaphang( Date ngaylp, int tongtien) {
-
-        this.ngaylp = ngaylp;
+    public phieunhaphang(int tongtien) {
         this.tongtien = tongtien;
     }
 
-    public phieunhaphang(int mapnhap) {
-        this.mapnhap = mapnhap;
-    }
 
     public int getMapnhap() {
         return mapnhap;
@@ -55,9 +50,7 @@ public class phieunhaphang {
         return tongtien;
     }
 
-    public void setTongtien(int tongtien) {
-        this.tongtien = tongtien;
-    }
+
 
 
 }

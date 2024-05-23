@@ -36,5 +36,35 @@ public class phieuthutien {
         this.madaily = madaily;
     }
 
+    public int getMaphieuthu() {
+        return maphieuthu;
+    }
 
+    public void setMaphieuthu(int maphieuthu) {
+        this.maphieuthu = maphieuthu;
+    }
+
+    public Date getNgaythutien() {
+        return ngaythutien;
+    }
+
+    public void setNgaythutien(Date ngaythutien) {
+        this.ngaythutien = ngaythutien;
+    }
+
+    public int getTienthu() {
+        return tienthu;
+    }
+
+    public void setTienthu(int tienthu) {
+        this.tienthu = tienthu;
+    }
+
+    public daily getMadaily() {
+        return madaily;
+    }
+
+    public void setMadaily(daily madaily) {
+        this.madaily = madaily;
+    }
 }
