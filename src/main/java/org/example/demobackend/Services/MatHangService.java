@@ -41,7 +41,7 @@ public class MatHangService {
             return false;
         }
         newMatHang.setDvt(existingDVT);
-        newMatHang.setDongiaxuat(thamSoService.getThamSo("Tỷ lệ đơn giá xuất") * newMatHang.getDongianhap());
+        newMatHang.setDongiaxuat(thamSoService.getThamSo("Tỷ lệ đơn giá xuất") * newMatHang.getDongianhap() / 100);
         matHangRepository.save(newMatHang);
         return true;
     }
