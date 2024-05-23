@@ -43,15 +43,7 @@ public class CTBCDSController {
         }
     }
 
-    @GetMapping ("/getctbcds")
-    public ResponseEntity<List<ctbcds>> getCTBCDSByMaDailyAndMaBaoCaoDS(@RequestParam int thang, @RequestParam int nam) {
-        List<ctbcds> ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
-        if (!ctbcdsList.isEmpty()) {
-            return new ResponseEntity<>(ctbcdsList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
+
 
 
 }

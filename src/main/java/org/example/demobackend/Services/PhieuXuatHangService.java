@@ -13,8 +13,9 @@ public class PhieuXuatHangService {
     private static DaiLyService dailyService;
 
     @Autowired
-    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository) {
+    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository,DaiLyService dailyService) {
         this.phieuXuatHangRepository = phieuXuatHangRepository;
+        this.dailyService = dailyService;
     }
 
     public static phieuxuathang getPhieuXuatHangById(int mapxuat) {
@@ -31,7 +32,7 @@ public class PhieuXuatHangService {
 
     public static int createPhieuXuatHang(phieuxuathang newPhieuXuatHang) {
         try {
-            dailyService.updateSoNo(newPhieuXuatHang.getMadaily().getMadaily(), newPhieuXuatHang.getConlai());
+            dailyService.updateSoNo( newPhieuXuatHang.getConlai(),newPhieuXuatHang.getMadaily().getMadaily());
             phieuXuatHangRepository.save(newPhieuXuatHang);
             return newPhieuXuatHang.getMapxuat();
         } catch (Exception e) {

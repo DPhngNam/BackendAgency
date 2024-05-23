@@ -1,7 +1,9 @@
 package org.example.demobackend.Controller;
 
 import org.example.demobackend.Models.baocaodoanhso;
+import org.example.demobackend.Models.ctbcds;
 import org.example.demobackend.Services.BaoCaoDoanhSoService;
+import org.example.demobackend.Services.CTBCDSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +55,12 @@ public class BaoCaoDoanhSoController {
     }
 
     @GetMapping ("/bcdsbythangandnam")
-    public ResponseEntity<baocaodoanhso> getBaoCaoDoanhSoByThangAndNam(@RequestParam int thang, @RequestParam int nam) {
-        baocaodoanhso bcdsList = BaoCaoDoanhSoService.getBaoCaoDoanhSoByThangAndNam(thang, nam);
-        if (bcdsList != null) {
-            return new ResponseEntity<>(bcdsList, HttpStatus.OK);
+    public ResponseEntity<List<ctbcds>> getBaoCaoDoanhSoByThangAndNam(@RequestParam int thang, @RequestParam int nam) {
+        //baocaodoanhso bcdsList = BaoCaoDoanhSoService.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+
+        List<ctbcds> ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
+        if (!ctbcdsList.isEmpty()) {
+            return new ResponseEntity<>(ctbcdsList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
