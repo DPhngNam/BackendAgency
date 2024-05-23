@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class phieunhaphang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -16,8 +16,10 @@ public class phieunhaphang {
     private int mapnhap;
 
 
-    @Column(name = "ngaylp",nullable = false)
-    private String ngaylp;
+    @Column(name = "ngaylp")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date ngaylp;
 
     @Column(name = "tongtien",nullable = false)
     private int tongtien;
@@ -32,7 +34,7 @@ public class phieunhaphang {
         this.tongtien = tongtien;
     }
 
-    public phieunhaphang( String ngaylp, int tongtien) {
+    public phieunhaphang( Date ngaylp, int tongtien) {
 
         this.ngaylp = ngaylp;
         this.tongtien = tongtien;
@@ -46,7 +48,7 @@ public class phieunhaphang {
         return mapnhap;
     }
 
-    public String getNgaylp() {
+    public Date getNgaylp() {
         return ngaylp;
     }
     public int getTongtien() {

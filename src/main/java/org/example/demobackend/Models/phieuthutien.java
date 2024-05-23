@@ -1,15 +1,23 @@
 package org.example.demobackend.Models;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.Date;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class phieuthutien {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "maphieuthu")
     private int maphieuthu;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     @Column(name = "ngaythutien",nullable = false)
-    private String ngaythutien;
+    private Date ngaythutien;
 
     @Column(name = "tienthu",nullable = false)
     private int tienthu;
@@ -21,25 +29,12 @@ public class phieuthutien {
     public phieuthutien() {
     }
 
-    public phieuthutien(String ngaythutien, int tienthu, daily madaily) {
+    public phieuthutien(int maphieuthu, Date ngaythutien, int tienthu, daily madaily) {
+        this.maphieuthu = maphieuthu;
         this.ngaythutien = ngaythutien;
         this.tienthu = tienthu;
         this.madaily = madaily;
     }
 
-    public int getMaphieuthu() {
-        return maphieuthu;
-    }
 
-    public String getNgaythutien() {
-        return ngaythutien;
-    }
-
-    public int getTienthu() {
-        return tienthu;
-    }
-
-    public daily getMadaily() {
-        return madaily;
-    }
 }

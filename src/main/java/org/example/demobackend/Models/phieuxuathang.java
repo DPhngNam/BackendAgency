@@ -1,18 +1,25 @@
 package org.example.demobackend.Models;
 
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class phieuxuathang {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "mapxuat")
     private int mapxuat;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     @Column(name = "ngaylp",nullable = false)
-    private String ngaylp;
+    private Date ngaylp;
 
     @ManyToOne
     @JoinColumn(name = "madaily",nullable = false)
@@ -34,59 +41,11 @@ public class phieuxuathang {
         this.mapxuat = mapxuat;
     }
 
-    public phieuxuathang(String ngaylp, daily madaily, int tongtien, int sotientra, int conlai) {
+    public phieuxuathang(Date ngaylp, daily madaily, int tongtien, int sotientra, int conlai) {
         this.ngaylp = ngaylp;
         this.madaily = madaily;
         this.tongtien = tongtien;
         this.sotientra = sotientra;
-        this.conlai = conlai;
-    }
-
-    public int getMapxuat() {
-        return mapxuat;
-    }
-
-    public void setMapxuat(int mapxuat) {
-        this.mapxuat = mapxuat;
-    }
-
-    public String getNgaylp() {
-        return ngaylp;
-    }
-
-    public void setNgaylp(String ngaylp) {
-        this.ngaylp = ngaylp;
-    }
-
-    public daily getMadaily() {
-        return madaily;
-    }
-
-    public void setMadaily(daily madaily) {
-        this.madaily = madaily;
-    }
-
-    public int getTongtien() {
-        return tongtien;
-    }
-
-    public void setTongtien(int tongtien) {
-        this.tongtien = tongtien;
-    }
-
-    public int getSotientra() {
-        return sotientra;
-    }
-
-    public void setSotientra(int sotientra) {
-        this.sotientra = sotientra;
-    }
-
-    public int getConlai() {
-        return conlai;
-    }
-
-    public void setConlai(int conlai) {
         this.conlai = conlai;
     }
 }

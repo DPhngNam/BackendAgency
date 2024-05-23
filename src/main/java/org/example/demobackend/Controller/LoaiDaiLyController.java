@@ -37,4 +37,14 @@ public class LoaiDaiLyController {
             return new ResponseEntity<>("Thêm loại đại lý thất bại", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @PostMapping("/updateLoaiDaiLy")
+    public ResponseEntity<String> updateLoaiDaiLy(@RequestBody loaidaily newLoaiDaiLy) {
+        int code = LoaiDaiLyService.updateLoaiDaiLy(newLoaiDaiLy);
+        if (code != -1) {
+            return new ResponseEntity<>("Thêm loại đại lý thành công", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Thêm loại đại lý thất bại", HttpStatus.BAD_REQUEST);
+        }
+    }
 }

@@ -37,4 +37,8 @@ public class ThamSoService {
     public Iterable<thamso> getAllThamSo() {
         return thamSoRepository.findAll();
     }
+
+    public void updateThamSo(thamso thamso) {
+        thamSoRepository.save(thamso);
+    }
 }

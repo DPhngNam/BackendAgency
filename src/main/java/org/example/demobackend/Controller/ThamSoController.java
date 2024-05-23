@@ -24,4 +24,9 @@ public class ThamSoController {
     public Iterable<thamso> getThamSo() {
         return thamSoService.getAllThamSo();
     }
+
+    @PostMapping("/updateThamSo")
+    public void updateThamSo(@RequestBody thamso thamso) {
+        thamSoService.updateThamSo(thamso);
+    }
 }
