@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.util.Date;
+import java.sql.Date;
 
 
 @Entity
@@ -14,11 +14,8 @@ public class phieunhaphang {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "mapnhap")
     private int mapnhap;
-
-
     @Column(name = "ngaylp")
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
+
     private Date ngaylp;
 
     @Column(name = "tongtien",nullable = false)

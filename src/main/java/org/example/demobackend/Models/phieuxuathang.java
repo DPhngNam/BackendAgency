@@ -3,7 +3,7 @@ package org.example.demobackend.Models;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -13,8 +13,7 @@ public class phieuxuathang {
     @Column(name = "mapxuat")
     private int mapxuat;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
+
     @Column(name = "ngaylp",nullable = false)
     private Date ngaylp;
 
