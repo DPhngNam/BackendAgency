@@ -40,6 +40,12 @@ public class daily {
     public daily() {
     }
 
+    public daily(int madaily, String tendaily ){
+        this.madaily = madaily;
+        this.tendaily = tendaily;
+
+    }
+
     public daily(String tendaily, String diachi, String sdt, String email, loaidaily maloaidl, quan maquan, Date ngaytn, int tienno) {
             this.tendaily = tendaily;
             this.diachi = diachi;
@@ -122,4 +128,5 @@ public class daily {
     public void setTienno(int tienno) {
         this.tienno = tienno;
     }
+
 }

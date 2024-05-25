@@ -47,7 +47,7 @@ public class CTBCDSService {
     public static List<ctbcds> createCTBCDS(int thang, int nam) {
         List<ctbcds> ctbcdsList = new ArrayList<ctbcds>();
         baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
-        List<daily> dailyList = dailyRepository.getAllDaiLy();
+        List<daily> dailyList = dailyRepository.getAllDaiLyIdAndName();
         int tongtien = phieuXuatHangRepository.getTongByThangAndNam(thang, nam);
 
         for (daily daily : dailyList) {
@@ -65,5 +65,10 @@ public class CTBCDSService {
             ctbcdsList.add(ctbcds);
         }
         return ctbcdsList;
+    }
+
+    public static List<ctbcds> getCTBCDS(int thang, int nam) {
+        baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+        return ctbcdsRepository.getCTBCDSByMaBaoCaoDS(bcds.getMabaocaods());
     }
 }

@@ -28,6 +28,7 @@ public class CongNoService {
     @Scheduled(cron = "0 0 1 * * ?")
     public void autoCreateBaoCaoCongNo() {
         List<daily> dailyList = dailyRepository.getAllDaiLy();
+
         int currentMonth = LocalDate.now().getMonthValue();
         int currentYear = LocalDate.now().getYear();
         List<baocaocongno> bccnList = new ArrayList<>();

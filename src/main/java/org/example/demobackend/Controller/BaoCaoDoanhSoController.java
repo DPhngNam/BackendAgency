@@ -60,8 +60,9 @@ public class BaoCaoDoanhSoController {
 //ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
 //        List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDS(thang, nam);
 
-        List<ctbcds> ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
+        List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDS(thang, nam);
         if (!ctbcdsList.isEmpty()) {
+            ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
             return new ResponseEntity<>(ctbcdsList, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
