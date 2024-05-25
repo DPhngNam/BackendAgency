@@ -21,33 +21,6 @@ public class BaoCaoDoanhSoService {
         this.phieuXuatHangRepository = phieuXuatHangRepository;
     }
 
-    public static baocaodoanhso getBaoCaoDoanhSoByMaBaoCaoDS(int mabaocaods) {
-        return baoCaoDoanhSoRepository.getBaoCaoDoanhSoByMaBaoCaoDS(mabaocaods);
-    }
-
-    public static List<baocaodoanhso> getBaoCaoDoanhSoByThang(int thang) {
-        return baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThang(thang);
-    }
-
-    public static List<baocaodoanhso> getBaoCaoDoanhSoByNam(int nam) {
-        return baoCaoDoanhSoRepository.getBaoCaoDoanhSoByNam(nam);
-    }
-
-    public static baocaodoanhso getBaoCaoDoanhSoByThangAndNam(int thang, int nam) {
-        return baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
-    }
-
-    public static int getThangByMaBaoCaoDS(int mabaocaods) {
-        return baoCaoDoanhSoRepository.getThangByMaBaoCaoDS(mabaocaods);
-    }
-
-    public static int getNamByMaBaoCaoDS(int mabaocaods) {
-        return baoCaoDoanhSoRepository.getNamByMaBaoCaoDS(mabaocaods);
-    }
-
-    public static Map<String, Integer> getThangAndNamByMaBaoCaoDS(int mabaocaods) {
-        return baoCaoDoanhSoRepository.getThangAndNamByMaBaoCaoDS(mabaocaods);
-    }
 
     public static baocaodoanhso createBaoCaoDoanhSo(int thang, int nam) {
         List<phieuxuathang> pxhList = phieuXuatHangRepository.getAllPhieuXuatHangByThangAndNamOfNgayLP(thang, nam);

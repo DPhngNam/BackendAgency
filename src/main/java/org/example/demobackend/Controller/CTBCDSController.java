@@ -23,25 +23,9 @@ public class CTBCDSController {
         this.ctbcdsService = ctbcdsService;
     }
 
-    @GetMapping ("/ctbcdsbymabaocaods")
-    public ResponseEntity<List<ctbcds>> getCTBCDSByMaBaoCaoDS(@RequestParam int mabaocaods) {
-        List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDSByMaBaoCaoDS(mabaocaods);
-        if (!ctbcdsList.isEmpty()) {
-            return new ResponseEntity<>(ctbcdsList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
 
-    @GetMapping ("/ctbcdsbymadaily")
-    public ResponseEntity<List<ctbcds>> getCTBCDSByMaDaily(@RequestParam int madaily) {
-        List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDSByMaDaily(madaily);
-        if (!ctbcdsList.isEmpty()) {
-            return new ResponseEntity<>(ctbcdsList, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
+
+
 
 
 

@@ -32,9 +32,7 @@ public class CTBCDSService {
         this.dailyRepository = dailyRepository;
     }
 
-    public static List<ctbcds> getCTBCDSByMaBaoCaoDS(int mabaocaods) {
-        return ctbcdsRepository.getCTBCDSByMaBaoCaoDS(mabaocaods);
-    }
+
 
     public static List<ctbcds> getCTBCDSByMaDaily(int madaily) {
         return ctbcdsRepository.getCTBCDSByMaDaily(madaily);
@@ -69,6 +67,9 @@ public class CTBCDSService {
 
     public static List<ctbcds> getCTBCDS(int thang, int nam) {
         baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+        if (bcds == null) {
+            return null;
+        }
         return ctbcdsRepository.getCTBCDSByMaBaoCaoDS(bcds.getMabaocaods());
     }
 }
