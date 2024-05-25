@@ -48,7 +48,7 @@ public class LoaiDaiLyService {
             List<daily> existingDaiLy = daiLyRepository.getDaiLyTienNo(existingLoaiDaiLy.getMaloaidl());
 
             for (daily daiLy : existingDaiLy) {
-                if(daiLy.getTienno() > newLoaiDaiLy.getNotoida()){
+                if(daiLy.getTienno() > newLoaiDaiLy.getNotoida() && daiLy.getMaloaidl().getMaloaidl() == existingLoaiDaiLy.getMaloaidl()){
                     return -1;
                 }
             }
