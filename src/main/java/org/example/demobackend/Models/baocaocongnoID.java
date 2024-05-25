@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Embeddable
 public class baocaocongnoID implements Serializable {
     @Column(name = "thang")
-    private String thang;
+    private int thang;
     @Column(name = "nam")
-    private String nam;
+    private int nam;
     @ManyToOne
     @JoinColumn(name = "madaily")
     private daily madaily;
@@ -21,33 +21,21 @@ public class baocaocongnoID implements Serializable {
     public baocaocongnoID() {
     }
 
-    public baocaocongnoID(String thang, String nam, daily madaily) {
+    public baocaocongnoID(int thang, int nam, daily madaily) {
         this.thang = thang;
         this.nam = nam;
         this.madaily = madaily;
     }
 
-    public String getThang() {
+    public int getThang() {
         return thang;
     }
 
-    public void setThang(String thang) {
-        this.thang = thang;
-    }
-
-    public String getNam() {
+    public int getNam() {
         return nam;
-    }
-
-    public void setNam(String nam) {
-        this.nam = nam;
     }
 
     public daily getMadaily() {
         return madaily;
-    }
-
-    public void setMadaily(daily madaily) {
-        this.madaily = madaily;
     }
 }
