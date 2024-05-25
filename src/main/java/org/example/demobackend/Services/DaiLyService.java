@@ -1,5 +1,6 @@
 package org.example.demobackend.Services;
 
+import org.example.demobackend.Models.baocaocongno;
 import org.example.demobackend.Models.daily;
 import org.example.demobackend.Models.loaidaily;
 import org.example.demobackend.Models.quan;
@@ -13,18 +14,19 @@ public class DaiLyService {
     private final LoaiDaiLyRepository loaiDailyRepository;
     private final QuanRepository quanRepository;
     private final ThamSoRepository thamSoRepository;
-
+    private final CongNoRepository baocaocongnoRepository;
 
     @Autowired
     public DaiLyService(DaiLyRepository daiLyRepository,
                         LoaiDaiLyRepository loaiDailyRepository,
                         QuanRepository quanRepository,
-                        ThamSoRepository thamSoRepository) {
+                        ThamSoRepository thamSoRepository,
+                        CongNoRepository baocaocongnoRepository) {
         this.daiLyRepository = daiLyRepository;
         this.loaiDailyRepository = loaiDailyRepository;
         this.quanRepository = quanRepository;
         this.thamSoRepository = thamSoRepository;
-
+        this.baocaocongnoRepository = baocaocongnoRepository;
     }
 
     public Iterable<daily> getAllDaiLy() {
@@ -35,28 +37,18 @@ public class DaiLyService {
 
     public daily insertDaiLy(daily daily) {
         try {
-
             quan existingQuan = quanRepository.findByTenquan(daily.getMaquan().getTenquan());
             if (existingQuan == null) {
-                // If not, create it
-                quan newQuan = new quan();
-                newQuan.setTenquan(daily.getMaquan().getTenquan());
-                quanRepository.save(newQuan);
-                daily.setMaquan(newQuan);
+                return null;
             } else {
                 daily.setMaquan(existingQuan);
             }
-
             loaidaily existingLoaiDaiLy = loaiDailyRepository.findByTenloaidl(daily.getMaloaidl().getTenloaidl());
             if (existingLoaiDaiLy == null) {
-                loaidaily newLoaidl = new loaidaily();
-                newLoaidl.setTenloaidl(daily.getMaloaidl().getTenloaidl());
-                loaiDailyRepository.save(newLoaidl);
-                daily.setMaloaidl(newLoaidl);
+                return null;
             } else {
                 daily.setMaloaidl(existingLoaiDaiLy);
             }
-
             int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaloaidl().getMaloaidl());
             if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
                 return null;
@@ -73,12 +65,10 @@ public class DaiLyService {
     }
 
     public Boolean updateSoNo(int tienno,int madaily){
-
         daily existingDaiLy = daiLyRepository.getDaiLyById(madaily);
         if (existingDaiLy != null) {
             int oldTienNo = existingDaiLy.getTienno();
             int newTienNo = oldTienNo + tienno;
-
             if(loaiDailyRepository.findByMaloaidl(existingDaiLy.getMaloaidl().getMaloaidl()).getNotoida() < newTienNo){
                 return false;
             }
@@ -96,4 +86,6 @@ public class DaiLyService {
         }
         return -1;
     }
+
+
 }

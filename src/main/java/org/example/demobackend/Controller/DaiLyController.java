@@ -32,13 +32,4 @@ public class DaiLyController {
         }
     }
 
-    @GetMapping("/getSoNoDuocNoThem")
-    public ResponseEntity<Integer> getSoNoDuocNoThem(@RequestParam int madaily) {
-        int so_no_duoc_no_them = daiLyService.getSoNoDuocNoThem(madaily);
-        if(so_no_duoc_no_them != -1) {
-            return ResponseEntity.ok(so_no_duoc_no_them);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
 }

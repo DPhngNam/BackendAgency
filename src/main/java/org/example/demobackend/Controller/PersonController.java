@@ -16,17 +16,9 @@ import java.util.List;
 public class PersonController {
     @Autowired
     private final PersonService personService;
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
-
-
-
-
     @PostMapping("/createPerson")
     public ResponseEntity<String> createPerson(@RequestBody person newPerson) {
         if (PersonService.existsByEmail(newPerson.getPersonemail())) {
@@ -38,16 +30,6 @@ public class PersonController {
             } else {
                 return new ResponseEntity<>("Create failed", HttpStatus.BAD_REQUEST);
             }
-        }
-    }
-
-    @GetMapping("/findByNameSimilarity")
-    public ResponseEntity<List<person>> findByNameSimilarity(@RequestParam String personName) {
-        List<person> result = PersonService.findByNameSimilarity(personName);
-        if (!result.isEmpty()) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
         }
     }
 

@@ -51,4 +51,14 @@ public class baocaocongno {
     public int getNoCuoi() {
         return noCuoi;
     }
+
+    public int getNoDau() {
+        return noDau;
+    }
+
+    public int getPhatSinh() {
+        return phatSinh;
+    }
+
+
 }
