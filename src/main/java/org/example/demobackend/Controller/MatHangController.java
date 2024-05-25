@@ -32,25 +32,7 @@ public class MatHangController {
         }
     }
 
-    @GetMapping (path="/dongianhap")
-    public ResponseEntity<Integer> getDonGiaNhapByMaMH(@RequestParam int mamh) {
-        Integer dongianhap = MatHangService.getDonGiaNhapByMaMH(mamh);
-        if(dongianhap != null) {
-            return new ResponseEntity<>(dongianhap, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
 
-    @GetMapping (path="/dongiaxuat")
-    public ResponseEntity<Integer> getDonGiaXuatByMaMH(@RequestParam int mamh) {
-        Integer dongiaxuat = MatHangService.getDonGiaXuatByMaMH(mamh);
-        if(dongiaxuat != null) {
-            return new ResponseEntity<>(dongiaxuat, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
 
     @GetMapping("/all")
     public ResponseEntity<List<mathang>> getAllMatHang() {

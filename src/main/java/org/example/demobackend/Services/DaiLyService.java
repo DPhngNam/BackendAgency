@@ -88,4 +88,12 @@ public class DaiLyService {
         }
         return false;
     }
+
+    public int getSoNoDuocNoThem(int madaily) {
+        daily existingDaiLy = daiLyRepository.getDaiLyById(madaily);
+        if (existingDaiLy != null) {
+            return loaiDailyRepository.findByMaloaidl(existingDaiLy.getMaloaidl().getMaloaidl()).getNotoida() - existingDaiLy.getTienno();
+        }
+        return -1;
+    }
 }
