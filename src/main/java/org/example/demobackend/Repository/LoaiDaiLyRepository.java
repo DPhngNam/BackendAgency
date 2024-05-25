@@ -14,4 +14,7 @@ public interface LoaiDaiLyRepository extends CrudRepository<loaidaily, Integer> 
 
     @Query("SELECT l FROM loaidaily l WHERE l.tenloaidl = :tenloaidl")
     loaidaily findByTenloaidl(@Param("tenloaidl") String tenloaidl);
+
+    @Query("SELECT l FROM loaidaily l WHERE l.maloaidl = :maloaidl")
+    loaidaily findByMaloaidl(int maloaidl);
 }

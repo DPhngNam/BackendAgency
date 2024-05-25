@@ -57,6 +57,8 @@ public class BaoCaoDoanhSoController {
     @GetMapping ("/bcdsbythangandnam")
     public ResponseEntity<List<ctbcds>> getBaoCaoDoanhSoByThangAndNam(@RequestParam int thang, @RequestParam int nam) {
         //baocaodoanhso bcdsList = BaoCaoDoanhSoService.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+//ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
+//        List<ctbcds> ctbcdsList = CTBCDSService.getCTBCDS(thang, nam);
 
         List<ctbcds> ctbcdsList = CTBCDSService.createCTBCDS(thang, nam);
         if (!ctbcdsList.isEmpty()) {

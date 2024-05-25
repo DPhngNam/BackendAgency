@@ -61,7 +61,6 @@ public class CTBCDSService {
                     phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam),
                     sum1,
                     tyle);
-
             ctbcdsRepository.save(ctbcds);
             ctbcdsList.add(ctbcds);
         }

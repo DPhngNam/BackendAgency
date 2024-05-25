@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-import static org.example.demobackend.Services.CTNHService.updateMatHang;
-
 @Service
 public class CTXHService {
     private static CTXHRepository ctxhRepository;
@@ -31,15 +29,18 @@ public class CTXHService {
 
     public static boolean createCTXH(ctxh newCTXH) {
         try {
-            ctxhRepository.save(newCTXH);
-            updateMatHang(newCTXH);
-            return true;
+            if (updateMatHang(newCTXH)) {
+                ctxhRepository.save(newCTXH);
+                return true;
+            }else{
+                return false;
+            }
         } catch (Exception e) {
             return false;
         }
     }
 
-    static void updateMatHang(ctxh ctxh) {
-        MatHangService.updateSLT(ctxh.getMamh(),ctxh.getSlxuat(),2);
+    static Boolean updateMatHang(ctxh ctxh) {
+        return MatHangService.downSLT(ctxh.getMamh(),ctxh.getSlxuat());
     }
 }

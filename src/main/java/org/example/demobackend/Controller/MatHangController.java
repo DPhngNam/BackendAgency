@@ -71,4 +71,14 @@ public class MatHangController {
             return new ResponseEntity<>("Created failed!", HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("/getSLT")
+    public ResponseEntity<Integer> getSLT(@RequestParam String tenmh) {
+        int slt = MatHangService.getSLTByTenmh(tenmh);
+        if(slt != -1) {
+            return new ResponseEntity<>(slt, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(-1, HttpStatus.NOT_FOUND);
+        }
+    }
 }

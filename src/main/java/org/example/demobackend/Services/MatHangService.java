@@ -27,12 +27,12 @@ public class MatHangService {
         return matHangRepository.getMatHangById(mamh);
     }
 
-    public static Integer getDonGiaNhapByMaMH(int mamh) {
-        return matHangRepository.getDonGiaNhapByMaMH(mamh);
-    }
-
-    public static Integer getDonGiaXuatByMaMH(int mamh) {
-        return matHangRepository.getDonGiaXuatByMaMH(mamh);
+    public static int getSLTByTenmh(String tenmh) {
+        int slt = matHangRepository.getSLTByTenmh(tenmh);
+        if ( slt != 0){
+            return matHangRepository.getSLTByTenmh(tenmh);
+        }
+        return -1;
     }
 
     public static boolean createMatHang(mathang newMatHang) {
@@ -50,17 +50,19 @@ public class MatHangService {
         return matHangRepository.getAllMatHang();
     }
 
-    static void updateSLT(mathang mathang,int sl, int type){
+    static void upSLT(mathang mathang,int sl){
         mathang temp = matHangRepository.getMatHangById(mathang.getMamh());
-        switch (type){
-            case 1:
-                temp.setSlton(temp.getSlton() + sl);
-                matHangRepository.save(temp);
-                break;
-            case 2:
-                temp.setSlton(temp.getSlton() - sl);
-                matHangRepository.save(temp);
-                break;
+        temp.setSlton(temp.getSlton() + sl);
+        matHangRepository.save(temp);
+    }
+
+    static Boolean downSLT(mathang mamh,int sl){
+        mathang temp = matHangRepository.getMatHangById(mamh.getMamh());
+        if(temp.getSlton() < sl){
+            return false;
         }
+        temp.setSlton(temp.getSlton() - sl);
+        matHangRepository.save(temp);
+        return true;
     }
 }

@@ -14,6 +14,7 @@ public class DaiLyService {
     private final QuanRepository quanRepository;
     private final ThamSoRepository thamSoRepository;
 
+
     @Autowired
     public DaiLyService(DaiLyRepository daiLyRepository,
                         LoaiDaiLyRepository loaiDailyRepository,
@@ -23,6 +24,7 @@ public class DaiLyService {
         this.loaiDailyRepository = loaiDailyRepository;
         this.quanRepository = quanRepository;
         this.thamSoRepository = thamSoRepository;
+
     }
 
     public Iterable<daily> getAllDaiLy() {
@@ -70,14 +72,20 @@ public class DaiLyService {
         return daiLyRepository.getAllDaiLyByTenDaiLy(tendaily);
     }
 
-    public void updateSoNo(int tienno,int madaily){
+    public Boolean updateSoNo(int tienno,int madaily){
 
         daily existingDaiLy = daiLyRepository.getDaiLyById(madaily);
         if (existingDaiLy != null) {
             int oldTienNo = existingDaiLy.getTienno();
-            existingDaiLy.setTienno(oldTienNo+tienno);
-            daiLyRepository.save(existingDaiLy);
-        }
+            int newTienNo = oldTienNo + tienno;
 
+            if(loaiDailyRepository.findByMaloaidl(existingDaiLy.getMaloaidl().getMaloaidl()).getNotoida() < newTienNo){
+                return false;
+            }
+            existingDaiLy.setTienno(newTienNo);
+            daiLyRepository.save(existingDaiLy);
+            return true;
+        }
+        return false;
     }
 }

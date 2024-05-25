@@ -41,6 +41,6 @@ public class CTNHService {
         }
     }
     static void updateMatHang(ctnh ctnh) {
-        MatHangService.updateSLT(ctnh.getMamh(),ctnh.getSlnhap(),1);
+        MatHangService.upSLT(ctnh.getMamh(),ctnh.getSlnhap());
     }
 }
