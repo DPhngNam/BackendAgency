@@ -57,7 +57,7 @@ public class CTBCDSService {
             double tyle = (double) sum1 / tongtien;
             ctbcds ctbcds = new ctbcds(daily,
                     bcds,
-                    phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam),
+                    phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOrderByMadaily(thang, nam, daily.getMadaily()),
                     sum1,
                     tyle);
             ctbcdsRepository.save(ctbcds);
