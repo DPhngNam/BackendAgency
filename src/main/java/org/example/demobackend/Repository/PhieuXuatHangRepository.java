@@ -22,6 +22,8 @@ public interface PhieuXuatHangRepository extends CrudRepository<phieuxuathang, I
     @Query("SELECT COUNT(*) FROM phieuxuathang pxh WHERE MONTH(pxh.ngaylp) = :thang AND YEAR(pxh.ngaylp) = :nam")
     int getSoPhieuXuatByThangAndNamOfNgayLP(@Param("thang") int thang, @Param("nam") int nam);
 
+    @Query("SELECT COUNT(*) FROM phieuxuathang pxh WHERE pxh.madaily.madaily = :madaily AND MONTH(pxh.ngaylp) = :thang AND YEAR(pxh.ngaylp) = :nam")
+    int getSoPhieuXuatByThangAndNamOrderByMadaily(@Param("thang") int thang, @Param("nam") int nam, @Param("madaily") int madaily);
 
     @Query("SELECT SUM(pxh.tongtien) FROM phieuxuathang pxh WHERE pxh.madaily.madaily = :madaily AND MONTH(pxh.ngaylp) = :thang AND YEAR(pxh.ngaylp) = :nam")
     Integer getTongTienByThangAndNamOfDaiLy(@Param("madaily") int madaily, @Param("thang") int thang, @Param("nam") int nam);

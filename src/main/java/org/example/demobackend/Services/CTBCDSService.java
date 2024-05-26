@@ -79,7 +79,7 @@ public class CTBCDSService {
                 sum1 = 0;
             }
             double tyle = (double) sum1 / tongtien;
-            ctbcds.setSophieuxuat(phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam));
+            ctbcds.setSophieuxuat(phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOrderByMadaily(thang, nam, ctbcds.getMadaily().getMadaily()));
             ctbcds.setTongtrigia(sum1);
             ctbcds.setTyle(tyle);
             ctbcdsRepository.save(ctbcds);
