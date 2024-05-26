@@ -4,6 +4,7 @@ package org.example.demobackend.Controller;
 import org.example.demobackend.Models.daily;
 import org.example.demobackend.Services.DaiLyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,12 +24,12 @@ public class DaiLyController {
     }
 
     @PostMapping("/addDaiLy")
-    public daily addDaiLy(@RequestBody daily daily) {
+    public ResponseEntity<daily> addDaiLy(@RequestBody daily daily) {
         daily newDaiLy = daiLyService.insertDaiLy(daily);
         if (newDaiLy == null) {
-            return null;
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }else {
-            return newDaiLy;
+            return new ResponseEntity<>(newDaiLy, HttpStatus.OK);
         }
     }
 
