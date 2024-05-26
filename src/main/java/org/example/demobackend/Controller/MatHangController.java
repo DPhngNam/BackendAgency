@@ -45,12 +45,12 @@ public class MatHangController {
     }
 
     @PostMapping("/createmh")
-    public ResponseEntity<Object> createMatHang(@RequestBody mathang newMatHang){
-
-        if (MatHangService.createMatHang(newMatHang)) {
-            return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
+    public ResponseEntity<mathang> createMatHang(@RequestBody mathang newMatHang){
+        mathang temp = MatHangService.createMatHang(newMatHang);
+        if (temp != null) {
+            return new ResponseEntity<>(temp, HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>("Created failed!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
     }
 

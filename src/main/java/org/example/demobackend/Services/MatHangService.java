@@ -35,15 +35,15 @@ public class MatHangService {
         return -1;
     }
 
-    public static boolean createMatHang(mathang newMatHang) {
+    public static mathang createMatHang(mathang newMatHang) {
         dvt existingDVT = dvtRepository.findByTendvt(newMatHang.getDvt().getTendvt());
         if (existingDVT == null) {
-            return false;
+            return null;
         }
         newMatHang.setDvt(existingDVT);
         newMatHang.setDongiaxuat(thamSoService.getThamSo("Tỷ lệ đơn giá xuất") * newMatHang.getDongianhap() / 100);
-        matHangRepository.save(newMatHang);
-        return true;
+        return matHangRepository.save(newMatHang);
+
     }
 
     public static List<mathang> getAllMatHang() {
