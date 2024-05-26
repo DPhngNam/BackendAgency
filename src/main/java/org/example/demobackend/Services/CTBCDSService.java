@@ -20,7 +20,7 @@ public class CTBCDSService {
     private static PhieuXuatHangRepository phieuXuatHangRepository;
     private static BaoCaoDoanhSoRepository baoCaoDoanhSoRepository;
     private static DaiLyRepository dailyRepository;
-
+    private static List<ctbcds> ctbcdsList;
     @Autowired
     public CTBCDSService(CTBCDSRepository ctbcdsRepository,
                          PhieuXuatHangRepository phieuXuatHangRepository,
@@ -30,6 +30,7 @@ public class CTBCDSService {
         this.phieuXuatHangRepository = phieuXuatHangRepository;
         this.baoCaoDoanhSoRepository = baoCaoDoanhSoRepository;
         this.dailyRepository = dailyRepository;
+        ctbcdsList = new ArrayList<ctbcds>();
     }
 
 
@@ -43,7 +44,7 @@ public class CTBCDSService {
     }
 
     public static List<ctbcds> createCTBCDS(int thang, int nam) {
-        List<ctbcds> ctbcdsList = new ArrayList<ctbcds>();
+        ctbcdsList.clear();
         baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
         List<daily> dailyList = dailyRepository.getAllDaiLyIdAndName();
         int tongtien = phieuXuatHangRepository.getTongByThangAndNam(thang, nam);
@@ -65,11 +66,37 @@ public class CTBCDSService {
         return ctbcdsList;
     }
 
+
+    private static List<ctbcds> updateCTBCDS(int thang, int nam) {
+        ctbcdsList.clear();
+        baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+
+        ctbcdsList = ctbcdsRepository.getCTBCDSByMaBaoCaoDS(bcds.getMabaocaods());
+        int tongtien = phieuXuatHangRepository.getTongByThangAndNam(thang, nam);
+        for (ctbcds ctbcds : ctbcdsList) {
+            Integer sum1 = phieuXuatHangRepository.getTongTienByThangAndNamOfDaiLy(ctbcds.getMadaily().getMadaily(),thang, nam) ;
+            if (sum1 == null) {
+                sum1 = 0;
+            }
+            double tyle = (double) sum1 / tongtien;
+            ctbcds.setSophieuxuat(phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam));
+            ctbcds.setTongtrigia(sum1);
+            ctbcds.setTyle(tyle);
+            ctbcdsRepository.save(ctbcds);
+        }
+        return ctbcdsList;
+    }
+
     public static List<ctbcds> getCTBCDS(int thang, int nam) {
         baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
         if (bcds == null) {
             return null;
         }
-        return ctbcdsRepository.getCTBCDSByMaBaoCaoDS(bcds.getMabaocaods());
+        ctbcdsList = ctbcdsRepository.getCTBCDSByMaBaoCaoDS(bcds.getMabaocaods());
+        if (ctbcdsList.isEmpty()) {
+            return createCTBCDS(thang, nam);
+        } else {
+            return updateCTBCDS(thang, nam);
+        }
     }
 }

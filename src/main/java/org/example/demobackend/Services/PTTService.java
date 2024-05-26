@@ -38,6 +38,9 @@ public class PTTService {
             int tienthu = phieuthutien.getTienthu();
             if (existingDaily != null) {
                 int oldTienNo = existingDaily.getTienno();
+                if (oldTienNo < tienthu) {
+                    return false;
+                }
                 existingDaily.setTienno(oldTienNo-tienthu);
                 daiLyRepository.save(existingDaily);
             } else {
@@ -49,5 +52,4 @@ public class PTTService {
         pttRepository.save(phieuthutien);
         return true;
     }
-
 }

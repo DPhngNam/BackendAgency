@@ -1,9 +1,7 @@
 package org.example.demobackend.Services;
 
-import org.example.demobackend.Models.baocaocongno;
-import org.example.demobackend.Models.daily;
-import org.example.demobackend.Models.phieuthutien;
-import org.example.demobackend.Models.phieuxuathang;
+import org.example.demobackend.Models.*;
+import org.example.demobackend.Repository.BaoCaoDoanhSoRepository;
 import org.example.demobackend.Repository.CongNoRepository;
 import org.example.demobackend.Repository.PhieuXuatHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +14,14 @@ public class PhieuXuatHangService {
     private static PhieuXuatHangRepository phieuXuatHangRepository;
     private static DaiLyService dailyService;
     private static CongNoRepository congNoRepository;
+    private static BaoCaoDoanhSoRepository baoCaoDoanhSoRepository;
 
     @Autowired
-    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository,DaiLyService dailyService, CongNoRepository congNoRepository) {
+    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository,DaiLyService dailyService, CongNoRepository congNoRepository, BaoCaoDoanhSoRepository baoCaoDoanhSoRepository) {
         this.phieuXuatHangRepository = phieuXuatHangRepository;
         this.dailyService = dailyService;
         this.congNoRepository = congNoRepository;
+        this.baoCaoDoanhSoRepository = baoCaoDoanhSoRepository;
         calendar = Calendar.getInstance();
     }
 
@@ -36,6 +36,7 @@ public class PhieuXuatHangService {
     public static int getSoPhieuXuatByThangAndNamOfNgayLP(int thang, int nam) {
         return phieuXuatHangRepository.getSoPhieuXuatByThangAndNamOfNgayLP(thang, nam);
     }
+
     private static Calendar calendar;
     public static int createPhieuXuatHang(phieuxuathang newPhieuXuatHang) {
         try {
@@ -46,6 +47,7 @@ public class PhieuXuatHangService {
             int thang = calendar.get(Calendar.MONTH) + 1;
             int nam = calendar.get(Calendar.YEAR);
             updatePhatSinh(thang,nam, newPhieuXuatHang.getConlai(),newPhieuXuatHang.getMadaily().getMadaily());
+            updateDoanhSo(thang,nam, newPhieuXuatHang.getTongtien());
             phieuXuatHangRepository.save(newPhieuXuatHang);
             return newPhieuXuatHang.getMapxuat();
         } catch (Exception e) {
@@ -66,6 +68,19 @@ public class PhieuXuatHangService {
             congNoRepository.save(existingBCCN);
         } else {
             System.out.println("No existing baocaocongno found for parameters: thang=" + thang + ", nam=" + nam + ", madaily=" + madaily);
+        }
+    }
+
+    private static void updateDoanhSo(int thang,int nam,int tiencongthem){
+        baocaodoanhso existingBCDS = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang,nam);
+        if (existingBCDS != null) {
+            System.out.println("Found existing baocaodoanhso: " + existingBCDS);
+            int tongtien = phieuXuatHangRepository.getTongByThangAndNam(thang, nam);
+            existingBCDS.setTongdoanhthu(tongtien + tiencongthem);
+            System.out.println("Saving updated baocaodoanhso: " + existingBCDS);
+            baoCaoDoanhSoRepository.save(existingBCDS);
+        } else {
+            baoCaoDoanhSoRepository.save(new baocaodoanhso(thang,nam,tiencongthem));
         }
     }
 }

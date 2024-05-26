@@ -30,4 +30,12 @@ public class BaoCaoDoanhSoService {
         baoCaoDoanhSoRepository.save(bcds);
         return bcds;
     }
+
+    public static baocaodoanhso updateBaoCaoDoanhSo(int thang, int nam) {
+        baocaodoanhso bcds = baoCaoDoanhSoRepository.getBaoCaoDoanhSoByThangAndNam(thang, nam);
+        int tongtien = phieuXuatHangRepository.getTongByThangAndNam(thang, nam);
+        bcds.setTongdoanhthu(tongtien);
+        baoCaoDoanhSoRepository.save(bcds);
+        return bcds;
+    }
 }
