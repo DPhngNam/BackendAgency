@@ -29,4 +29,9 @@ public class ThamSoController {
     public void updateThamSo(@RequestBody thamso thamso) {
         thamSoService.updateThamSo(thamso);
     }
+
+    @GetMapping("/getThamSoValue")
+    public int getThamSo(@RequestParam String tenthamso) {
+        return thamSoService.getThamSo(tenthamso);
+    }
 }
