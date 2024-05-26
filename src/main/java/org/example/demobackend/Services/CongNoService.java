@@ -41,7 +41,7 @@ public class CongNoService {
 
             bccnList.add(bccn);
         }
-        updateNoDau(bccnList);
+//        updateNoDau(bccnList);
         congNoRepository.saveAll(bccnList);
     }
 
@@ -58,7 +58,7 @@ public class CongNoService {
                 congNoRepository.save(bccn);
             }
         }
-        updateNoDau(bccnList);
+//        updateNoDau(bccnList);
         return bccnList;
     }
 
