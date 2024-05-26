@@ -49,7 +49,7 @@ public class CongNoService {
 
     public List<baocaocongno> getCongNo(int thang, int nam) {
         List<baocaocongno> bccnList= congNoRepository.getCongNo(thang, nam);
-        if (!bccnList.isEmpty()){
+        if (bccnList.isEmpty()){
             List<daily> dailyList = dailyRepository.getAllDaiLy();
             for (daily daily : dailyList) {
                 baocaocongno bccn = new baocaocongno(
@@ -61,6 +61,7 @@ public class CongNoService {
             }
         }
         updateNoDau(bccnList);
+        updateNoCuoi(bccnList);
         return bccnList;
     }
 
@@ -72,6 +73,12 @@ public class CongNoService {
             if (temp != null){
                 bccn.setNoDau(temp.getNoCuoi());
             }
+        }
+    }
+    public void updateNoCuoi (List<baocaocongno> bccnList) {
+        for (baocaocongno bccn : bccnList) {
+            daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
+            bccn.setNoCuoi(daily.getTienno() + bccn.getPhatSinh());
         }
     }
 }

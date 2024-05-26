@@ -46,7 +46,7 @@ public class PhieuXuatHangService {
             calendar.setTime(newPhieuXuatHang.getNgaylp());
             int thang = calendar.get(Calendar.MONTH) + 1;
             int nam = calendar.get(Calendar.YEAR);
-            updatePhatSinh(thang,nam, newPhieuXuatHang.getConlai(),newPhieuXuatHang.getMadaily().getMadaily());
+            baocaocongno newBCCN = updatePhatSinh(thang,nam, newPhieuXuatHang.getConlai(),newPhieuXuatHang.getMadaily().getMadaily());
             updateDoanhSo(thang,nam, newPhieuXuatHang.getTongtien());
             phieuXuatHangRepository.save(newPhieuXuatHang);
             return newPhieuXuatHang.getMapxuat();
@@ -56,15 +56,15 @@ public class PhieuXuatHangService {
         }
     }
 
-    private static void updatePhatSinh(int thang, int nam,int phatsinh, int madaily){
+    private static baocaocongno updatePhatSinh(int thang, int nam,int phatsinh, int madaily){
         baocaocongno existingBCCN = congNoRepository.getCongNoByDaiLy(thang,nam,madaily);
         if (existingBCCN != null) {
             int oldPhatSinh = existingBCCN.getPhatSinh();
             int newPhatSinh = oldPhatSinh + phatsinh;
             existingBCCN.setPhatSinh(newPhatSinh);
-            congNoRepository.save(existingBCCN);
+            return congNoRepository.save(existingBCCN);
         } else {
-            System.out.println("No existing baocaocongno found for parameters: thang=" + thang + ", nam=" + nam + ", madaily=" + madaily);
+            return null;
         }
     }
 
