@@ -57,14 +57,11 @@ public class PhieuXuatHangService {
     }
 
     private static void updatePhatSinh(int thang, int nam,int phatsinh, int madaily){
-        System.out.println("Entering updatePhatSinh with parameters: thang=" + thang + ", nam=" + nam + ", phatsinh=" + phatsinh + ", madaily=" + madaily);
         baocaocongno existingBCCN = congNoRepository.getCongNoByDaiLy(thang,nam,madaily);
         if (existingBCCN != null) {
-            System.out.println("Found existing baocaocongno: " + existingBCCN);
             int oldPhatSinh = existingBCCN.getPhatSinh();
             int newPhatSinh = oldPhatSinh + phatsinh;
             existingBCCN.setPhatSinh(newPhatSinh);
-            System.out.println("Saving updated baocaocongno: " + existingBCCN);
             congNoRepository.save(existingBCCN);
         } else {
             System.out.println("No existing baocaocongno found for parameters: thang=" + thang + ", nam=" + nam + ", madaily=" + madaily);

@@ -25,6 +25,8 @@ public class CongNoService {
         this.dailyRepository = dailyRepository;
     }
 
+    //start of 00:00 (midnight) on the first day of every month.
+//    @Scheduled(cron = "0 0 0 1 * ?")
     @Scheduled(cron = "0 0 1 * * ?")
     public void autoCreateBaoCaoCongNo() {
         List<daily> dailyList = dailyRepository.getAllDaiLy();
@@ -41,7 +43,7 @@ public class CongNoService {
 
             bccnList.add(bccn);
         }
-//        updateNoDau(bccnList);
+        updateNoDau(bccnList);
         congNoRepository.saveAll(bccnList);
     }
 
@@ -58,13 +60,13 @@ public class CongNoService {
                 congNoRepository.save(bccn);
             }
         }
-//        updateNoDau(bccnList);
+        updateNoDau(bccnList);
         return bccnList;
     }
 
     public void updateNoDau (List<baocaocongno> bccnList) {
         for (baocaocongno bccn : bccnList) {
-            baocaocongno temp = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang(),
+            baocaocongno temp = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang()-1,
                     bccn.getBaocaocongnoID().getNam(),
                     bccn.getBaocaocongnoID().getMadaily().getMadaily());
             if (temp != null){

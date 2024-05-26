@@ -37,7 +37,6 @@ public class PTTController {
 
     @PostMapping("/addPhieuThuTien")
     public ResponseEntity<String> addPhieuThuTien(@RequestBody phieuthutien phieuthutien) {
-
         if ( pttService.insertPhieuThuTien(phieuthutien)) {
             return new ResponseEntity<>("Created successfully!", HttpStatus.CREATED);
         } else {
