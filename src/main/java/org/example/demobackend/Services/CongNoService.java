@@ -61,7 +61,6 @@ public class CongNoService {
             }
             else{
                 updateNoDau(bccn);
-
                 updateNoCuoi(bccn);
             }
             bccnList.add(bccn);
@@ -72,7 +71,7 @@ public class CongNoService {
     public void updateNoDau (baocaocongno bccn) {
 
         Integer noDau = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang() - 1, bccn.getBaocaocongnoID().getNam(), bccn.getBaocaocongnoID().getMadaily().getMadaily()).getNoCuoi();
-        if (noDau == null) {
+        if (noDau == 0) {
             noDau = 0;
         }
         bccn.setNoDau(noDau);
