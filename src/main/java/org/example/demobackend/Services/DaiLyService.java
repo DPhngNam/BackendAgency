@@ -36,18 +36,30 @@ public class DaiLyService {
     private static Calendar calendar;
 
     public daily insertDaiLy(daily daily) {
-
-        int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaquan().getId());
-        if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
-            return null;
-        }
-        daily daily1 = daiLyRepository.save(daily);
-        calendar.setTime(daily1.getNgaytn());
-        int thang = calendar.get(Calendar.MONTH) + 1;
-        int nam = calendar.get(Calendar.YEAR);
-        baocaocongno bccn = new baocaocongno(new baocaocongnoID(thang, nam, daily1), 0, 0, 0);
-        baocaocongnoRepository.save(bccn);
-        return daily1;
+            calendar = Calendar.getInstance();
+            quan existingQuan = quanRepository.findByTenquan(daily.getMaquan().getTenquan());
+            if (existingQuan == null) {
+                return null;
+            } else {
+                daily.setMaquan(existingQuan);
+            }
+            loaidaily existingLoaiDaiLy = loaiDailyRepository.findByTenloaidl(daily.getMaloaidl().getTenloaidl());
+            if (existingLoaiDaiLy == null) {
+                return null;
+            } else {
+                daily.setMaloaidl(existingLoaiDaiLy);
+            }
+            int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaquan().getId());
+            if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
+                return null;
+            }
+            daily daily1 = daiLyRepository.save(daily);
+            calendar.setTime(daily1.getNgaytn());
+            int thang = calendar.get(Calendar.MONTH) + 1;
+            int nam = calendar.get(Calendar.YEAR);
+            baocaocongno bccn = new baocaocongno(new baocaocongnoID(thang, nam, daily1), 0, 0, 0);
+            baocaocongnoRepository.save(bccn);
+            return daily1;
 
     }
 
