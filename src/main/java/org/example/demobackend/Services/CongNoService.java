@@ -5,6 +5,7 @@ import org.example.demobackend.Models.baocaocongnoID;
 import org.example.demobackend.Models.daily;
 import org.example.demobackend.Repository.CongNoRepository;
 import org.example.demobackend.Repository.DaiLyRepository;
+import org.example.demobackend.Repository.PhieuXuatHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,14 @@ import java.util.List;
 public class CongNoService {
     private static CongNoRepository congNoRepository;
     private static DaiLyRepository dailyRepository;
+    private final PhieuXuatHangRepository phieuXuatHangRepository;
 
     @Autowired
     public CongNoService(CongNoRepository congNoRepository,
-                         DaiLyRepository dailyRepository) {
+                         DaiLyRepository dailyRepository, PhieuXuatHangRepository phieuXuatHangRepository) {
         this.congNoRepository = congNoRepository;
         this.dailyRepository = dailyRepository;
+        this.phieuXuatHangRepository = phieuXuatHangRepository;
     }
     @Scheduled(cron = "0 0 0 1 * ?")
     public void autoCreateBaoCaoCongNo() {
@@ -46,7 +49,18 @@ public class CongNoService {
     public List<baocaocongno> getCongNo(int thang, int nam) {
         List<baocaocongno> bccnList= congNoRepository.getCongNo(thang, nam);
         if (bccnList.isEmpty()){
-            return null;
+            List<daily> dailyList = dailyRepository.getAllDaiLy();
+            for (daily daily : dailyList) {
+                baocaocongno bccn = new baocaocongno(
+                        new baocaocongnoID(thang, nam, daily),
+                        0,
+                        0,
+                        0);
+                updatePhatSinh(bccn);
+                bccnList.add(bccn);
+            }
+
+            congNoRepository.saveAll(bccnList);
         }
         updateNoDau(bccnList);
         updateNoCuoi(bccnList);
@@ -65,6 +79,16 @@ public class CongNoService {
             }
             congNoRepository.save(bccn);
         }
+    }
+
+    public void updatePhatSinh (baocaocongno bccn) {
+
+        int phatsinh = phieuXuatHangRepository.getTongTienByThangAndNamOfDaiLy(bccn.getBaocaocongnoID().getThang(),
+                bccn.getBaocaocongnoID().getNam(),
+                bccn.getBaocaocongnoID().getMadaily().getMadaily());
+        bccn.setPhatSinh(phatsinh);
+        congNoRepository.save(bccn);
+
     }
 
     public void updateNoCuoi (List<baocaocongno> bccnList) {
