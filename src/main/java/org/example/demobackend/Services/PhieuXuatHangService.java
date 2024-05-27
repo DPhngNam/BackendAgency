@@ -46,6 +46,7 @@ public class PhieuXuatHangService {
             calendar.setTime(newPhieuXuatHang.getNgaylp());
             int thang = calendar.get(Calendar.MONTH) + 1;
             int nam = calendar.get(Calendar.YEAR);
+
             updatePhatSinh(thang,nam, newPhieuXuatHang.getConlai(),newPhieuXuatHang.getMadaily());
             updateDoanhSo(thang,nam, newPhieuXuatHang.getTongtien());
             phieuXuatHangRepository.save(newPhieuXuatHang);

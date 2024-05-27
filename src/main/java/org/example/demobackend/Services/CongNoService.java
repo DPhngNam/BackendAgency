@@ -59,8 +59,6 @@ public class CongNoService {
                 updatePhatSinh(bccn);
                 bccnList.add(bccn);
             }
-
-            congNoRepository.saveAll(bccnList);
         }
         updateNoDau(bccnList);
         updateNoCuoi(bccnList);
@@ -83,9 +81,12 @@ public class CongNoService {
 
     public void updatePhatSinh (baocaocongno bccn) {
 
-        int phatsinh = phieuXuatHangRepository.getTongTienByThangAndNamOfDaiLy(bccn.getBaocaocongnoID().getThang(),
+        Integer phatsinh = phieuXuatHangRepository.getTongTienByThangAndNamOfDaiLy(bccn.getBaocaocongnoID().getThang(),
                 bccn.getBaocaocongnoID().getNam(),
                 bccn.getBaocaocongnoID().getMadaily().getMadaily());
+        if (phatsinh == null) {
+            phatsinh = 0;
+        }
         bccn.setPhatSinh(phatsinh);
         congNoRepository.save(bccn);
 
@@ -94,7 +95,7 @@ public class CongNoService {
     public void updateNoCuoi (List<baocaocongno> bccnList) {
         for (baocaocongno bccn : bccnList) {
             daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
-            bccn.setNoCuoi(daily.getTienno() + bccn.getPhatSinh());
+            bccn.setNoCuoi(daily.getTienno());
             congNoRepository.save(bccn);
         }
     }
