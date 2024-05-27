@@ -69,17 +69,14 @@ public class CongNoService {
     }
 
     public void updateNoDau (baocaocongno bccn) {
-
-        Integer noDau = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang() - 1, bccn.getBaocaocongnoID().getNam(), bccn.getBaocaocongnoID().getMadaily().getMadaily()).getNoCuoi();
-        if (noDau == 0) {
-            noDau = 0;
+        baocaocongno existingBccn = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang() - 1, bccn.getBaocaocongnoID().getNam(), bccn.getBaocaocongnoID().getMadaily().getMadaily());
+        Integer noDau = 0;
+        if (existingBccn != null) {
+            noDau = existingBccn.getNoCuoi();
         }
         bccn.setNoDau(noDau);
     }
 
-    public void updatePhatSinh (baocaocongno bccn) {
-
-    }
 
     public void updateNoCuoi (baocaocongno bccn) {
         daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
