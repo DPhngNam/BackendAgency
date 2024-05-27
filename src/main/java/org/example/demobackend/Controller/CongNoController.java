@@ -5,10 +5,7 @@ import org.example.demobackend.Services.CongNoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,11 @@ public class CongNoController {
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/autoCreateBaoCaoCongNo")
+    public ResponseEntity<String> autoCreateBaoCaoCongNo(@RequestBody baocaocongno bccn) {
+        congNoService.createCongNo(bccn);
+        return new ResponseEntity<>("Báo cáo công nợ đã được tạo", HttpStatus.OK);
     }
 }
