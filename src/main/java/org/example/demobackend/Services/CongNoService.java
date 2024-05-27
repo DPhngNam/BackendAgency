@@ -73,6 +73,7 @@ public class CongNoService {
             if (temp != null){
                 bccn.setNoDau(temp.getNoCuoi());
             }
+            congNoRepository.save(bccn);
         }
     }
 
@@ -80,6 +81,7 @@ public class CongNoService {
         for (baocaocongno bccn : bccnList) {
             daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
             bccn.setNoCuoi(daily.getTienno() + bccn.getPhatSinh());
+            congNoRepository.save(bccn);
         }
     }
 }
