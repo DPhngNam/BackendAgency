@@ -75,6 +75,7 @@ public class CongNoService {
             }
         }
     }
+
     public void updateNoCuoi (List<baocaocongno> bccnList) {
         for (baocaocongno bccn : bccnList) {
             daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
