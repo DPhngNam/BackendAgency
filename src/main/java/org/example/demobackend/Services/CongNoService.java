@@ -61,7 +61,7 @@ public class CongNoService {
             }
             else{
                 updateNoDau(bccn);
-                updatePhatSinh(bccn);
+
                 updateNoCuoi(bccn);
             }
             bccnList.add(bccn);
