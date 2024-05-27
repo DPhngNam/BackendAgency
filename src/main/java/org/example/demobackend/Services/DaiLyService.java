@@ -49,7 +49,7 @@ public class DaiLyService {
             } else {
                 daily.setMaloaidl(existingLoaiDaiLy);
             }
-            int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaloaidl().getMaloaidl());
+            int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaquan().getId());
             if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
                 return null;
             }
