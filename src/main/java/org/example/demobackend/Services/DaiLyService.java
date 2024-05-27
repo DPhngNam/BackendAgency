@@ -78,4 +78,11 @@ public class DaiLyService {
         }
         return false;
     }
+
+
+    public int getDaiLyById(int madaily) {
+        daily dl =  daiLyRepository.getDaiLyById(madaily);
+        int max_debt = loaiDailyRepository.findByMaloaidl(dl.getMaloaidl().getMaloaidl()).getNotoida();
+        return max_debt - dl.getTienno();
+    }
 }

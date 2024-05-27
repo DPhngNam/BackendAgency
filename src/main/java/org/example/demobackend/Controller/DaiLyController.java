@@ -33,4 +33,10 @@ public class DaiLyController {
         }
     }
 
+    @GetMapping("/checkingdebt")
+    public int checkDebt(@RequestParam int madaily) {
+        int debt  = daiLyService.getDaiLyById(madaily);
+        return debt;
+    }
+
 }
