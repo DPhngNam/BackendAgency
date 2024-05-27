@@ -7,6 +7,7 @@ import org.example.demobackend.Repository.CongNoRepository;
 import org.example.demobackend.Repository.DaiLyRepository;
 import org.example.demobackend.Repository.PhieuXuatHangRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -42,62 +43,48 @@ public class CongNoService {
 
             bccnList.add(bccn);
         }
-        updateNoDau(bccnList);
+
         congNoRepository.saveAll(bccnList);
     }
 
     public List<baocaocongno> getCongNo(int thang, int nam) {
-        List<baocaocongno> bccnList= congNoRepository.getCongNo(thang, nam);
-        if (bccnList.isEmpty()){
-            List<daily> dailyList = dailyRepository.getAllDaiLy();
-            for (daily daily : dailyList) {
-                baocaocongno bccn = new baocaocongno(
+        List<baocaocongno> bccnList = new ArrayList<>();
+        List<daily> dailyList = dailyRepository.getAllDaiLy();
+        for (daily daily : dailyList) {
+            baocaocongno bccn = congNoRepository.getCongNoByDaiLy(thang, nam, daily.getMadaily());
+            if (bccn == null) {
+                bccn = new baocaocongno(
                         new baocaocongnoID(thang, nam, daily),
                         0,
                         0,
                         0);
-                updatePhatSinh(bccn);
-                bccnList.add(bccn);
             }
+            else{
+                updateNoDau(bccn);
+                updatePhatSinh(bccn);
+                updateNoCuoi(bccn);
+            }
+            bccnList.add(bccn);
         }
-        updateNoDau(bccnList);
-        updateNoCuoi(bccnList);
         return bccnList;
     }
 
-    public void updateNoDau (List<baocaocongno> bccnList) {
-        for (baocaocongno bccn : bccnList) {
-            baocaocongno temp = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang()-1,
-                    bccn.getBaocaocongnoID().getNam(),
-                    bccn.getBaocaocongnoID().getMadaily().getMadaily());
-            if (temp != null){
-                bccn.setNoDau(temp.getNoCuoi());
-            }else{
-                bccn.setNoDau(0);
-            }
-            congNoRepository.save(bccn);
+    public void updateNoDau (baocaocongno bccn) {
+
+        Integer noDau = congNoRepository.getCongNoByDaiLy(bccn.getBaocaocongnoID().getThang() - 1, bccn.getBaocaocongnoID().getNam(), bccn.getBaocaocongnoID().getMadaily().getMadaily()).getNoCuoi();
+        if (noDau == null) {
+            noDau = 0;
         }
+        bccn.setNoDau(noDau);
     }
 
     public void updatePhatSinh (baocaocongno bccn) {
 
-        Integer phatsinh = phieuXuatHangRepository.getTongTienByThangAndNamOfDaiLy(bccn.getBaocaocongnoID().getThang(),
-                bccn.getBaocaocongnoID().getNam(),
-                bccn.getBaocaocongnoID().getMadaily().getMadaily());
-        if (phatsinh == null) {
-            phatsinh = 0;
-        }
-        bccn.setPhatSinh(phatsinh);
-        congNoRepository.save(bccn);
-
     }
 
-    public void updateNoCuoi (List<baocaocongno> bccnList) {
-        for (baocaocongno bccn : bccnList) {
-            daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
-            bccn.setNoCuoi(daily.getTienno());
-            congNoRepository.save(bccn);
-        }
+    public void updateNoCuoi (baocaocongno bccn) {
+        daily daily = dailyRepository.getDaiLyById(bccn.getBaocaocongnoID().getMadaily().getMadaily());
+        bccn.setNoCuoi(daily.getTienno());
     }
 
     public void createCongNo(baocaocongno bccn) {

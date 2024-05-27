@@ -1,12 +1,11 @@
 package org.example.demobackend.Services;
 
-import org.example.demobackend.Models.baocaocongno;
-import org.example.demobackend.Models.daily;
-import org.example.demobackend.Models.loaidaily;
-import org.example.demobackend.Models.quan;
+import org.example.demobackend.Models.*;
 import org.example.demobackend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Calendar;
 
 @Service
 public class DaiLyService {
@@ -34,6 +33,7 @@ public class DaiLyService {
     }
 
 
+    private static Calendar calendar;
 
     public daily insertDaiLy(daily daily) {
         try {
@@ -53,7 +53,17 @@ public class DaiLyService {
             if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
                 return null;
             }
-            return daiLyRepository.save(daily);
+            daily daily1 = daiLyRepository.save(daily);
+            calendar.setTime(daily1.getNgaytn());
+            int thang = calendar.get(Calendar.MONTH) + 1;
+            int nam = calendar.get(Calendar.YEAR);
+            baocaocongno bccn = new baocaocongno(new baocaocongnoID(thang, nam, daily1), 0, 0, 0);
+
+
+
+
+            baocaocongnoRepository.save(bccn);
+            return daily1;
         } catch (Exception e) {
             e.printStackTrace();
         }
