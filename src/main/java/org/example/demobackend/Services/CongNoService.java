@@ -59,8 +59,8 @@ public class CongNoService {
                         0);
                 congNoRepository.save(bccn);
             }
+            updateNoDau(bccnList);
         }
-        updateNoDau(bccnList);
         updateNoCuoi(bccnList);
         return bccnList;
     }
