@@ -26,8 +26,8 @@ public class ThamSoController {
     }
 
     @PostMapping("/updateThamSo")
-    public void updateThamSo(@RequestBody thamso thamso) {
-        thamSoService.updateThamSo(thamso);
+    public boolean updateThamSo(@RequestBody thamso thamso) {
+        return thamSoService.updateThamSo(thamso);
     }
 
     @GetMapping("/getThamSoValue")

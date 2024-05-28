@@ -38,7 +38,17 @@ public class ThamSoService {
         return thamSoRepository.findAll();
     }
 
-    public void updateThamSo(thamso thamso) {
-        thamSoRepository.save(thamso);
+    public boolean updateThamSo(thamso thamso) {
+        thamso existingThamSo = thamSoRepository.getThamSoByTen(thamso.getTenThamSo());
+        if (existingThamSo != null) {
+            if(thamso.getTenThamSo().equals("Số đại lý tối đa trong một quận")){
+                if(thamso.getGiatri() < existingThamSo.getGiatri()){
+                    return false;
+                }
+            }
+            thamSoRepository.save(thamso);
+            return true;
+        }
+        return false;
     }
 }
