@@ -60,12 +60,4 @@ public class LoaiDaiLyService {
             return -1;
         }
     }
-
-    public static int getTienNoToiDa(int maloaidl) {
-        loaidaily existingLoaiDaiLy = loaiDaiLyRepository.findByMaloaidl(maloaidl);
-        if (existingLoaiDaiLy == null) {
-            return -1;
-        }
-        return existingLoaiDaiLy.getNotoida();
-    }
 }

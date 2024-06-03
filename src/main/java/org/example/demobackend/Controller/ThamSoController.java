@@ -20,11 +20,6 @@ public class ThamSoController {
         thamSoService.addThamSo(thamso);
     }
 
-    @GetMapping("/getThamSo")
-    public Iterable<thamso> getThamSo() {
-        return thamSoService.getAllThamSo();
-    }
-
     @PostMapping("/updateThamSo")
     public boolean updateThamSo(@RequestBody thamso thamso) {
         return thamSoService.updateThamSo(thamso);
