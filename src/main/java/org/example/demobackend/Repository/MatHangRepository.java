@@ -24,4 +24,6 @@ public interface MatHangRepository extends CrudRepository<mathang, Integer> {
 
     @Query("SELECT mh.slton FROM mathang mh WHERE mh.tenmh = :tenmh")
     int getSLTByTenmh(@Param("tenmh")String tenmh);
+
+
 }
