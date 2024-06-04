@@ -2,8 +2,6 @@ package org.example.demobackend.Repository;
 
 import org.example.demobackend.Models.baocaocongno;
 
-import org.example.demobackend.Models.daily;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
@@ -19,8 +17,7 @@ public interface CongNoRepository extends CrudRepository<baocaocongno, Integer>{
 
     @Query("SELECT bccn FROM baocaocongno bccn WHERE bccn.baocaocongnoID.thang = :thang AND bccn.baocaocongnoID.nam = :nam AND bccn.baocaocongnoID.madaily.madaily = :madaily")
     baocaocongno getCongNoByDaiLy(@Param("thang") int thang, @Param("nam") int nam, @Param("madaily") int madaily);
-<<<<<<< Updated upstream
-=======
+
 
     @Query("SELECT bccn FROM baocaocongno bccn WHERE bccn.baocaocongnoID.madaily.madaily = :madaily")
     List<baocaocongno> getCongNoByDaiLy(@Param("madaily") int madaily);
@@ -28,5 +25,4 @@ public interface CongNoRepository extends CrudRepository<baocaocongno, Integer>{
     @Modifying
     @Query("DELETE FROM baocaocongno bccn WHERE bccn.baocaocongnoID.madaily.madaily = :madaily")
     void deleteByMadaily(@Param("madaily") int madaily);
->>>>>>> Stashed changes
 }

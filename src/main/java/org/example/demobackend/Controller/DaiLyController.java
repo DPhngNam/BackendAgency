@@ -3,6 +3,7 @@ package org.example.demobackend.Controller;
 
 import org.example.demobackend.Models.daily;
 import org.example.demobackend.Services.DaiLyService;
+import org.example.demobackend.TriggerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,11 @@ public class DaiLyController {
     public int checkDebt(@RequestParam int madaily) {
         int debt  = daiLyService.getDaiLyById(madaily);
         return debt;
+    }
+
+    @DeleteMapping("/deleteDaiLy")
+    public ResponseEntity<String> deleteDaiLy(@RequestParam int madaily) throws TriggerException {
+        return new ResponseEntity<>(daiLyService.deleteDaiLy(madaily), HttpStatus.OK);
     }
 
 }
