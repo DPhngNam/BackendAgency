@@ -25,10 +25,6 @@ public class PTTController {
         return pttService.getAllPhieuThuTien();
     }
 
-    @GetMapping("/getPhieuThuTienById")
-    public Iterable<phieuthutien> getPhieuThuTienById(int maphieuthu) {
-        return pttService.getPhieuThuTienById(maphieuthu);
-    }
 
     @GetMapping("/getPhieuThuTienByDaiLyId") //http://localhost:8080/phieuthutien/getPhieuThuTienByDaiLyId?maDaiLy=1
     public Iterable<phieuthutien> getPhieuThuTienByDaiLyId(int madaily) {

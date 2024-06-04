@@ -1,6 +1,7 @@
 package org.example.demobackend.Repository;
 
 import org.example.demobackend.Models.ctnh;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
@@ -19,4 +20,9 @@ public interface CTNHRepository extends CrudRepository<ctnh, Integer> {
 
     @Query("SELECT ctnh FROM ctnh ctnh WHERE ctnh.mapnhap = :mapnhap AND ctnh.mamh = :mamh")
     ctnh getCTNHByMapNhapAndMaMH(@Param("mapnhap") int mapnhap, @Param("mamh") int mamh);
+
+    @Modifying
+    @Query("DELETE FROM ctnh ctnh WHERE ctnh.mapnhap.mapnhap = :mapnhap AND ctnh.mamh.mamh = :mamh")
+    void deleteCTNH(@Param("mapnhap") int mapnhap, @Param("mamh") int mamh);
+
 }

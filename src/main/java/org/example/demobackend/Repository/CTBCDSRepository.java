@@ -1,6 +1,7 @@
 package org.example.demobackend.Repository;
 
 import org.example.demobackend.Models.ctbcds;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @EnableJpaRepositories
 public interface CTBCDSRepository extends CrudRepository<ctbcds, Integer> {
-    @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.madaily = :madaily")
+    @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.madaily.madaily = :madaily")
     List<ctbcds> getCTBCDSByMaDaily(@Param("madaily")int madaily);
 
     @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.mabaocaods.mabaocaods = :mabaocaods")
@@ -19,4 +20,12 @@ public interface CTBCDSRepository extends CrudRepository<ctbcds, Integer> {
     @Query("SELECT ctbcds FROM ctbcds ctbcds WHERE ctbcds.madaily = :madaily AND ctbcds.mabaocaods = :mabaocaods")
     ctbcds getCTBCDSByMaDailyAndMaBaoCaoDS(@Param("madaily")int madaily,@Param("mabaocaods")int mabaocaods);
 
+    @Query("SELECT COUNT(*) FROM ctbcds ctbcds WHERE ctbcds.mabaocaods.mabaocaods = :mabaocaods")
+    int countCTBCDSByMabaocaods(@Param("mabaocaods")int mabaocaods);
+
+
+
+    @Modifying
+    @Query("DELETE FROM ctbcds ctbcds WHERE ctbcds.madaily.madaily = :madaily")
+    void deleteByMaDaily(@Param("madaily") int madaily);
 }

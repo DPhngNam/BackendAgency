@@ -43,4 +43,13 @@ public class CTNHService {
     static void updateMatHang(ctnh ctnh) {
         MatHangService.upSLT(ctnh.getMamh(),ctnh.getSlnhap());
     }
+
+    public String deleteCTNH(int mapnhap, int mamh) {
+        try {
+            ctnhRepository.deleteCTNH(mapnhap, mamh);
+            return "Delete success";
+        } catch (Exception e) {
+            return "Delete failed";
+        }
+    }
 }

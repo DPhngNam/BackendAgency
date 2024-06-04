@@ -2,6 +2,7 @@ package org.example.demobackend.Repository;
 
 import org.example.demobackend.Models.DaiLyInfo;
 import org.example.demobackend.Models.daily;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
@@ -33,4 +34,7 @@ public interface DaiLyRepository extends CrudRepository<daily, Integer> {
     @Query("SELECT d FROM daily d WHERE d.madaily = :madaily ")
     List<daily> getDaiLyTienNo(@Param("madaily") int madaily);
 
+    @Modifying
+    @Query("DELETE FROM daily d WHERE d.madaily = :madaily")
+    void deleteByMadaily(@Param("madaily") int madaily);
 }

@@ -1,6 +1,8 @@
 package org.example.demobackend.Repository;
 
+import org.example.demobackend.Models.daily;
 import org.example.demobackend.Models.phieuxuathang;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
@@ -30,4 +32,14 @@ public interface PhieuXuatHangRepository extends CrudRepository<phieuxuathang, I
 
     @Query("SELECT SUM(pxh.tongtien) FROM phieuxuathang pxh WHERE MONTH(pxh.ngaylp) = :thang AND YEAR(pxh.ngaylp) = :nam")
     int getTongByThangAndNam(@Param("thang") int thang, @Param("nam") int nam);
+<<<<<<< Updated upstream
+=======
+
+    @Query("SELECT pxh FROM phieuxuathang pxh WHERE pxh.madaily.madaily = :madaily")
+    List<phieuxuathang> getPhieuXuatHangByDaiLy(@Param("madaily") int madaily);
+
+    @Modifying
+    @Query("DELETE FROM phieuxuathang pxh WHERE pxh.madaily.madaily = :madaily")
+    void deleteByMadaily(@Param("madaily") int madaily);
+>>>>>>> Stashed changes
 }

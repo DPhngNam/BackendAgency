@@ -1,13 +1,12 @@
 package org.example.demobackend.Services;
 
 import org.example.demobackend.Models.*;
-import org.example.demobackend.Repository.BaoCaoDoanhSoRepository;
-import org.example.demobackend.Repository.CongNoRepository;
-import org.example.demobackend.Repository.PhieuXuatHangRepository;
+import org.example.demobackend.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Service
 public class PhieuXuatHangService {
@@ -16,12 +15,19 @@ public class PhieuXuatHangService {
     private static CongNoRepository congNoRepository;
     private static BaoCaoDoanhSoRepository baoCaoDoanhSoRepository;
 
+    private static CTXHRepository CTXHRepository;
+
     @Autowired
-    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository,DaiLyService dailyService, CongNoRepository congNoRepository, BaoCaoDoanhSoRepository baoCaoDoanhSoRepository) {
+    public PhieuXuatHangService(PhieuXuatHangRepository phieuXuatHangRepository,
+                                DaiLyService dailyService,
+                                CongNoRepository congNoRepository,
+                                BaoCaoDoanhSoRepository baoCaoDoanhSoRepository,
+                                CTXHRepository CTXHRepository) {
         this.phieuXuatHangRepository = phieuXuatHangRepository;
         this.dailyService = dailyService;
         this.congNoRepository = congNoRepository;
         this.baoCaoDoanhSoRepository = baoCaoDoanhSoRepository;
+        this.CTXHRepository = CTXHRepository;
         calendar = Calendar.getInstance();
     }
 
@@ -79,6 +85,36 @@ public class PhieuXuatHangService {
             baoCaoDoanhSoRepository.save(existingBCDS);
         } else {
             baoCaoDoanhSoRepository.save(new baocaodoanhso(thang,nam,tiencongthem));
+        }
+    }
+
+    public String deletePhieuXuatHang(int mapxuat) {
+        try {
+            phieuxuathang phieuXuatHang = phieuXuatHangRepository.getPhieuXuatHangById(mapxuat);
+            if (phieuXuatHang == null) {
+                return "Không tìm thấy phiếu xuất hàng";
+            }
+            if (!dailyService.updateSoNo(-phieuXuatHang.getConlai(),phieuXuatHang.getMadaily().getMadaily())) {
+                return "Không thể cập nhật số nợ của đại lý";
+            }
+            calendar.setTime(phieuXuatHang.getNgaylp());
+            int thang = calendar.get(Calendar.MONTH) + 1;
+            int nam = calendar.get(Calendar.YEAR);
+
+            updatePhatSinh(thang,nam, -phieuXuatHang.getConlai(),phieuXuatHang.getMadaily());
+            updateDoanhSo(thang,nam, -phieuXuatHang.getTongtien());
+
+            List<ctxh> listCTXH = CTXHRepository.getCTXHByMapXuat(mapxuat);
+            for (ctxh ctxh : listCTXH) {
+                MatHangService.upSLT(ctxh.getMamh(), ctxh.getSlxuat());
+                CTXHRepository.delete(ctxh);
+            }
+
+            phieuXuatHangRepository.delete(phieuXuatHang);
+            return "Xóa phiếu xuất hàng thành công";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Xóa phiếu xuất hàng thất bại";
         }
     }
 }

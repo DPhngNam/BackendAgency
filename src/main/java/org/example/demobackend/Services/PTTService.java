@@ -30,9 +30,6 @@ public class PTTService {
         return pttRepository.findAll();
     }
 
-    public Iterable<phieuthutien> getPhieuThuTienById(int maPhieuThu) {
-        return pttRepository.getPhieuThuTienById(maPhieuThu);
-    }
 
     public Iterable<phieuthutien> getPhieuThuTienByDaiLyId(int madaily) {
         return pttRepository.getPhieuThuTienByDaiLyId(madaily);
@@ -73,5 +70,18 @@ public class PTTService {
             congNoRepository.save(existingBCCN);
         }
         return true;
+    }
+
+    public String deletePhieuThuTien(int maPhieuThu) {
+        try {
+            phieuthutien existingPhieuThuTien = pttRepository.getPhieuThuTienById(maPhieuThu);
+            daily existingDaily = daiLyRepository.getDaiLyById(existingPhieuThuTien.getMadaily().getMadaily());
+            existingDaily.setTienno(existingPhieuThuTien.getTienthu() + existingDaily.getTienno());
+            daiLyRepository.save(existingDaily);
+            pttRepository.deleteById(maPhieuThu);
+            return "Delete success";
+        } catch (Exception e) {
+            return "Delete failed";
+        }
     }
 }

@@ -43,4 +43,13 @@ public class CTXHService {
     static Boolean updateMatHang(ctxh ctxh) {
         return MatHangService.downSLT(ctxh.getMamh(),ctxh.getSlxuat());
     }
+
+    public String deleteCTXH(int mapxuat, int mamh) {
+        try {
+            ctxhRepository.deleteCTXH(mapxuat, mamh);
+            return "Delete success";
+        } catch (Exception e) {
+            return "Delete failed";
+        }
+    }
 }
