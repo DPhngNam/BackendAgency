@@ -34,12 +34,12 @@ public class PersonController {
     }
 
     @GetMapping(path="/getLoginUser")
-    public ResponseEntity<Object> getUserByEmail(@RequestParam String personemail,@RequestParam String personpassword) {
+    public ResponseEntity<String> getUserByEmail(@RequestParam String personemail,@RequestParam String personpassword) {
         person user = PersonService.getUserByEmail(personemail,personpassword);
         if(user != null) {
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>("Đăng nhập thành công", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Đăng nhập thất bại", HttpStatus.NOT_FOUND);
         }
     }
 }
