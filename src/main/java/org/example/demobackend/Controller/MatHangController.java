@@ -63,4 +63,13 @@ public class MatHangController {
             return new ResponseEntity<>(-1, HttpStatus.NOT_FOUND);
         }
     }
+    @PutMapping("/updatemh")
+    public ResponseEntity<String> updateMatHang(@RequestBody mathang newMatHang){
+        mathang temp = MatHangService.updateMatHang(newMatHang);
+        if (temp != null) {
+            return new ResponseEntity<>("Thay đổi thành công", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Thay đổi thất bại", HttpStatus.BAD_REQUEST);
+        }
+    }
 }

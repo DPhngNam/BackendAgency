@@ -1,6 +1,7 @@
 package org.example.demobackend.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -20,6 +21,8 @@ public class daily {
     private String diachi;
     @Column(name = "sdt",nullable = false)
     private String sdt;
+
+    @Email(message = "Email không hợp lệ")
     @Column(name = "email",nullable = false)
     private String email;
     @ManyToOne

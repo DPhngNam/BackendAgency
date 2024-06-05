@@ -45,4 +45,14 @@ public class DaiLyController {
         return new ResponseEntity<>(daiLyService.deleteDaiLy(madaily), HttpStatus.OK);
     }
 
+    @PutMapping("/updateDaiLy")
+    public ResponseEntity<String> updateDaiLy(@RequestBody daily daily) {
+        daily newDaiLy = daiLyService.updateDaiLy(daily);
+        if (newDaiLy == null) {
+            return new ResponseEntity<>("Thay đổi thành công", HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>("Thay đổi thất bại", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

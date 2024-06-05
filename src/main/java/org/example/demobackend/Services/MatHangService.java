@@ -65,4 +65,16 @@ public class MatHangService {
         matHangRepository.save(temp);
         return true;
     }
+
+    public static mathang updateMatHang(mathang newMatHang) {
+        mathang existingMatHang = matHangRepository.getMatHangById(newMatHang.getMamh());
+        if (existingMatHang != null) {
+            existingMatHang.setTenmh(newMatHang.getTenmh());
+            existingMatHang.setDongianhap(newMatHang.getDongianhap());
+            existingMatHang.setDvt(dvtRepository.findByTendvt(newMatHang.getDvt().getTendvt()));
+            matHangRepository.save(existingMatHang);
+            return existingMatHang;
+        }
+        return null;
+    }
 }

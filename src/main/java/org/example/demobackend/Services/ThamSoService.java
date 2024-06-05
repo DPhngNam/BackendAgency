@@ -59,7 +59,6 @@ public class ThamSoService {
                 List<mathang> mathangs = matHangRepository.getAllMatHang();
                 for (mathang mathang : mathangs) {
                     mathang.setDongiaxuat(mathang.getDongianhap() * thamso.getGiatri() / 100);
-
                 }
                 matHangRepository.saveAll(mathangs);
             }

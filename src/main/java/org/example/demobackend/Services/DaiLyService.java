@@ -3,16 +3,15 @@ package org.example.demobackend.Services;
 import jakarta.transaction.Transactional;
 import org.example.demobackend.Models.*;
 import org.example.demobackend.Repository.*;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 
 @Service
 public class DaiLyService {
@@ -21,14 +20,13 @@ public class DaiLyService {
     private final QuanRepository quanRepository;
     private final ThamSoRepository thamSoRepository;
     private final CongNoRepository baocaocongnoRepository;
-
     private final CTXHRepository ctxhRepository;
     private final PhieuXuatHangRepository phieuXuatHangRepository;
     private final PTTRepository phieuThuTienRepository;
     private final CTBCDSRepository ctbcdsRepository;
     private final BaoCaoDoanhSoRepository baoCaoDoanhSoRepository;
 
-
+    private static Calendar calendar;
     @Autowired
     public DaiLyService(DaiLyRepository daiLyRepository,
                         LoaiDaiLyRepository loaiDailyRepository,
@@ -57,23 +55,25 @@ public class DaiLyService {
         return daiLyRepository.findAll();
     }
 
-
-    private static Calendar calendar;
+    private daily setAttributes(daily daily){
+        quan existingQuan = quanRepository.findByTenquan(daily.getMaquan().getTenquan());
+        if (existingQuan == null) {
+            return null;
+        } else {
+            daily.setMaquan(existingQuan);
+        }
+        loaidaily existingLoaiDaiLy = loaiDailyRepository.findByTenloaidl(daily.getMaloaidl().getTenloaidl());
+        if (existingLoaiDaiLy == null) {
+            return null;
+        } else {
+            daily.setMaloaidl(existingLoaiDaiLy);
+        }
+        return daily;
+    }
 
     public daily insertDaiLy(daily daily) {
             calendar = Calendar.getInstance();
-            quan existingQuan = quanRepository.findByTenquan(daily.getMaquan().getTenquan());
-            if (existingQuan == null) {
-                return null;
-            } else {
-                daily.setMaquan(existingQuan);
-            }
-            loaidaily existingLoaiDaiLy = loaiDailyRepository.findByTenloaidl(daily.getMaloaidl().getTenloaidl());
-            if (existingLoaiDaiLy == null) {
-                return null;
-            } else {
-                daily.setMaloaidl(existingLoaiDaiLy);
-            }
+            daily = setAttributes(daily);
             int n = daiLyRepository.countDaiLyByLoaiDaiLy(daily.getMaquan().getId());
             if(n >= thamSoRepository.getThamSoByTen("Số đại lý tối đa trong một quận").getGiatri()){
                 return null;
@@ -86,10 +86,6 @@ public class DaiLyService {
             baocaocongnoRepository.save(bccn);
             return daily1;
 
-    }
-
-    public daily getDaiLyByName(String tendaily) {
-        return daiLyRepository.getAllDaiLyByTenDaiLy(tendaily);
     }
 
     public Boolean updateSoNo(int tienno,int madaily){
@@ -106,7 +102,6 @@ public class DaiLyService {
         }
         return false;
     }
-
 
     public int getDaiLyById(int madaily) {
         daily dl =  daiLyRepository.getDaiLyById(madaily);
@@ -142,5 +137,23 @@ public class DaiLyService {
             return e.getMessage();
         }
         return "Deleted";
+    }
+
+    public daily updateDaiLy(@NotNull daily daily) {
+        daily existingDaiLy = daiLyRepository.getDaiLyById(daily.getMadaily());
+        daily = setAttributes(daily);
+        if (existingDaiLy != null){
+            assert daily != null;
+            existingDaiLy.setTendaily(daily.getTendaily());
+            existingDaiLy.setDiachi(daily.getDiachi());
+            existingDaiLy.setSdt(daily.getSdt());
+            existingDaiLy.setEmail(daily.getEmail());
+            existingDaiLy.setMaloaidl(daily.getMaloaidl());
+            existingDaiLy.setMaquan(daily.getMaquan());
+            existingDaiLy.setNgaytn(daily.getNgaytn());
+            daiLyRepository.save(existingDaiLy);
+            return existingDaiLy;
+        }
+        return null;
     }
 }
